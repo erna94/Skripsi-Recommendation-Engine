@@ -5,27 +5,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import service.pembayaran.entities.Keranjang;
 import service.pembayaran.entities.Product;
 
 @RestController
-@RequestMapping("/api/produk/detail")
-public class ProdukDetailController {
+@RequestMapping("/api/keranjang")
+public class KeranjangController {
+	
 	
 	@GetMapping("/{id}")
-    public Product getProdukDetail(@PathVariable Long id) {
-		// panggil database buat dapetin produk berdasarkan id yang di kasih
-		Product p = getProductFromDB(id);
-        return p;
+    public Keranjang getKeranjang(@PathVariable Long id) {
+		Keranjang k = getKeranjangDariDB(id);
+		return k;
     }
 	
-	private Product getProductFromDB(Long id) {
+	private Keranjang getKeranjangDariDB(Long id) {
 		// code buat panggil database
 		Product p = new Product();
 		p.setDeskripsiProduct("Ini deskripsi");
 		p.setHargaProduct(500);
 		p.setIdProduct(99);
 		p.setNamaProduct("Product Erna");
-		return p;
-		
+			
+		Keranjang k = new Keranjang();
+		k.addProduct(p);
+	
+		return k;
 	}
 }
