@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class RekomendasiProdukController {
 	
 	
-	@GetMapping("/{id}")
-    public Long getRekomendasiProduk(@PathVariable Long id) {
+	@GetMapping("/{userid}")
+    public Long getRekomendasiProduk(@PathVariable Long userid) {
+        return userid;
+    }
+	
+	@GetMapping("/category/{id}")
+    public Long getProdukBerdasarkanCategory(@PathVariable Long id) {
         return id;
     }
 }
