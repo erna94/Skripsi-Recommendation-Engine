@@ -1,15 +1,16 @@
 package service.pembayaran.entities;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class Keranjang {
 	String keranjangId;
-	ArrayList<Product> isiProduct;
-	
+	Map<Product, Integer> isiProduct;
+
 	public Keranjang() {
 		keranjangId = UUID.randomUUID().toString();
-		isiProduct = new ArrayList<Product>();
+		isiProduct = new HashMap<Product, Integer>();
 	}
 
 	public String getKeranjangId() {
@@ -19,14 +20,12 @@ public class Keranjang {
 	public void setKeranjangId(String keranjangId) {
 		this.keranjangId = keranjangId;
 	}
-	
-	
 
-	public ArrayList<Product> getIsiProduct() {
+	public Map<Product, Integer> getIsiProduct() {
 		return isiProduct;
 	}
 
-	public void setIsiProduct(ArrayList<Product> isiProduct) {
+	public void setIsiProduct(Map<Product, Integer> isiProduct) {
 		this.isiProduct = isiProduct;
 	}
 
@@ -34,7 +33,25 @@ public class Keranjang {
 	 * Method buat menambahkan product
 	 * @param produkBuatDitambahkan
 	 */
-	public void addProduct(Product produkBuatDitambahkan) {
-		isiProduct.add(produkBuatDitambahkan);
+	public void addProduct(Product produkBuatDitambahkan, int jumlahPenambahan) {
+		int id = produkBuatDitambahkan.getIdProduct();
+		// update isi produk dengan jumlahnya
+		isiProduct.put(produkBuatDitambahkan, jumlahPenambahan);			
+	}
+
+	/***
+	 * Method buat menambahkan product
+	 * @param produkBuatDitambahkan
+	 */
+	public void subtractProduct(Product produkBuatDitambahkan) {
+		int id = produkBuatDitambahkan.getIdProduct();
+
+		int jumlahProduk = isiProduct.get(id) - 1;
+		
+		if(jumlahProduk == 0) {
+			isiProduct.remove(id);			
+		} else {
+			isiProduct.put(produkBuatDitambahkan, jumlahProduk);			
+		}
 	}
 }
