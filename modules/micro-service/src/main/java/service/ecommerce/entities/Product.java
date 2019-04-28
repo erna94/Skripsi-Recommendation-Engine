@@ -21,8 +21,10 @@ import javax.persistence.Table;
 @Table(name="product")
 public class Product {
 	
-	@Id
-	@Column(name="id_product", unique = true)
+	@Id // @ID ini untuk menandakan kalau column id_product itu adalah primary keynya 
+	// @Column buat kasih tau kalau ini idProduct 
+	// di object di hubungkan ke kolom id_product di database
+	@Column(name="id_product", unique = true) 
 	Long idProduct;
 	
 	@Column(name="id_category")
