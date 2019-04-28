@@ -1,4 +1,4 @@
-package service.pembayaran.controllers;
+package service.ecommerce.controller;
 
 import java.util.Map;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import service.pembayaran.entities.Keranjang;
-import service.pembayaran.entities.Product;
+import service.ecommerce.entities.Keranjang;
+import service.ecommerce.entities.Product;
 
 @RestController
 @RequestMapping("/api/keranjang")
@@ -52,7 +52,7 @@ public class KeranjangController {
 		Product p = new Product();
 		p.setDeskripsiProduct("Ini deskripsi");
 		p.setHargaProduct(500);
-		p.setIdProduct(99);
+		p.setIdProduct(1l);
 		p.setNamaProduct("Product Erna");
 
 		Keranjang k = new Keranjang();

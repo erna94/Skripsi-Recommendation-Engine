@@ -1,4 +1,4 @@
-package service.pembayaran.entities;
+package service.ecommerce.entities;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class Keranjang {
 	 * @param produkBuatDitambahkan
 	 */
 	public void addProduct(Product produkBuatDitambahkan, int jumlahPenambahan) {
-		int id = produkBuatDitambahkan.getIdProduct();
+		Long id = produkBuatDitambahkan.getIdProduct();
 		// update isi produk dengan jumlahnya
 		isiProduct.put(produkBuatDitambahkan, jumlahPenambahan);			
 	}
@@ -44,7 +44,7 @@ public class Keranjang {
 	 * @param produkBuatDitambahkan
 	 */
 	public void subtractProduct(Product produkBuatDitambahkan) {
-		int id = produkBuatDitambahkan.getIdProduct();
+		Long id = produkBuatDitambahkan.getIdProduct();
 
 		int jumlahProduk = isiProduct.get(id) - 1;
 		

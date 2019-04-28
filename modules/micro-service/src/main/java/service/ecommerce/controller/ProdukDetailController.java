@@ -1,15 +1,20 @@
-package service.pembayaran.controllers;
+package service.ecommerce.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import service.pembayaran.entities.Product;
+import service.db.ProductRepository;
+import service.ecommerce.entities.Product;
 
 @RestController
 @RequestMapping("/api/produk/detail")
 public class ProdukDetailController {
+	
+	@Autowired
+	ProductRepository productRepository;
 	
 	@GetMapping("/{id}")
     public Product getProdukDetail(@PathVariable Long id) {
@@ -18,14 +23,9 @@ public class ProdukDetailController {
         return p;
     }
 	
-	private Product getProductFromDB(Long id) {
+	private Product getProductFromDB(Long idProduct) {
 		// code buat panggil database
-		Product p = new Product();
-		p.setDeskripsiProduct("Ini deskripsi");
-		p.setHargaProduct(500);
-		p.setIdProduct(99);
-		p.setNamaProduct("Product Erna");
+		Product p = productRepository.findByIdProduct(idProduct);
 		return p;
-		
 	}
 }
