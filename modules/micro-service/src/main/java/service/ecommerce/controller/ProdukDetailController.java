@@ -1,11 +1,11 @@
-package service.pembayaran.controllers;
+package service.ecommerce.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import service.pembayaran.entities.Product;
+import service.ecommerce.entities.Product;
 
 @RestController
 @RequestMapping("/api/produk/detail")

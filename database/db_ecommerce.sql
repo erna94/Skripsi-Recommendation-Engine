@@ -1,5 +1,5 @@
 use db_ecommerce;
-create table category (id_category int not null PRIMARY KEY AUTO_INCREMENT, nama_category varchar(225) not null, parent_id int not null);
+use db_product
 
 select * from category;
 drop table category;
@@ -12,6 +12,14 @@ delete from penjual;
 delete from product;
 desc product;
 
+create table category (id_category int not null PRIMARY KEY AUTO_INCREMENT, nama_category varchar(225) not null, parent_id int not null);
+
+create table penjual (
+id_penjual int not null PRIMARY KEY AUTO_INCREMENT, 
+nama_penjual varchar(225), 
+lokasi_penjual varchar(225), 
+tanggal_jual date,
+badge_penjual int not null);
 
 create table product (
 id_product int not null PRIMARY KEY AUTO_INCREMENT, 
@@ -24,13 +32,6 @@ image_link varchar(225) not null,
 foreign key (id_category) references category(id_category), 
 foreign key (id_penjual) references penjual(id_penjual));
 
-
-create table penjual (
-id_penjual int not null PRIMARY KEY AUTO_INCREMENT, 
-nama_penjual varchar(225), 
-lokasi_penjual varchar(225), 
-tanggal_jual date,
-badge_penjual int not null);
 
 create table badge (
 id_badge int not null, 

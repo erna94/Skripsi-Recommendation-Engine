@@ -1,4 +1,4 @@
-package service.pembayaran.entities;
+package service.ecommerce.entities;
 
 public class Product {
 	int idProduct;

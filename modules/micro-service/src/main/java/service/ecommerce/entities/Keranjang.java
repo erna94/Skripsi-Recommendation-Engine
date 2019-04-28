@@ -1,4 +1,4 @@
-package service.pembayaran.entities;
+package service.ecommerce.entities;
 
 import java.util.HashMap;
 import java.util.Map;

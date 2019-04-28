@@ -1,4 +1,4 @@
-package service.pembayaran.controllers;
+package service.ecommerce.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,4 +1,4 @@
-package service.pembayaran.controllers;
+package service.ecommerce.controller;
 
 import java.util.Map;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import service.pembayaran.entities.Keranjang;
-import service.pembayaran.entities.Product;
+import service.ecommerce.entities.Keranjang;
+import service.ecommerce.entities.Product;
 
 @RestController
 @RequestMapping("/api/keranjang")
