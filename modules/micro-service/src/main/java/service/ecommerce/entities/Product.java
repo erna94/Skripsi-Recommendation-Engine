@@ -2,6 +2,7 @@ package service.ecommerce.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +21,8 @@ import javax.persistence.Table;
 @Table(name="product")
 public class Product {
 	
-	@Column(name="id_product")
+	@Id
+	@Column(name="id_product", unique = true)
 	int idProduct;
 	
 	@Column(name="id_category")
@@ -83,8 +85,4 @@ public class Product {
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
 	}
-	
-	
-	
-
 }
