@@ -52,7 +52,7 @@ public class KeranjangController {
 		Product p = new Product();
 		p.setDeskripsiProduct("Ini deskripsi");
 		p.setHargaProduct(500);
-		p.setIdProduct(99);
+		p.setIdProduct(1l);
 		p.setNamaProduct("Product Erna");
 
 		Keranjang k = new Keranjang();

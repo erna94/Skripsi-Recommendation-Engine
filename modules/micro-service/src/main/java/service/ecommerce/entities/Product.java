@@ -23,7 +23,7 @@ public class Product {
 	
 	@Id
 	@Column(name="id_product", unique = true)
-	int idProduct;
+	Long idProduct;
 	
 	@Column(name="id_category")
 	int idCategory;
@@ -43,10 +43,10 @@ public class Product {
 	@Column(name="image_link")
 	String imageLink;
 	
-	public int getIdProduct() {
+	public Long getIdProduct() {
 		return idProduct;
 	}
-	public void setIdProduct(int idProduct) {
+	public void setIdProduct(Long idProduct) {
 		this.idProduct = idProduct;
 	}
 	public int getIdCategory() {
