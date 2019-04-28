@@ -1,13 +1,46 @@
 package service.ecommerce.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+
+/***
+ * memberitahu kalau kelas ini berhubungan dengan SQL Table Product
+ * id_product int not null PRIMARY KEY AUTO_INCREMENT, 
+ * id_category int not null, 
+ * nama_product varchar(225) not null, 
+ * deskripsi_product text, 
+ * harga_product decimal not null,  
+ * id_penjual int not null, 
+ * image_link varchar(225) not null,
+ *
+ */
+@Table(name="product")
 public class Product {
+	
+	@Column(name="id_product")
 	int idProduct;
+	
+	@Column(name="id_category")
 	int idCategory;
+	
+	@Column(name="nama_product")
 	String namaProduct;
+	
+	@Column(name="deskripsi_product")
 	String deskripsiProduct;
+	
+	@Column(name="harga_product")
 	int hargaProduct;
+	
+	@Column(name="id_penjual")
 	int idPenjual;
+	
+	@Column(name="image_link")
 	String imageLink;
+	
 	public int getIdProduct() {
 		return idProduct;
 	}
