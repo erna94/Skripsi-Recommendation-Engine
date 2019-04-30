@@ -6,8 +6,10 @@ select * from category;
 select * from tbl_user;
 select * from penjual;
 select * from product;
+select * from keranjang;
 
 desc product;
+
 
 select @@GLOBAL.time_zone
 SET GLOBAL time_zone = '+7:00';
@@ -56,12 +58,18 @@ foreign key (id_user) references tbl_user(id_user),
 foreign key (id_product) references product(id_product));
 
 create table rekomendasi (
-id_user int not null,
+id_user int not null primary key AUTO_INCREMENT,
 id_product int not null,
 id_category int not null,
 foreign key (id_user) references tbl_user(id_user),
 foreign key(id_product) references product(id_product),
 foreign key(id_category) references category(id_category));
+
+create table keranjang (
+id_cart int not null primary key AUTO_INCREMENT,
+id_product int not null,
+jumlah_product int not null,
+foreign key(id_product) references product(id_product));
 
 insert into category (id_category, nama_category, parent_id) values
 (1, 'fashion wanita', 0),
