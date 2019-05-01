@@ -1,14 +1,22 @@
 use db_produc;
+
+drop table rekomendasi;
+drop table user_rating;
+drop table tbl_user;
+drop table badge;
+drop table product;
+drop table penjual;
+drop table category;
+
+
 create table category (id_category int not null PRIMARY KEY AUTO_INCREMENT, nama_category varchar(225) not null, parent_id int not null);
 
-select * from category;
-
-select * from tbl_user;
-select * from penjual;
-select * from product;
-
-desc product;
-
+create table penjual (
+id_penjual int not null PRIMARY KEY AUTO_INCREMENT,
+nama_penjual varchar(225),
+lokasi_penjual varchar(225),
+tanggal_jual date,
+badge_penjual int not null);
 
 create table product (
 id_product int not null PRIMARY KEY AUTO_INCREMENT,
@@ -17,17 +25,9 @@ nama_product varchar(225) not null,
 deskripsi_product text,
 harga_product decimal not null,
 id_penjual int not null,
-image_link varchar(225) not null,
+image_link text not null,
 foreign key (id_category) references category(id_category),
 foreign key (id_penjual) references penjual(id_penjual));
-
-
-create table penjual (
-id_penjual int not null PRIMARY KEY AUTO_INCREMENT,
-nama_penjual varchar(225),
-lokasi_penjual varchar(225),
-tanggal_jual date,
-badge_penjual int not null);
 
 create table badge (
 id_badge int not null,
@@ -48,7 +48,6 @@ kode_pos varchar(30) not null);
 create table user_rating (
 id_user int not null,
 id_product int not null,
-rating int not null primary key AUTO_INCREMENT,
 foreign key (id_user) references tbl_user(id_user),
 foreign key (id_product) references product(id_product));
 
@@ -118,14 +117,6 @@ insert into penjual (id_penjual, nama_penjual, lokasi_penjual, tanggal_jual, bad
 (1010, 'erno', 'cirebon', NOW(), 1),
 (1011, 'cakep', 'jakarta utara', NOW(), 1),
 (1012, 'unyil', 'jakarta utara', NOW(), 2);
-
-
-insert into user_rating (id_user, id_product, rating) values
-(1, 1, 5),
-(2, 2, 5),
-(3, 3, 4),
-(4, 4, 4),
-(5, 5, 4);
 
 
 insert into product (id_product, id_category, nama_product, deskripsi_product, harga_product, id_penjual, image_link) values
@@ -327,8 +318,8 @@ KELENGKAPAN: TALI PANJANG & DUSTBAG'),
 (191, 133, 'Tas Ransel Mini Import 713', 'Bahan: Kulit Sintetis Ukuran (PxL) : 16x19', 114900, 1011, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/12/28/43836868/43836868_841647ad-7549-46e7-a4e4-4d47191a2662_700_700.jpg'),
 (192, 133, 'Tas Ransel Wanita Import 711 - Mono', 'bahan: Kulit Sintetis Ukuran (PxLxT) : 26x12x32', 145900, 1011, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/12/27/43836868/43836868_2782e83b-0ec2-4a5e-ac22-5c0d428dff81_700_700.jpg'),
 (193, 133, 'Bonia The Nazca Backpack Black', 'color: coklat', 3500000, 1011, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/5/3368228/3368228_fb9f9453-65c9-4e58-89a9-69fdea73daea_551_551.jpg'),
-(194, 133, 'Soft GG Supreme backpack', 'Gucci Original', 1.200.019, 1011, 'https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1503921609/495563_K9R8X_1071_001_100_0000_Light-Soft-GG-Supreme-backpack.jpg'),
-(195, 133, 'Tas Ransel Wanita Louis Vuitton', 'tas ori LV', 1.200.020, 1011, 'https://harga.info/wp-content/uploads/2018/06/Tas-Ransel-Wanita-Louis-Vuitton.jpg'),
+(194, 133, 'Soft GG Supreme backpack', 'Gucci Original', 1200019, 1011, 'https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1503921609/495563_K9R8X_1071_001_100_0000_Light-Soft-GG-Supreme-backpack.jpg'),
+(195, 133, 'Tas Ransel Wanita Louis Vuitton', 'tas ori LV', 1200020, 1011, 'https://harga.info/wp-content/uploads/2018/06/Tas-Ransel-Wanita-Louis-Vuitton.jpg'),
 (196, 133, 'Tas LV Louis Vuitton Christopher Mono', 'Louis Vuitton Christopher monogram backpack', 1950000, 1011, 'https://apollo-singapore.akamaized.net/v1/files/13xaseyz4c7c3-ID/image;s=966x691;olx-st/_1_.jpg'),
 (197, 133, 'ransel mini lv ransel wanita backpack tas import', 'terbuat dari kulit import sangat awet di gunakan', 117000, 1011,'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/2/25/252042495/252042495_47df845f-f62e-48f0-95d6-b9041536d499_1280_1012.jpg'),
 (198, 133, 'tas backpack guess tas guess ori', 'Tas ransel guess original', 800400, 1011, 'https://s3.bukalapak.com/img/3299990564/large/TAS_RANSEL_GUESS_ORIGINAL_TAS_BACKPACK_GUESS_TAS_GUESS_ORI_A.jpg'),
@@ -356,7 +347,7 @@ KELENGKAPAN: TALI PANJANG & DUSTBAG'),
 (2020, 141, 'NEW BALANCE LIFESTYLE CLASSIC 247 GREY', '100% ORIGINAL PRODUCT BNIB ( Brand New In Box ) Full Set', 599000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/2/17/0/0_cf505d74-1c20-4824-a130-5ce03a3e11a8_600_600.jpg'),
 (2021, 141, 'original adidas neo advantage', 'size tersedia 37, 38, 39, 40', 230000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2017/4/22/181992/181992_331493dc-eea0-4943-9926-295fa86ea91b'),
 (2022, 141, 'converse hitam', 'size 36-43', 53000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2017/7/15/1679397/1679397_f9079b25-f266-4d53-b2c9-cbc5c2f14ec1.jpg'),
-(2023, 141, 'SEPATU KETS ADIDAS'. 'size 36-40', 350000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2017/10/7/2579526/2579526_821b0a6e-64b2-4f19-971e-d5d57d60e2c0.jpg'),
+(2023, 141, 'SEPATU KETS ADIDAS', 'size 36-40', 350000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2017/10/7/2579526/2579526_821b0a6e-64b2-4f19-971e-d5d57d60e2c0.jpg'),
 (2024, 141, 'Sneaker Shoes Adidas W3556', 'Bahan : Kulit Sintetis & Fabrick, size 36-40', 150000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/3/9/5102258/5102258_33e53baa-3ebc-4ae9-97fe-6528772bc48a_800_599.jpeg'),
 (2025, 141, 'sepatu sneakers casual asics onitsuka tiger', 'ukuran : 39,40,41,42,43 High premium Import vietnam', 118500, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2017/12/29/1775431/1775431_e3b9d8de-edbc-439e-8588-e50e03f59460_1161_2064.jpg'),
 (2026, 142, 'Sepatu High Heels Wanita', 'ukuran 35-40', 65000, 1012, 'https://s0.bukalapak.com/img/5474433362/w-300/sepatu_high_heels_wanita.jpg.webp'),
@@ -384,3 +375,10 @@ KELENGKAPAN: TALI PANJANG & DUSTBAG'),
 (2048, 142, 'Hello Nuku Zurich Black Glossy Heels', 'size 35-41, Material Upper: Artificial leather', 275000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/9/19/32351823/32351823_26ebb400-a32b-47d1-a701-36e0e36aade6_2048_2048.jpg'),
 (2049, 142, 'Yellow Fellow | Unificatio', 'Sizes available for pre-order: 36-40', 965000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/3/30/28796965/28796965_c9f89708-4433-45dc-8b26-4270e671e763_975_979'),
 (2050, 142, 'HIGH HEELS R05', 'Bahan suede Tinggi 7cm Ukuran 37-40', 42000, 1012, 'https://ecs7.tokopedia.net/img/cache/700/product-1/2018/8/26/872351/872351_09670aa8-77df-4a20-b60f-26aa613a3846_1080_1073.jpg');
+
+insert into user_rating (id_user, id_product) values
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
