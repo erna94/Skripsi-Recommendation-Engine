@@ -28,7 +28,7 @@ public class Product {
 	Long idProduct;
 	
 	@Column(name="id_category")
-	int idCategory;
+	Long idCategory;
 	
 	@Column(name="nama_product")
 	String namaProduct;
@@ -37,54 +37,69 @@ public class Product {
 	String deskripsiProduct;
 	
 	@Column(name="harga_product")
-	int hargaProduct;
+	double hargaProduct;
 	
 	@Column(name="id_penjual")
-	int idPenjual;
+	Long idPenjual;
 	
 	@Column(name="image_link")
 	String imageLink;
-	
+
 	public Long getIdProduct() {
 		return idProduct;
 	}
+
 	public void setIdProduct(Long idProduct) {
 		this.idProduct = idProduct;
 	}
-	public int getIdCategory() {
+
+	public Long getIdCategory() {
 		return idCategory;
 	}
-	public void setIdCategory(int idCategory) {
+
+	public void setIdCategory(Long idCategory) {
 		this.idCategory = idCategory;
 	}
+
 	public String getNamaProduct() {
 		return namaProduct;
 	}
+
 	public void setNamaProduct(String namaProduct) {
 		this.namaProduct = namaProduct;
 	}
+
 	public String getDeskripsiProduct() {
 		return deskripsiProduct;
 	}
+
 	public void setDeskripsiProduct(String deskripsiProduct) {
 		this.deskripsiProduct = deskripsiProduct;
 	}
-	public int getHargaProduct() {
+
+	public double getHargaProduct() {
 		return hargaProduct;
 	}
-	public void setHargaProduct(int hargaProduct) {
+
+	public void setHargaProduct(double hargaProduct) {
 		this.hargaProduct = hargaProduct;
 	}
-	public int getIdPenjual() {
+
+	public Long getIdPenjual() {
 		return idPenjual;
 	}
-	public void setIdPenjual(int idPenjual) {
+
+	public void setIdPenjual(Long idPenjual) {
 		this.idPenjual = idPenjual;
 	}
+
 	public String getImageLink() {
 		return imageLink;
 	}
+
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
 	}
+	
+	
 }
