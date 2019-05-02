@@ -12,7 +12,7 @@ import service.db.CategoryRepository;
 import service.ecommerce.entities.Category;
 
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/api/category/children")
 public class CategoryController {
 	
 	@Autowired

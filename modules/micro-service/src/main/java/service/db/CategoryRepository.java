@@ -16,7 +16,7 @@ public interface CategoryRepository extends CrudRepository<Category, Long>{
 	 */
 	Category findByIdCategory(Long idCategory);
 	
-	@Query("SELECT p FROM Category p WHERE p.parentId IN (SELECT p.idCategory FROM Category p WHERE p.parentId = :categoryId)")
+	@Query("SELECT c FROM Category c WHERE c.parentId IN (SELECT c.idCategory FROM Category c WHERE c.parentId = :categoryId)")
 	// membuat query untuk mencari product berdasarkan category, di dalam query
 	// ini kita memberitahukan kepada JPA kalau untuk hasilnya akan menggunakan
 	// object Product dan secara otomatis hasil dari SQL kolomnya akan di hubungkan
