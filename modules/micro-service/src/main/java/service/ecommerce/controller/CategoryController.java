@@ -27,7 +27,7 @@ public class CategoryController {
 	
 	private List<Category> getProductByIdCategoryFromDB(Long categoryId) {
 		// code buat panggil database
-		List<Category> categoryList = categoryRepository.findProductByIdCategory(categoryId);
+		List<Category> categoryList = categoryRepository.findChildCategory(categoryId);
 		return categoryList;
 	}
 }
