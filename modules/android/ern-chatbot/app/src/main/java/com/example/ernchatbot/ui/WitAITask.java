@@ -48,19 +48,21 @@ public class WitAITask extends AsyncTask<String, Void , WitAIResponse> {
 
 
     protected void onPostExecute(WitAIResponse result) {
-        // message buat penerimaan
-        Message reply;
+        // message buat penerimaan secara default, kalau tidak terpenuhi
+        // akan membuat message di bawah ini
+        Message reply = new Message("Maaf, saya tak bisa memenuhi request anda", false);
+
 
         // dapatkan intent dari object WitAIResponse
         WitEntities entities = result.getEntities();
-        WitEntity[] intent = entities.getIntent();
 
-        if(result != null &&  intent != null && intent.length > 0) {
-            reply = new Message("Sepertinya intent kamu adalah " + intent[0].getValue()
-                    + " dengan kemungkinan " + intent[0].getConfidence()*100 + "%", false);
-        } else {
-            reply = new Message("Maaf, saya tak bisa memenuhi request anda", false);
+        if(entities != null) {
+            WitEntity[] intent = entities.getIntent();
 
+            if (result != null && intent != null && intent.length > 0 && intent[0].getValue() != null) {
+                reply = new Message("Sepertinya kenginginan anda adalah " + intent[0].getValue()
+                        + " dengan kemungkinan " + intent[0].getConfidence() * 100 + "%", false);
+            }
         }
 
         messageAdapter.add(reply);

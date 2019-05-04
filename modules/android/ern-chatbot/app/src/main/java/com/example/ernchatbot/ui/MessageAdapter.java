@@ -64,7 +64,7 @@ public class MessageAdapter extends BaseAdapter {
             holder.messageBody = (TextView) convertView.findViewById(R.id.message_body);
             convertView.setTag(holder);
 
-            holder.name.setText("Chatbot");
+            holder.name.setText("Ern Chatbot");
             holder.messageBody.setText(message.getText());
             GradientDrawable drawable = (GradientDrawable) holder.avatar.getBackground();
             drawable.setColor(Color.GRAY);
