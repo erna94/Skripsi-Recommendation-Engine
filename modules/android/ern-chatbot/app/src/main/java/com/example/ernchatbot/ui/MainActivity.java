@@ -1,4 +1,4 @@
-package com.example.ernchatbot;
+package com.example.ernchatbot.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import android.os.Bundle;
+import com.example.ernchatbot.R;
+import com.example.ernchatbot.service.WitAIService;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private MessageAdapter messageAdapter;
     private ListView messagesView;
+    private WitAIService witAIService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         messageAdapter = new MessageAdapter(this);
         messagesView = (ListView) findViewById(R.id.messages_view);
         messagesView.setAdapter(messageAdapter);
+
+        // object untuk memanggil micro service dari Wit AI
+        witAIService = new WitAIService();
     }
 
     /***
@@ -53,4 +58,5 @@ public class MainActivity extends AppCompatActivity {
             editText.getText().clear();
         }
     }
+
 }

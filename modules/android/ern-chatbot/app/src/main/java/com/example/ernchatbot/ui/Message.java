@@ -1,4 +1,4 @@
-package com.example.ernchatbot;
+package com.example.ernchatbot.ui;
 
 public class Message {
     private String text;
