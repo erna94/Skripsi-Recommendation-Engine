@@ -5,6 +5,8 @@ import android.widget.ListView;
 
 import com.example.ernchatbot.service.WitAIService;
 import com.example.ernchatbot.service.response.WitAIResponse;
+import com.example.ernchatbot.service.response.WitEntities;
+import com.example.ernchatbot.service.response.WitEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URL;
@@ -49,8 +51,13 @@ public class WitAITask extends AsyncTask<String, Void , WitAIResponse> {
         // message buat penerimaan
         Message reply;
 
-        if(result != null && result.getMessageId() != null) {
-            reply = new Message(result.getMessageId(), false);
+        // dapatkan intent dari object WitAIResponse
+        WitEntities entities = result.getEntities();
+        WitEntity[] intent = entities.getIntent();
+
+        if(result != null &&  intent != null && intent.length > 0) {
+            reply = new Message("Sepertinya intent kamu adalah " + intent[0].getValue()
+                    + " dengan kemungkinan " + intent[0].getConfidence()*100 + "%", false);
         } else {
             reply = new Message("Maaf, saya tak bisa memenuhi request anda", false);
 
