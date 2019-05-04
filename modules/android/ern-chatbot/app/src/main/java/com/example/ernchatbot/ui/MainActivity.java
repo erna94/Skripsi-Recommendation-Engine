@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private MessageAdapter messageAdapter;
     private ListView messagesView;
-    private WitAIService witAIService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +24,6 @@ public class MainActivity extends AppCompatActivity {
         messageAdapter = new MessageAdapter(this);
         messagesView = (ListView) findViewById(R.id.messages_view);
         messagesView.setAdapter(messageAdapter);
-
-        // object untuk memanggil micro service dari Wit AI
-        witAIService = new WitAIService();
     }
 
     /***
@@ -48,15 +44,12 @@ public class MainActivity extends AppCompatActivity {
                     Message sentMessage = new Message(message, true);
                     messageAdapter.add(sentMessage);
 
-                    // message buat penerimaan
-                    Message reply = new Message("Reply", false);
-                    messageAdapter.add(reply);
-
-                    messagesView.setSelection(messagesView.getCount() - 1);
+                    // melakukan task di background dengan memanggil WitAI Micro Service
+                    WitAITask witAI = new WitAITask(messageAdapter, messagesView);
+                    witAI.execute(message);
                 }
             });
             editText.getText().clear();
         }
     }
-
 }
