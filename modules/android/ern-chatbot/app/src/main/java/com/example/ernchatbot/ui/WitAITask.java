@@ -4,10 +4,12 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 
 import com.example.ernchatbot.service.WitAIService;
+import com.example.ernchatbot.service.response.WitAIResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.net.URL;
 
-public class WitAITask extends AsyncTask<String, Void , String> {
+public class WitAITask extends AsyncTask<String, Void , WitAIResponse> {
     private WitAIService witAIService;
     MessageAdapter messageAdapter;
     ListView messagesView;
@@ -20,26 +22,40 @@ public class WitAITask extends AsyncTask<String, Void , String> {
     }
 
     @Override
-    protected String doInBackground(String... message) {
+    protected WitAIResponse doInBackground(String... message) {
         String response;
+        WitAIResponse witResponse = new WitAIResponse();
 
         try {
             response = witAIService.callWitAI(message[0]);
+
+            // object ini adalah untuk mengubah dari suatu String berbentuk JSON
+            // ke dalam object tertentu. Dalam hal ini kita mau mengubah bentuk
+            // String ke dalam object WitAIResponse
+            ObjectMapper objectMapper = new ObjectMapper();
+            witResponse = objectMapper.readValue(response, WitAIResponse.class);
         } catch(Throwable t) {
-            response = "error from Chatbot";
-            t.printStackTrace(); 
+            t.printStackTrace();
         }
 
-        return response;
+        return witResponse;
     }
 
     protected void onProgressUpdate() {
     }
 
 
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(WitAIResponse result) {
         // message buat penerimaan
-        Message reply = new Message(result, false);
+        Message reply;
+
+        if(result != null && result.getMessageId() != null) {
+            reply = new Message(result.getMessageId(), false);
+        } else {
+            reply = new Message("Maaf, saya tak bisa memenuhi request anda", false);
+
+        }
+
         messageAdapter.add(reply);
         messagesView.setSelection(messagesView.getCount() - 1);
     }
