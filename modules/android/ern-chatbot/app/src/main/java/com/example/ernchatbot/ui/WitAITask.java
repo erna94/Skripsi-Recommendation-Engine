@@ -27,7 +27,7 @@ public class WitAITask extends AsyncTask<String, Void , String> {
             response = witAIService.callWitAI(message[0]);
         } catch(Throwable t) {
             response = "error from Chatbot";
-            t.printStackTrace();
+            t.printStackTrace(); 
         }
 
         return response;
