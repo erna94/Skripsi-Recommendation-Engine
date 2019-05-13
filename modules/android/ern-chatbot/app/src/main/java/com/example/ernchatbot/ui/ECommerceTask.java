@@ -4,9 +4,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.example.ernchatbot.service.response.Product;
 import com.example.ernchatbot.service.response.WitAIResponse;
 import com.example.ernchatbot.service.response.WitEntities;
 import com.example.ernchatbot.service.response.WitEntity;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -15,9 +18,10 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ECommerceTask extends AsyncTask<WitAIResponse, Void , String> {
+public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>> {
     MessageAdapter messageAdapter;
     ListView messagesView;
 
@@ -30,8 +34,9 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , String> {
     }
 
     @Override
-    protected String doInBackground(WitAIResponse... witAIResponses) {
+    protected List<Product> doInBackground(WitAIResponse... witAIResponses) {
         String response = null;
+        List<Product> products = new ArrayList<Product>();
 
         // mengevaluasi apakah keinginan user dan apa category yang di cari berdasarkan
         // mapping yang ada di wit.ai
@@ -54,7 +59,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , String> {
                     if(confidence > .90) {
                         // kalau benar, kita harus mengecheck apa category dan sub-category nya
                         // ada
-                        if(categories.length > 0 && subcategories.length > 0) {
+                        if(categories != null && categories.length > 0 && subcategories.length > 0) {
                             // menggabungkan category dan sub-category untuk mendapatkan
                             // kategoryId untuk barang2 nya
                             // Contoh: Untuk celana wanita, kategory id nya adalah 12
@@ -73,6 +78,11 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , String> {
                             // memanggil micro service
                             try {
                                 response = findProduct(categoryId);
+                                ObjectMapper objectMapper = new ObjectMapper();
+
+                                // membuat mapping dari JSON Product list untuk mapping
+                                // JSON String ke dalam object
+                                products = objectMapper.readValue(response, new TypeReference<List<Product>>() {});
                             } catch(Exception e) {
                                 Log.println(Log.VERBOSE, "eCommerceTask", "Tidak menemukan kategory " + categoryId);
                                 e.printStackTrace();
@@ -85,12 +95,13 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , String> {
             }
         }
 
-        return response;
+        return products;
     }
 
     private String findProduct(Long categoryId) throws Exception {
         HttpClient client = new DefaultHttpClient();
 
+        // di Android Emulator di Android Studio, localhost di tulis sebagai 10.0.2.2
         HttpGet request = new HttpGet("http://10.0.2.2:8080/api/produk/list/" + categoryId);
 
 
@@ -113,11 +124,23 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(List<Product> products) {
        Message reply = null;
 
-       if(result != null) {
-            reply = new Message(result, false);;
+       if(products != null && products.size() > 0) {
+           String buatReply = "Ini adalah 5 besar pencarian anda:";
+
+           int productSize = products.size();
+
+           if(productSize > 5) {
+               productSize = 5;
+           }
+
+           for(int i=0;i<productSize;i++) {
+               buatReply += "\n" + (i+1) + ": " + products.get(i).getDeskripsiProduct();
+           }
+
+           reply = new Message(buatReply, false);;
         } else {
             reply = new Message("Maaf, saya tak bisa memenuhi request anda", false);
 
