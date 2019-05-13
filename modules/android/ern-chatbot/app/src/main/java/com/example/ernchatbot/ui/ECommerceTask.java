@@ -59,7 +59,6 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
                     // confidence di sub-category > 80%
                     double confidenceIntent = intent.getConfidence();
 
-
                     if(confidenceIntent > .85) {
                         // kalau benar, kita harus mengecheck apa category dan sub-category nya
                         // ada
@@ -75,13 +74,13 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
                             // dua data tersebut menjadi String "12" dan kita convert
                             // menjadi Long untuk mendapatkan 12
                             // memanggil micro service
+
+                            String categoryAsString = categories[0].getValue();
+                            String subCategoryAsString = subcategories[0].getValue();
+                            Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString);
+                            Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
+
                             try {
-
-                                String categoryAsString = categories[0].getValue();
-                                String subCategoryAsString = subcategories[0].getValue();
-                                Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString);
-                                Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
-
                                 response = findProduct(categoryId);
                                 ObjectMapper objectMapper = new ObjectMapper();
 
