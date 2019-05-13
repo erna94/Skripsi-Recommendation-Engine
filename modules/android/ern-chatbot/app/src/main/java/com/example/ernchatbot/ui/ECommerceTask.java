@@ -75,12 +75,16 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
                             // menjadi Long untuk mendapatkan 12
                             // memanggil micro service
 
-                            String categoryAsString = categories[0].getValue();
-                            String subCategoryAsString = subcategories[0].getValue();
-                            Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString);
-                            Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
+                            String categoryAsString = "";
+                            String subCategoryAsString = "";
+                            Long categoryId = 0l;
 
                             try {
+                                categoryAsString = categories[0].getValue();
+                                subCategoryAsString = subcategories[0].getValue();
+                                Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString);
+                                categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
+
                                 response = findProduct(categoryId);
                                 ObjectMapper objectMapper = new ObjectMapper();
 
