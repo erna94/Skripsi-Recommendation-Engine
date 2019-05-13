@@ -1,5 +1,6 @@
 package service.ecommerce.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,6 @@ public class CategoryController {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
-	@GetMapping("/{categoryId}")
-	public List<Category> getProductByIdCategory(@PathVariable Long categoryId) {
-		// panggil database buat dapetin produk berdasarkan category yang di kasih
-		List<Category> c = getProductByIdCategoryFromDB(categoryId);
-        return c;
-    }
 	
 	private List<Category> getProductByIdCategoryFromDB(Long categoryId) {
 		// code buat panggil database

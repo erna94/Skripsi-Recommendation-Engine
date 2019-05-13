@@ -22,4 +22,8 @@ public interface ProductRepository extends CrudRepository<Product, Long>{
 	// object Product dan secara otomatis hasil dari SQL kolomnya akan di hubungkan
 	// dengan menggunakan @Column di dalam object Product
 	List<Product> findProductByCategory(@Param(value = "categoryId") Long categoryId);
+	
+	
+	@Query("SELECT p FROM Product p where p.idCategory IN  (SELECT c.idCategory  FROM Category c WHERE c.parentId = :categoryId)")
+	List<Product> findProductByParentCategory(@Param(value = "categoryId") Long categoryId);
 }

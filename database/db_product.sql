@@ -8,6 +8,7 @@ drop table product;
 drop table penjual;
 drop table category;
 
+select count(*) from Product p WHERE p.id_category = 11
 
 create table category (id_category int not null PRIMARY KEY AUTO_INCREMENT, nama_category varchar(225) not null, parent_id int not null);
 

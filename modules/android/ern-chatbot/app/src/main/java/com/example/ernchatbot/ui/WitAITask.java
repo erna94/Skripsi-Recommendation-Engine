@@ -48,22 +48,9 @@ public class WitAITask extends AsyncTask<String, Void , WitAIResponse> {
 
 
     protected void onPostExecute(WitAIResponse result) {
-        // message buat penerimaan
-        Message reply;
-
-        // dapatkan intent dari object WitAIResponse
-        WitEntities entities = result.getEntities();
-        WitEntity[] intent = entities.getIntent();
-
-        if(result != null &&  intent != null && intent.length > 0) {
-            reply = new Message("Sepertinya intent kamu adalah " + intent[0].getValue()
-                    + " dengan kemungkinan " + intent[0].getConfidence()*100 + "%", false);
-        } else {
-            reply = new Message("Maaf, saya tak bisa memenuhi request anda", false);
-
-        }
-
-        messageAdapter.add(reply);
-        messagesView.setSelection(messagesView.getCount() - 1);
+        // ini akan membuat pemanggilan micro-service berantai yang akan mengarah kepada
+        // panggilan e-commerce berikutnya
+        ECommerceTask eCommerceTask = new ECommerceTask(messageAdapter, messagesView);
+        eCommerceTask.execute(result);
     }
 }

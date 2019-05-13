@@ -1,5 +1,8 @@
 package service.ecommerce.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import service.db.ProductRepository;
+import service.ecommerce.entities.Category;
 import service.ecommerce.entities.Product;
 
 @RestController
@@ -22,6 +26,7 @@ public class ProdukDetailController {
 		Product p = getProductFromDB(id);
         return p;
     }
+	
 	
 	private Product getProductFromDB(Long idProduct) {
 		// code buat panggil database

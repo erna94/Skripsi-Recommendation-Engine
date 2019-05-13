@@ -1,5 +1,6 @@
 package service.ecommerce.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,15 @@ public class ProductListController {
 	@GetMapping("/{categoryId}")
 	public List<Product> getProductByCategory(@PathVariable Long categoryId) {
 		// panggil database buat dapetin produk berdasarkan category yang di kasih
-		List<Product> p = getProductByCategoryFromDB(categoryId);
-        return p;
+		List<Product> p = new ArrayList<Product>();
+		
+		// ini sudah category paling bawah kalau lebih dari 100
+		if(categoryId > 100) {
+			p = productRepository.findProductByCategory(categoryId);
+		} else if (categoryId > 10 && categoryId < 100) {
+			p = productRepository.findProductByParentCategory(categoryId);
+		}
+		
+        return p;   
     }
-	
-	private List<Product> getProductByCategoryFromDB(Long categoryId) {
-		// code buat panggil database
-		List<Product> productList = productRepository.findProductByCategory(categoryId);
-		return productList;
-	}
 }
