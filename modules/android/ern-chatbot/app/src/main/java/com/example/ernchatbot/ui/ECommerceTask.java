@@ -51,15 +51,21 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
             if(intents != null && intents.length > 0) {
                 WitEntity intent = intents[0];
 
-                // mendeteksi apakah intent dari user adalah untuk mencari product
+                // mendeteksi apakah intent dari user adalah untuk mencari product dengan sesuatu yang pasti
                 if(intent.getValue() != null && intent.getValue().equals(CARI_PRODUCT)) {
-                    // kalau benar, mari kita check apakah secara persentase keyakinan
-                    // di atas 90%
-                    double confidence = intent.getConfidence();
-                    if(confidence > .90) {
+                    // kondisi untuk menerima permintaan user
+                    // confidence di intent > 85%
+                    // confidence di kategory > 80%
+                    // confidence di sub-category > 80%
+                    double confidenceIntent = intent.getConfidence();
+
+
+                    if(confidenceIntent > .85) {
                         // kalau benar, kita harus mengecheck apa category dan sub-category nya
                         // ada
-                        if (categories != null && categories.length > 0 && subcategories.length > 0) {
+                        if (categories != null && subcategories != null && categories.length > 0 && subcategories.length > 0
+                            && categories[0].getConfidence() > .80
+                            && subcategories[0].getConfidence() > .80) {
                             // menggabungkan category dan sub-category untuk mendapatkan
                             // kategoryId untuk barang2 nya
                             // Contoh: Untuk celana wanita, kategory id nya adalah 12
@@ -68,15 +74,14 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
                             // dan celana dengan 2 juga. Karena itu, kita bisa menggabung
                             // dua data tersebut menjadi String "12" dan kita convert
                             // menjadi Long untuk mendapatkan 12
-
-                            String categoryAsString = categories[0].getValue();
-                            String subCategoryAsString = subcategories[0].getValue();
-                            Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString);
-
-                            Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
-
                             // memanggil micro service
                             try {
+
+                                String categoryAsString = categories[0].getValue();
+                                String subCategoryAsString = subcategories[0].getValue();
+                                Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString);
+                                Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
+
                                 response = findProduct(categoryId);
                                 ObjectMapper objectMapper = new ObjectMapper();
 
@@ -92,7 +97,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
                             }
                         }
                     } else {
-                        Log.println(Log.VERBOSE, "eCommerceTask", "Confidence " + confidence + " dengan " + intent.getValue());
+                        Log.println(Log.VERBOSE, "eCommerceTask", "Confidence " + confidenceIntent + " dengan " + intent.getValue());
                     }
                 }
             }
