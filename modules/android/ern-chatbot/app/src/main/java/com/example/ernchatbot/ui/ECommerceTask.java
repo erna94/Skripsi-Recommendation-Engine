@@ -59,7 +59,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
                     if(confidence > .90) {
                         // kalau benar, kita harus mengecheck apa category dan sub-category nya
                         // ada
-                        if(categories != null && categories.length > 0 && subcategories.length > 0) {
+                        if (categories != null && categories.length > 0 && subcategories.length > 0) {
                             // menggabungkan category dan sub-category untuk mendapatkan
                             // kategoryId untuk barang2 nya
                             // Contoh: Untuk celana wanita, kategory id nya adalah 12
@@ -71,9 +71,9 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
 
                             String categoryAsString = categories[0].getValue();
                             String subCategoryAsString = subcategories[0].getValue();
-                            Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString );
+                            Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString);
 
-                            Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString );
+                            Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
 
                             // memanggil micro service
                             try {
@@ -82,14 +82,17 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
 
                                 // membuat mapping dari JSON Product list untuk mapping
                                 // JSON String ke dalam object
-                                products = objectMapper.readValue(response, new TypeReference<List<Product>>() {});
-                            } catch(Exception e) {
+                                products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
+                                });
+                            } catch (Exception e) {
                                 Log.println(Log.VERBOSE, "eCommerceTask", "Tidak menemukan kategory " + categoryId);
                                 e.printStackTrace();
                                 // abaikan error dan response akan tetap menjadi null
                                 // yang kita akan deteksi nanti
                             }
                         }
+                    } else {
+                        Log.println(Log.VERBOSE, "eCommerceTask", "Confidence " + confidence + " dengan " + intent.getValue());
                     }
                 }
             }
@@ -102,6 +105,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
         HttpClient client = new DefaultHttpClient();
 
         // di Android Emulator di Android Studio, localhost di tulis sebagai 10.0.2.2
+        Log.println(Log.VERBOSE, "eCommerceTask", "Lokasi micro service " + "http://10.0.2.2:8080/api/produk/list/" + categoryId);
         HttpGet request = new HttpGet("http://10.0.2.2:8080/api/produk/list/" + categoryId);
 
 
@@ -137,7 +141,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
            }
 
            for(int i=0;i<productSize;i++) {
-               buatReply += "\n" + (i+1) + ": " + products.get(i).getDeskripsiProduct();
+               buatReply += "\n" + (i+1) + ": " + products.get(i).getNamaProduct();
            }
 
            reply = new Message(buatReply, false);;
