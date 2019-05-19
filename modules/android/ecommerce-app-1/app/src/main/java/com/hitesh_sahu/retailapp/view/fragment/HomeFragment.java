@@ -112,34 +112,6 @@ public class HomeFragment extends Fragment {
 
         new ProductCategoryLoaderTask(recyclerView, getActivity()).execute();
 
-//
-//		if (simpleRecyclerAdapter == null) {
-//			simpleRecyclerAdapter = new CategoryListAdapter(getActivity());
-//			recyclerView.setAdapter(simpleRecyclerAdapter);
-//
-//			simpleRecyclerAdapter
-//					.SetOnItemClickListener(new OnItemClickListener() {
-//
-//						@Override
-//						public void onItemClick(View view, int position) {
-//
-//							if (position == 0) {
-//								CenterRepository.getCenterRepository()
-//										.getAllElectronics();
-//							} else if (position == 1) {
-//								CenterRepository.getCenterRepository()
-//										.getAllFurnitures();
-//							}
-//							Utils.switchFragmentWithAnimation(
-//									R.id.frag_container,
-//									new ProductOverviewFragment(),
-//									((ECartHomeActivity) getActivity()), null,
-//									AnimationType.SLIDE_LEFT);
-//
-//						}
-//					});
-//		}
-
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
