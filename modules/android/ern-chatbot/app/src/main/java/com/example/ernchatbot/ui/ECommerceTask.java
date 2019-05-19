@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.example.ernchatbot.service.ECommerceService;
 import com.example.ernchatbot.service.response.Product;
 import com.example.ernchatbot.service.response.WitAIResponse;
 import com.example.ernchatbot.service.response.WitEntities;
@@ -81,7 +82,8 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
                             Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
 
                             try {
-                                response = findProduct(categoryId);
+                                ECommerceService service = new ECommerceService();
+                                response = service.getProductByCategory(categoryId);
                                 ObjectMapper objectMapper = new ObjectMapper();
 
                                 // membuat mapping dari JSON Product list untuk mapping
@@ -103,32 +105,6 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
         }
 
         return products;
-    }
-
-    private String findProduct(Long categoryId) throws Exception {
-        HttpClient client = new DefaultHttpClient();
-
-        // di Android Emulator di Android Studio, localhost di tulis sebagai 10.0.2.2
-        Log.println(Log.VERBOSE, "eCommerceTask", "Lokasi micro service " + "http://10.0.2.2:8080/api/produk/list/" + categoryId);
-        HttpGet request = new HttpGet("http://10.0.2.2:8080/api/produk/list/" + categoryId);
-
-
-        HttpResponse response = client.execute(request);
-
-        // Get the response
-        BufferedReader rd = new BufferedReader
-                (new InputStreamReader(
-                        response.getEntity().getContent()));
-
-        String allResponse = "";
-        String line = "";
-        while ((line = rd.readLine()) != null) {
-            // selama masih ada baris dari hasil pemanggilan micro service, kita akan terus menambah baris tersebut
-            // ke hasil kita
-            allResponse = allResponse + line;
-        }
-
-        return allResponse;
     }
 
     @Override
