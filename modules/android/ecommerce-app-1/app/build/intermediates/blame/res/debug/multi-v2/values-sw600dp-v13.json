@@ -1,0 +1,62 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/Momo/projects/skripsi/modules/android/ecommerce-app/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/Momo/.gradle/caches/transforms-2/files-2.1/99b91302dd752ad6fe340f4655d0f5e4/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,115,185,256,328,386,444,550,614,677",
+                        "endLines": "2,3,4,5,6,7,8,9,10,14",
+                        "endColumns": "59,69,70,71,57,57,105,63,62,12",
+                        "endOffsets": "110,180,251,323,381,439,545,609,672,854"
+                    },
+                    "to": {
+                        "startLines": "9,10,11,12,13,14,15,16,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "542,602,672,743,815,873,931,1037,1252,1315",
+                        "endLines": "9,10,11,12,13,14,15,16,20,24",
+                        "endColumns": "59,69,70,71,57,57,105,63,62,12",
+                        "endOffsets": "597,667,738,810,868,926,1032,1096,1310,1492"
+                    }
+                },
+                {
+                    "source": "/Users/Momo/.gradle/caches/transforms-2/files-2.1/27da31eed280797ba38dae725a54beee/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,194,268,344,403,474,542",
+                        "endColumns": "68,69,73,75,58,70,67,54",
+                        "endOffsets": "119,189,263,339,398,469,537,592"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,19",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,194,268,344,403,474,1197",
+                        "endColumns": "68,69,73,75,58,70,67,54",
+                        "endOffsets": "119,189,263,339,398,469,537,1247"
+                    }
+                },
+                {
+                    "source": "/Users/Momo/projects/skripsi/modules/android/ecommerce-app/app/src/main/res/values-sw600dp/dimens.xml",
+                    "from": {
+                        "startLines": "10,12",
+                        "startColumns": "4,4",
+                        "startOffsets": "377,420",
+                        "endColumns": "41,53",
+                        "endOffsets": "414,469"
+                    },
+                    "to": {
+                        "startLines": "17,18",
+                        "startColumns": "4,4",
+                        "startOffsets": "1101,1143",
+                        "endColumns": "41,53",
+                        "endOffsets": "1138,1192"
+                    }
+                }
+            ]
+        }
+    ]
+}

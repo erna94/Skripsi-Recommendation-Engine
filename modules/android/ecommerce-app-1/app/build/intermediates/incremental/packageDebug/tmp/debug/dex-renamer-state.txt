@@ -1,0 +1,4 @@
+#Sun May 19 11:36:27 CDT 2019
+base.0=/Users/Momo/projects/skripsi/modules/android/ecommerce-app/app/build/intermediates/dex/debug/mergeDexDebug/out
+path.0=classes.dex
+renamed.0=classes.dex

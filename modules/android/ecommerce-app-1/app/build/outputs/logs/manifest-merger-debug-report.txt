@@ -1,0 +1,159 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:10:1-50:12
+INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:10:1-50:12
+MERGED from [com.android.support:design:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/99b91302dd752ad6fe340f4655d0f5e4/AndroidManifest.xml:17:1-24:12
+MERGED from [com.wang.avi:library:1.0.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/50e74033004b512623b6004e09d9081a/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:appcompat-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/27da31eed280797ba38dae725a54beee/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:recyclerview-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/340aa3a4d7ba357fe807960ce6f203dc/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5ef5c1c085236c8a822806b81ecd145/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:palette-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5e0ba4ee2dbda3170d4737805afb01c/AndroidManifest.xml:17:1-25:12
+MERGED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:10:6-44:12
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/812e3c1bad326a2deb93763859d6a5ba/AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5f1d41ff7d463d8aa73fd89c92f431c/AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-v4:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/1187120f562be99ec789b216d33f8ddc/AndroidManifest.xml:17:1-24:12
+INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:10:1-50:12
+	package
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:11:5-40
+		INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:10:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:13:5-67
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:13:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:14:5-79
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:14:22-76
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:15:5-66
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:15:22-63
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:16:5-80
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:16:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:17:5-81
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:17:22-78
+application
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:19:5-48:19
+MERGED from [com.android.support:design:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/99b91302dd752ad6fe340f4655d0f5e4/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/99b91302dd752ad6fe340f4655d0f5e4/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/27da31eed280797ba38dae725a54beee/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/27da31eed280797ba38dae725a54beee/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:cardview-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5ef5c1c085236c8a822806b81ecd145/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5ef5c1c085236c8a822806b81ecd145/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:palette-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5e0ba4ee2dbda3170d4737805afb01c/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:palette-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5e0ba4ee2dbda3170d4737805afb01c/AndroidManifest.xml:22:5-23:19
+MERGED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:39:5-43:19
+MERGED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:39:5-43:19
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/812e3c1bad326a2deb93763859d6a5ba/AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/812e3c1bad326a2deb93763859d6a5ba/AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5f1d41ff7d463d8aa73fd89c92f431c/AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5f1d41ff7d463d8aa73fd89c92f431c/AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/1187120f562be99ec789b216d33f8ddc/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/1187120f562be99ec789b216d33f8ddc/AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:23:9-41
+	android:icon
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:22:9-42
+	android:allowBackup
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:21:9-35
+	android:theme
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:24:9-39
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:20:9-38
+activity#com.hitesh_sahu.retailapp.view.activities.ECartHomeActivity
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:27:9-30:61
+	android:screenOrientation
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:30:13-49
+	android:label
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:29:13-45
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:28:13-62
+activity#com.hitesh_sahu.retailapp.view.activities.APrioriResultActivity
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:32:9-35:61
+	android:screenOrientation
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:35:13-49
+	android:label
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:34:13-45
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:33:13-66
+activity#com.hitesh_sahu.retailapp.view.activities.SplashActivity
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:38:9-47:20
+	android:noHistory
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:40:13-37
+	android:theme
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:41:13-60
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:39:13-59
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:42:13-46:29
+action#android.intent.action.MAIN
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:43:17-69
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:43:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:45:17-77
+	android:name
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml:45:27-74
+uses-sdk
+INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:design:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/99b91302dd752ad6fe340f4655d0f5e4/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/99b91302dd752ad6fe340f4655d0f5e4/AndroidManifest.xml:20:5-43
+MERGED from [com.wang.avi:library:1.0.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/50e74033004b512623b6004e09d9081a/AndroidManifest.xml:7:5-9:41
+MERGED from [com.wang.avi:library:1.0.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/50e74033004b512623b6004e09d9081a/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/27da31eed280797ba38dae725a54beee/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/27da31eed280797ba38dae725a54beee/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:recyclerview-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/340aa3a4d7ba357fe807960ce6f203dc/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/340aa3a4d7ba357fe807960ce6f203dc/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5ef5c1c085236c8a822806b81ecd145/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5ef5c1c085236c8a822806b81ecd145/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:palette-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5e0ba4ee2dbda3170d4737805afb01c/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:palette-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5e0ba4ee2dbda3170d4737805afb01c/AndroidManifest.xml:20:5-43
+MERGED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:37:5-72
+MERGED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:37:5-72
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/812e3c1bad326a2deb93763859d6a5ba/AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/812e3c1bad326a2deb93763859d6a5ba/AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5f1d41ff7d463d8aa73fd89c92f431c/AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-vector-drawable:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/d5f1d41ff7d463d8aa73fd89c92f431c/AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/1187120f562be99ec789b216d33f8ddc/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/1187120f562be99ec789b216d33f8ddc/AndroidManifest.xml:20:5-43
+INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:23.4.0] /Users/Momo/.gradle/caches/transforms-2/files-2.1/27da31eed280797ba38dae725a54beee/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+		ADDED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/Momo/projects/skripsi/modules/android/ecommerce-app-1/app/src/main/AndroidManifest.xml
+activity#org.acra.dialog.CrashReportDialog
+ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:40:9-217
+	android:excludeFromRecents
+		ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:40:19-52
+	android:launchMode
+		ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:40:87-122
+	android:theme
+		ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:40:172-215
+	android:finishOnTaskLaunch
+		ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:40:53-86
+	android:name
+		ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:40:123-171
+service#org.acra.sender.SenderService
+ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:42:9-113
+	android:process
+		ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:42:88-111
+	android:exported
+		ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:42:18-42
+	android:name
+		ADDED from [ch.acra:acra:4.8.5] /Users/Momo/.gradle/caches/transforms-2/files-2.1/17cf2d1be609f66430309b63e9df24ea/AndroidManifest.xml:42:43-87
