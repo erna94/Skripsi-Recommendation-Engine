@@ -67,6 +67,7 @@ public class ProductLoaderTask extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... params) {
+        // ERNA: ini akan di ganti untuk memanggil code webservice yang sama di dalam chatbot
 
         try {
             Thread.sleep(3000);
@@ -81,122 +82,7 @@ public class ProductLoaderTask extends AsyncTask<String, Void, Void> {
     }
 
     private void setUpUi() {
-
         setupViewPager();
-
-        // bitmap = BitmapFactory
-        // .decodeResource(getResources(), R.drawable.header);
-        //
-        // Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-        // @SuppressWarnings("ResourceType")
-        // @Override
-        // public void onGenerated(Palette palette) {
-        //
-        // int vibrantColor = palette.getVibrantColor(R.color.primary_500);
-        // int vibrantDarkColor = palette
-        // .getDarkVibrantColor(R.color.primary_700);
-        // collapsingToolbarLayout.setContentScrimColor(vibrantColor);
-        // collapsingToolbarLayout
-        // .setStatusBarScrimColor(vibrantDarkColor);
-        // }
-        // });
-
-        // tabLayout
-        // .setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-        // @Override
-        // public void onTabSelected(TabLayout.Tab tab) {
-        //
-        // viewPager.setCurrentItem(tab.getPosition());
-        //
-        // switch (tab.getPosition()) {
-        // case 0:
-        //
-        // header.setImageResource(R.drawable.header);
-        //
-        // bitmap = BitmapFactory.decodeResource(
-        // getResources(), R.drawable.header);
-        //
-        // Palette.from(bitmap).generate(
-        // new Palette.PaletteAsyncListener() {
-        // @SuppressWarnings("ResourceType")
-        // @Override
-        // public void onGenerated(Palette palette) {
-        //
-        // int vibrantColor = palette
-        // .getVibrantColor(R.color.primary_500);
-        // int vibrantDarkColor = palette
-        // .getDarkVibrantColor(R.color.primary_700);
-        // collapsingToolbarLayout
-        // .setContentScrimColor(vibrantColor);
-        // collapsingToolbarLayout
-        // .setStatusBarScrimColor(vibrantDarkColor);
-        // }
-        // });
-        // break;
-        // case 1:
-        //
-        // header.setImageResource(R.drawable.header_1);
-        //
-        // bitmap = BitmapFactory.decodeResource(
-        // getResources(), R.drawable.header_1);
-        //
-        // Palette.from(bitmap).generate(
-        // new Palette.PaletteAsyncListener() {
-        // @SuppressWarnings("ResourceType")
-        // @Override
-        // public void onGenerated(Palette palette) {
-        //
-        // int vibrantColor = palette
-        // .getVibrantColor(R.color.primary_500);
-        // int vibrantDarkColor = palette
-        // .getDarkVibrantColor(R.color.primary_700);
-        // collapsingToolbarLayout
-        // .setContentScrimColor(vibrantColor);
-        // collapsingToolbarLayout
-        // .setStatusBarScrimColor(vibrantDarkColor);
-        // }
-        // });
-        //
-        // break;
-        // case 2:
-        //
-        // header.setImageResource(R.drawable.header2);
-        //
-        // Bitmap bitmap = BitmapFactory.decodeResource(
-        // getResources(), R.drawable.header2);
-        //
-        // Palette.from(bitmap).generate(
-        // new Palette.PaletteAsyncListener() {
-        // @SuppressWarnings("ResourceType")
-        // @Override
-        // public void onGenerated(Palette palette) {
-        //
-        // int vibrantColor = palette
-        // .getVibrantColor(R.color.primary_500);
-        // int vibrantDarkColor = palette
-        // .getDarkVibrantColor(R.color.primary_700);
-        // collapsingToolbarLayout
-        // .setContentScrimColor(vibrantColor);
-        // collapsingToolbarLayout
-        // .setStatusBarScrimColor(vibrantDarkColor);
-        // }
-        // });
-        //
-        // break;
-        // }
-        // }
-        //
-        // @Override
-        // public void onTabUnselected(TabLayout.Tab tab) {
-        //
-        // }
-        //
-        // @Override
-        // public void onTabReselected(TabLayout.Tab tab) {
-        //
-        // }
-        // });
-
     }
 
     private void setupViewPager() {
@@ -214,12 +100,7 @@ public class ProductLoaderTask extends AsyncTask<String, Void, Void> {
         }
 
         viewPager.setAdapter(adapter);
-
-//		viewPager.setPageTransformer(true,
-//				new );
-
         tabs.setupWithViewPager(viewPager);
-
     }
 
 }

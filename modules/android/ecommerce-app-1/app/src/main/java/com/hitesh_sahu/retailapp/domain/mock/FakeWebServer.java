@@ -37,22 +37,22 @@ public class FakeWebServer {
     }
 
     public void addCategory() {
-
+        // ERNA: Perubahan dari fake category untuk menggunakan category asli dari micro service
         ArrayList<ProductCategoryModel> listOfCategory = new ArrayList<ProductCategoryModel>();
 
         listOfCategory
                 .add(new ProductCategoryModel(
-                        "Electronic",
-                        "Electric Items",
+                        "Atasan Wanita",
+                        "Kemeja, Kaos",
                         "10%",
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeNSONF3fr9bZ6g0ztTAIPXPRCYN9vtKp1dXQB2UnBm8n5L34r"));
+                        "http://blog.seasonsway.com/wp-content/uploads/2016/10/mzndyi3pqc2.png"));
 
         listOfCategory
                 .add(new ProductCategoryModel(
-                        "Furnitures",
-                        "Furnitures Items",
+                        "Celana Wanita",
+                        "Celana Panjang, Celana Pendek, Celana Jeans",
                         "15%",
-                        "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRaUR5_wzLgBOuNtkWjOxhgaYaPBm821Hb_71xTyQ-OdUd-ojMMvw"));
+                        "https://i1.adis.ws/i/brown_thomas/wk06-denim-destination-hero-4-new-1280x720"));
 
         CenterRepository.getCenterRepository().setListOfCategory(listOfCategory);
     }
