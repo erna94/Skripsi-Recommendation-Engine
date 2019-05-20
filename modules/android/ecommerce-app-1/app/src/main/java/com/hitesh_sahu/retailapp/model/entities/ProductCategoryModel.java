@@ -20,12 +20,23 @@ public class ProductCategoryModel {
     private String categoryDescription;
     private String categoryDiscount;
     private String categoryImageUrl;
+    private Long categoryId;
     /**
      * @param productCategoryName
      * @param productCategoryDescription
      * @param productCategoryDiscount
      * @param productCategoryUrl
      */
+    public ProductCategoryModel(String productCategoryName, String productCategoryDescription,
+                                String productCategoryDiscount, String productCategoryUrl, Long productCategoryId) {
+        super();
+        this.categoryName = productCategoryName;
+        this.categoryDescription = productCategoryDescription;
+        this.categoryDiscount = productCategoryDiscount;
+        this.categoryImageUrl = productCategoryUrl;
+        this.categoryId = productCategoryId;
+    }
+
     public ProductCategoryModel(String productCategoryName, String productCategoryDescription,
                                 String productCategoryDiscount, String productCategoryUrl) {
         super();
@@ -34,6 +45,7 @@ public class ProductCategoryModel {
         this.categoryDiscount = productCategoryDiscount;
         this.categoryImageUrl = productCategoryUrl;
     }
+
 
     /**
      * @return the idproductcategory
@@ -91,4 +103,11 @@ public class ProductCategoryModel {
         this.categoryImageUrl = productUrl;
     }
 
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 }

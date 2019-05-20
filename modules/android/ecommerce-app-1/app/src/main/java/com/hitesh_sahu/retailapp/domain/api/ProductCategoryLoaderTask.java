@@ -13,8 +13,8 @@ import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.ernchatbot.service.ECommerceService;
 import com.hitesh_sahu.retailapp.R;
-import com.hitesh_sahu.retailapp.domain.mock.FakeWebServer;
 import com.hitesh_sahu.retailapp.util.AppConstants;
 import com.hitesh_sahu.retailapp.util.Utils;
 import com.hitesh_sahu.retailapp.util.Utils.AnimationType;
@@ -92,7 +92,9 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void, Void> {
             e.printStackTrace();
         }
 
-        FakeWebServer.getFakeWebServer().addCategory();
+        // ERNA: DIGANTI DENGAN memanggil ECommerce Service
+        ECommerceService service = new ECommerceService();
+        service.initCategory();
 
         return null;
     }

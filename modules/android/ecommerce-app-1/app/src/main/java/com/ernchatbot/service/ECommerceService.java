@@ -2,6 +2,9 @@ package com.ernchatbot.service;
 
 import android.util.Log;
 
+import com.hitesh_sahu.retailapp.model.CenterRepository;
+import com.hitesh_sahu.retailapp.model.entities.ProductCategoryModel;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -9,6 +12,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class ECommerceService {
     public String getProductByCategory(Long categoryId) throws Exception {
@@ -35,5 +39,33 @@ public class ECommerceService {
         }
 
         return allResponse;
+    }
+
+    public void getAllCategories(int selectedCategory) {
+       // Ambil dari model yang telah kita masukan
+    }
+
+    // Menggunakan daftar dari database dengan Category ID yang benar
+    public void initCategory() {
+        // ERNA: Perubahan dari fake category untuk menggunakan category asli dari micro service
+        ArrayList<ProductCategoryModel> listOfCategory = new ArrayList<ProductCategoryModel>();
+
+        listOfCategory
+                .add(new ProductCategoryModel(
+                        "Atasan Wanita",
+                        "Kemeja, Kaos",
+                        "10%",
+                        "http://blog.seasonsway.com/wp-content/uploads/2016/10/mzndyi3pqc2.png",
+                        11l));
+
+        listOfCategory
+                .add(new ProductCategoryModel(
+                        "Celana Wanita",
+                        "Celana Panjang, Celana Pendek, Celana Jeans",
+                        "15%",
+                        "https://i1.adis.ws/i/brown_thomas/wk06-denim-destination-hero-4-new-1280x720",
+                        12l));
+
+        CenterRepository.getCenterRepository().setListOfCategory(listOfCategory);
     }
 }
