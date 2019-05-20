@@ -58,7 +58,7 @@ public class ProductOverviewFragment extends Fragment {
         ECommerceService service = new ECommerceService();
         service.getAllCategories( AppConstants.CURRENT_CATEGORY);
 
-        // TODO We Can use Async task But pallete creation is problemitic job
+        // TODO We Can use Async task But pallete creation is problematic job
         // will
         // get back to it later
 
@@ -256,123 +256,5 @@ public class ProductOverviewFragment extends Fragment {
         }
 
         viewPager.setAdapter(adapter);
-//		viewPager.setPageTransformer(true,
-//				Utils.currentPageTransformer(getActivity()));
     }
-
-
-    // TODO
-    //Below Code Work Well But requires JSOn to work
-    // Below line of code does caching for offline usage
-
-	
-	/*void fillProductMapFromCache() {
-
-		String cached_ProductMapJSON = PreferenceHelper
-				.getPrefernceHelperInstace().getString(
-						PreferenceHelper.ALL_PRODUCT_LIST_RESPONSE_JSON, null);
-
-		if (null != cached_ProductMapJSON) {
-			new JSONParser(NetworkConstants.GET_ALL_PRODUCT,
-					cached_ProductMapJSON).parse();
-
-			adapter.notifyDataSetChanged();
-
-		}
-
-	}
-
-	public void fillCategoryData() {
-
-		loadingIndicator.setVisibility(View.VISIBLE);
-
-		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
-				NetworkConstants.URL_GET_PRODUCTS_MAP,
-				new Response.Listener<JSONObject>() {
-
-					@Override
-					public void onResponse(JSONObject response) {
-
-						if (getView() != null && getView().isShown()) {
-
-							new JSONParser(NetworkConstants.GET_ALL_PRODUCT,
-									response.toString()).parse();
-
-							PreferenceHelper
-									.getPrefernceHelperInstace()
-									.setString(
-											PreferenceHelper.ALL_PRODUCT_LIST_RESPONSE_JSON,
-											response.toString());
-							
-							setUpPager();
-
-
-							if (null != loadingIndicator) {
-								loadingIndicator.setVisibility(View.GONE);
-							}
-
-						}
-					}
-
-				}, new Response.ErrorListener() {
-
-					@Override
-					public void onErrorResponse(VolleyError error) {
-
-						fillProductMapFromCache();
-
-
-						if (null != loadingIndicator) {
-							loadingIndicator.setVisibility(View.GONE);
-						}
-						if (error instanceof TimeoutError
-								|| error instanceof NoConnectionError) {
-
-
-							if (null != getActivity())
-								((ECartHomeActivity) getActivity())
-										.ShowErrorMessage(Errorhandler.OFFLINE_MODE, true);
-
-						} else if (error instanceof AuthFailureError) {
-							// TODO
-						} else if (error instanceof ServerError) {
-
-							
-							if (null != getActivity())
-								((ECartHomeActivity) getActivity())
-										.ShowErrorMessage(Errorhandler.SERVER_ERROR, true);
-							// TODO
-						} else if (error instanceof NetworkError) {
-
-							
-							if (null != getActivity())
-								((ECartHomeActivity) getActivity())
-										.ShowErrorMessage(Errorhandler.NETWORK_ERROR, true);
-
-						} else if (error instanceof ParseError) {
-
-							if (null != getActivity())
-								Toast.makeText(
-										getActivity(),
-										"Parsing Error" + error.networkResponse
-												+ error.getLocalizedMessage(),
-										Toast.LENGTH_LONG).show();
-
-						}
-					}
-
-				}) {
-
-		};
-
-		// jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(60000 * 2, 0, 0));
-
-		jsonObjReq.setRetryPolicy(new DefaultRetryPolicy((int) TimeUnit.SECONDS
-				.toMillis(60), DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-		AppController.getInstance().addToRequestQueue(jsonObjReq, tagJSONReq);
-
-	}
-*/
 }

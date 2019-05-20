@@ -43,6 +43,7 @@ public class ECommerceService {
 
     public void getAllCategories(int selectedCategory) {
        // Ambil dari model yang telah kita masukan
+
     }
 
     // Menggunakan daftar dari database dengan Category ID yang benar

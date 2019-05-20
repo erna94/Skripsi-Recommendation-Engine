@@ -11,8 +11,12 @@ package com.ern.retailapp.domain.api;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
+import com.ern.retailapp.model.CenterRepository;
+import com.ern.retailapp.model.entities.ProductCategoryModel;
+import com.ernchatbot.service.response.Product;
 import com.ernchatbot.service.ECommerceService;
 import com.ern.retailapp.R;
 import com.ern.retailapp.util.AppConstants;
@@ -22,6 +26,11 @@ import com.ern.retailapp.view.activities.ECartHomeActivity;
 import com.ern.retailapp.view.adapter.CategoryListAdapter;
 import com.ern.retailapp.view.adapter.CategoryListAdapter.OnItemClickListener;
 import com.ern.retailapp.view.fragment.ProductOverviewFragment;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class ImageLoaderTask.
@@ -94,7 +103,34 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void, Void> {
 
         // ERNA: DIGANTI DENGAN memanggil ECommerce Service
         ECommerceService service = new ECommerceService();
+
+        // memberikan category awal
         service.initCategory();
+        CenterRepository repository = CenterRepository.getCenterRepository();
+        Long categoryId = 0L;
+
+        try {
+            ArrayList<ProductCategoryModel> categories = repository.getListOfCategory();
+
+            if (categories.size() > 0) {
+                // Panggil Web Service dengan list of product untuk category pertama
+                categoryId = categories.get(0).getCategoryId();
+
+                String response = service.getProductByCategory(categoryId);
+                ObjectMapper objectMapper = new ObjectMapper();
+
+                    // membuat mapping dari JSON Product list untuk mapping
+                    // JSON String ke dalam object
+                    List<Product> products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
+                    });
+
+            }
+        } catch (Exception e) {
+            Log.println(Log.VERBOSE, "eCommerceTask", "Tidak menemukan kategory " + categoryId);
+            e.printStackTrace();
+            // abaikan error dan response akan tetap menjadi null
+            // yang kita akan deteksi nanti
+        }
 
         return null;
     }

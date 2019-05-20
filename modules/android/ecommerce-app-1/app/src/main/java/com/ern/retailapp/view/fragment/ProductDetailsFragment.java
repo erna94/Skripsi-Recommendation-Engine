@@ -55,7 +55,7 @@ public class ProductDetailsFragment extends Fragment {
     private ImageView itemImage;
     private TextView itemSellPrice;
     private TextView itemName;
-    private TextView quanitity;
+    private TextView quantity;
     private TextView itemdescription;
     private IBuilder mDrawableBuilder;
     private TextDrawable drawable;
@@ -118,7 +118,7 @@ public class ProductDetailsFragment extends Fragment {
         itemSellPrice = ((TextView) rootView
                 .findViewById(R.id.category_discount));
 
-        quanitity = ((TextView) rootView.findViewById(R.id.iteam_amount));
+        quantity = ((TextView) rootView.findViewById(R.id.iteam_amount));
 
         itemName = ((TextView) rootView.findViewById(R.id.product_name));
 
@@ -153,7 +153,7 @@ public class ProductDetailsFragment extends Fragment {
 
 
                             //Update Ui
-                            quanitity.setText(CenterRepository
+                            quantity.setText(CenterRepository
                                     .getCenterRepository().getListOfProductsInShoppingList()
                                     .get(productListNumber).getQuantity());
 
@@ -213,8 +213,8 @@ public class ProductDetailsFragment extends Fragment {
                                                         .get(productListNumber)
                                                         .getSellMRP())), true);
 
-                                // update current item quanitity
-                                quanitity.setText(tempObj.getQuantity());
+                                // update current item quantity
+                                quantity.setText(tempObj.getQuantity());
 
                             } else {
 
@@ -223,7 +223,7 @@ public class ProductDetailsFragment extends Fragment {
 
                                 tempObj.setQuantity(String.valueOf(1));
 
-                                quanitity.setText(tempObj.getQuantity());
+                                quantity.setText(tempObj.getQuantity());
 
                                 CenterRepository.getCenterRepository()
                                         .getListOfProductsInShoppingList().add(tempObj);
@@ -273,7 +273,7 @@ public class ProductDetailsFragment extends Fragment {
                                                                 .get(productListNumber)
                                                                 .getQuantity()) - 1));
 
-                                quanitity.setText(CenterRepository
+                                quantity.setText(CenterRepository
                                         .getCenterRepository().getListOfProductsInShoppingList()
                                         .get(productListNumber).getQuantity());
 
@@ -349,7 +349,7 @@ public class ProductDetailsFragment extends Fragment {
                                                             .getSellMRP())),
                                             false);
 
-                                    quanitity.setText(CenterRepository
+                                    quantity.setText(CenterRepository
                                             .getCenterRepository()
                                             .getListOfProductsInShoppingList()
                                             .get(indexOfTempInShopingList)
@@ -476,7 +476,7 @@ public class ProductDetailsFragment extends Fragment {
                     .getMapOfProductsInCategory().get(subcategoryKey).get(productListNumber)
                     .getItemName());
 
-            quanitity.setText(CenterRepository.getCenterRepository()
+            quantity.setText(CenterRepository.getCenterRepository()
                     .getMapOfProductsInCategory().get(subcategoryKey).get(productListNumber)
                     .getQuantity());
 
@@ -560,7 +560,7 @@ public class ProductDetailsFragment extends Fragment {
             itemName.setText(CenterRepository.getCenterRepository()
                     .getListOfProductsInShoppingList().get(productListNumber).getItemName());
 
-            quanitity.setText(CenterRepository.getCenterRepository()
+            quantity.setText(CenterRepository.getCenterRepository()
                     .getListOfProductsInShoppingList().get(productListNumber).getQuantity());
 
             itemdescription.setText(CenterRepository.getCenterRepository()
@@ -633,6 +633,4 @@ public class ProductDetailsFragment extends Fragment {
 
         }
     }
-
-
 }
