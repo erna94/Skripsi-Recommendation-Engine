@@ -33,6 +33,7 @@ import com.ern.retailapp.view.customview.TextDrawable.IBuilder;
 
 // ERNA: custom item handler
 import com.ern.retailapp.view.customview.ProductViewHolder;
+import com.ernchatbot.ui.ProductViewHolderMapper;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -59,6 +60,8 @@ public class ProductListAdapter extends
 
     private Context context;
 
+    ProductViewHolderMapper productViewHolderMapper;
+
     public ProductListAdapter(String subcategoryKey, Context context,
                               boolean isCartlist) {
 
@@ -71,6 +74,7 @@ public class ProductListAdapter extends
         }
 
         this.context = context;
+        productViewHolderMapper = new ProductViewHolderMapper(context);
     }
 
     @Override
@@ -85,44 +89,8 @@ public class ProductListAdapter extends
     public void onBindViewHolder(final ProductViewHolder holder,
                                  final int position) {
 
-        holder.itemName.setText(productList.get(position)
-                .getItemName());
-
-        holder.itemDesc.setText(productList.get(position)
-                .getItemShortDesc());
-
-        String sellCostString = Money.asIDR(
-                BigDecimal.valueOf(Double.valueOf(productList.get(position)
-                        .getSellMRP()))).toString()
-                + "  ";
-
-        String buyMRP = Money.asIDR(
-                BigDecimal.valueOf(Double.valueOf(productList.get(position)
-                        .getMRP()))).toString();
-
-        // ERNA: Check nanti2 kalau discount lebih dari 0% ditambah dengan MRP
-        String costString = sellCostString;
-
-        holder.itemCost.setText(costString, BufferType.SPANNABLE);
-
-        Spannable spannable = (Spannable) holder.itemCost.getText();
-
-        spannable.setSpan(new StrikethroughSpan(), sellCostString.length(),
-                costString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        mDrawableBuilder = TextDrawable.builder().beginConfig().withBorder(4)
-                .endConfig().roundRect(10);
-
-        drawable = mDrawableBuilder.build(String.valueOf(productList
-                .get(position).getItemName().charAt(0)), mColorGenerator
-                .getColor(productList.get(position).getItemName()));
-
-        imageUrl = productList.get(position).getImageURL();
-
-        Glide.with(context).load(imageUrl).placeholder(drawable)
-                .error(drawable).animate(R.anim.base_slide_right_in)
-                .centerCrop().into(holder.imageView);
-
+        ProductUI productUI = productList.get(position);
+        productViewHolderMapper.mapProductViewHolder(holder, productUI);
 
         holder.addItem.findViewById(R.id.add_item).setOnClickListener(
                 new OnClickListener() {
@@ -292,5 +260,4 @@ public class ProductListAdapter extends
         }
         notifyItemMoved(fromPosition, toPosition);
     }
-
 }

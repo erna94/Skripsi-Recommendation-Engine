@@ -107,6 +107,8 @@ public class SearchProductFragment extends Fragment {
                         if(keyCode == KeyEvent.KEYCODE_ENTER) {
                             // user menekan Enter
                             Log.println(Log.VERBOSE, "android-app", "Enter is pressed");
+
+                            // memanggil Wit AsyncTask
                         }
 
                         return true;

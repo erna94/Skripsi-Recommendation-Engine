@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="clip_horizontal"
-    android:background="@color/material_blue_500"
+    android:background="@android:color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -51,13 +51,13 @@
             android:layout_toLeftOf="@+id/btnSpeak"
             android:background="@drawable/rounder_rectangle_visa_card"
             android:hapticFeedbackEnabled="true"
-            android:hint="What do you wish for ?"
+            android:hint="Ketik permintaan anda"
             android:marqueeRepeatLimit="marquee_forever"
             android:padding="5dp"
             android:singleLine="true"
             android:textColor="@color/holo_gray_dark"
             android:textColorHint="@color/holo_gray_dark"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <ImageButton
             android:id="@+id/btnSpeak"

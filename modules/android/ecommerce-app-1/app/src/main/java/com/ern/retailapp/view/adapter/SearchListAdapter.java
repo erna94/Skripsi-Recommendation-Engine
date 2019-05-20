@@ -1,6 +1,7 @@
 package com.ern.retailapp.view.adapter;
 
 import android.database.DataSetObserver;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +9,15 @@ import android.widget.ListAdapter;
 
 import com.ern.retailapp.R;
 import com.ern.retailapp.model.CenterRepository;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
 import com.ern.retailapp.view.customview.ProductViewHolder;
 import com.ern.retailapp.view.fragment.ProductDetailsFragment;
+import com.ernchatbot.service.response.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /***
  * ERNA: Class baru untuk menghandle hasil dari search result berdasarkan
@@ -20,10 +26,12 @@ import com.ern.retailapp.view.fragment.ProductDetailsFragment;
 public class SearchListAdapter implements ListAdapter {
     CenterRepository repository;
     ViewGroup viewGroup;
+    List<Product> products;
 
     public SearchListAdapter(ViewGroup viewGroup) {
         repository =  CenterRepository.getCentralRepository();
         this.viewGroup = viewGroup;
+        products = new ArrayList<Product>();
     }
 
     @Override
@@ -48,17 +56,17 @@ public class SearchListAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return products.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return products.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return products.get(position).getIdProduct();
     }
 
     @Override
@@ -77,28 +85,40 @@ public class SearchListAdapter implements ListAdapter {
             }
         };
 
-        ProductViewHolder productViewHolder = new ProductViewHolder(view, onClickListener);
-        productViewHolder.itemName.setText("Foo");
-        productViewHolder.availability.setText("1");
-        productViewHolder.itemDesc.setText("Blah");
-        productViewHolder.itemCost.setText("65000");
-        productViewHolder.availability.setText("10");
+        // ERNA: Perlu membuat program ini menjadi lebih rapi dengan menggabungkan konsep dalam ProductCategoryLoaderTask
+        List<ProductUI> productlist = new ArrayList<ProductUI>();
+
+        for(int i=0;i<products.size();i++) {
+            Product current = products.get(i);
+            String description = current.getDeskripsiProduct();
+            String productName = current.getNamaProduct();
+            String longDescription = current.getDeskripsiProduct();
+            String salePrice = current.getHargaProduct() + "";
+            String imgUrl = current.getImageLink();
+            String productId = current.getIdProduct() + "";
+            Log.println(Log.VERBOSE, "android-app", "Title " + productName + " dengan harga " + salePrice);
+
+            ProductUI productUI = new ProductUI(productName, description, description, salePrice, "",
+                    salePrice, 1 + "", imgUrl, productId);
+
+            productlist.add(productUI);
+        }
 
         return view;
     }
 
     @Override
     public int getItemViewType(int position) {
-        return 2;
+        return products.size();
     }
 
     @Override
     public int getViewTypeCount() {
-        return 2;
+        return 1;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return products.isEmpty();
     }
 }
