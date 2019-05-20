@@ -8,6 +8,10 @@ import android.widget.ListAdapter;
 
 import com.ern.retailapp.R;
 import com.ern.retailapp.model.CenterRepository;
+import com.ern.retailapp.util.Utils;
+import com.ern.retailapp.view.activities.ECartHomeActivity;
+import com.ern.retailapp.view.customview.ProductViewHolder;
+import com.ern.retailapp.view.fragment.ProductDetailsFragment;
 
 /***
  * ERNA: Class baru untuk menghandle hasil dari search result berdasarkan
@@ -44,7 +48,7 @@ public class SearchListAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return 2;
     }
 
     @Override
@@ -66,17 +70,31 @@ public class SearchListAdapter implements ListAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.item_product_list, viewGroup, false);
-        return null;
+
+        ProductViewHolder.OnItemClickListener onClickListener = new ProductViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+            }
+        };
+
+        ProductViewHolder productViewHolder = new ProductViewHolder(view, onClickListener);
+        productViewHolder.itemName.setText("Foo");
+        productViewHolder.availability.setText("1");
+        productViewHolder.itemDesc.setText("Blah");
+        productViewHolder.itemCost.setText("65000");
+        productViewHolder.availability.setText("10");
+
+        return view;
     }
 
     @Override
     public int getItemViewType(int position) {
-        return 0;
+        return 2;
     }
 
     @Override
     public int getViewTypeCount() {
-        return 0;
+        return 2;
     }
 
     @Override
