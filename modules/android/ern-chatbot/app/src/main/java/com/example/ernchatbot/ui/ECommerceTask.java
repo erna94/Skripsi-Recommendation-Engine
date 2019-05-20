@@ -112,12 +112,12 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void , List<Product>
        Message reply = null;
 
        if(products != null && products.size() > 0) {
-           String buatReply = "Ini adalah 5 besar pencarian anda:";
+           String buatReply = "Ini adalah 20 besar pencarian anda:";
 
            int productSize = products.size();
 
-           if(productSize > 5) {
-               productSize = 5;
+           if(productSize > 20) {
+               productSize = 20;
            }
 
            for(int i=0;i<productSize;i++) {
