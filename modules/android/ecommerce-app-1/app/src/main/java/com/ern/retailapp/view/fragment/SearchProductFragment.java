@@ -84,7 +84,7 @@ public class SearchProductFragment extends Fragment {
                 .findViewById(R.id.search_list_view);
 
 
-        SearchListAdapter searchAdapter = new SearchListAdapter(container);
+        SearchListAdapter searchAdapter = new SearchListAdapter(container, getContext());
         searchListView.setAdapter(searchAdapter);
 
         searchListView.setOnItemClickListener(new OnItemClickListener() {

@@ -1,5 +1,6 @@
 package com.ern.retailapp.view.adapter;
 
+import android.content.Context;
 import android.database.DataSetObserver;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.ern.retailapp.view.activities.ECartHomeActivity;
 import com.ern.retailapp.view.customview.ProductViewHolder;
 import com.ern.retailapp.view.fragment.ProductDetailsFragment;
 import com.ernchatbot.service.response.Product;
+import com.ernchatbot.ui.ProductViewHolderMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +29,15 @@ public class SearchListAdapter implements ListAdapter {
     CenterRepository repository;
     ViewGroup viewGroup;
     List<Product> products;
+    Context context;
+    ProductViewHolderMapper productViewHolderMapper;
 
-    public SearchListAdapter(ViewGroup viewGroup) {
+    public SearchListAdapter(ViewGroup viewGroup, Context context) {
         repository =  CenterRepository.getCentralRepository();
         this.viewGroup = viewGroup;
         products = new ArrayList<Product>();
+        this.context = context;
+        this.productViewHolderMapper = new ProductViewHolderMapper(context);
     }
 
     @Override
@@ -102,6 +108,13 @@ public class SearchListAdapter implements ListAdapter {
                     salePrice, 1 + "", imgUrl, productId);
 
             productlist.add(productUI);
+
+            ProductViewHolder holder = new ProductViewHolder(view, new ProductViewHolder.OnItemClickListener() {
+                public void onItemClick(View view, int position) {
+                }
+            });
+
+            productViewHolderMapper.mapProductViewHolder(holder, productUI);
         }
 
         return view;
