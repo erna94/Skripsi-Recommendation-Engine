@@ -28,7 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ern.retailapp.R;
-import com.ern.retailapp.model.entities.Product;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.util.Utils.AnimationType;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
@@ -40,7 +40,7 @@ public class SearchProductFragment extends Fragment {
 
     private static final int REQ_SCAN_RESULT = 200;
     private final int REQ_CODE_SPEECH_INPUT = 100;
-    ArrayList<Product> searchProductList = new ArrayList<>();
+    ArrayList<ProductUI> searchProductList = new ArrayList<>();
     boolean searchInProgress = false;
     private TextView heading;
     private ImageButton btnSpeak;

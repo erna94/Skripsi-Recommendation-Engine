@@ -12,11 +12,11 @@
 package com.ern.retailapp.model.entities;
 
 /**
- * The Class Product used as model for Products.
+ * The Class ProductUI used as model for Products.
  *
  * @author Hitesh
  */
-public class Product {
+public class ProductUI {
 
 
     /**
@@ -71,9 +71,9 @@ public class Product {
      * @param quantity
      * @param imageURL
      */
-    public Product(String itemName, String itemShortDesc, String itemDetail,
-                   String MRP, String discount, String sellMRP, String quantity,
-                   String imageURL, String orderId) {
+    public ProductUI(String itemName, String itemShortDesc, String itemDetail,
+                     String MRP, String discount, String sellMRP, String quantity,
+                     String imageURL, String orderId) {
         this.productName = itemName;
         this.description = itemShortDesc;
         this.longDescription = itemDetail;

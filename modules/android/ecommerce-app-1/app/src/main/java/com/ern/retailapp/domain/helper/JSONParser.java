@@ -11,7 +11,7 @@ package com.ern.retailapp.domain.helper;
 import android.util.Log;
 
 import com.ern.retailapp.model.CenterRepository;
-import com.ern.retailapp.model.entities.Product;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.model.entities.ProductCategoryModel;
 
 import org.json.JSONArray;
@@ -110,7 +110,7 @@ public class JSONParser {
                         for (int categoryCount = 0; categoryCount < CenterRepository
                                 .getCenterRepository().getListOfCategory().size(); categoryCount++) {
 
-                            ArrayList<Product> tempProductList = new ArrayList<Product>();
+                            ArrayList<ProductUI> tempProductList = new ArrayList<ProductUI>();
 
                             // get json array for stored category
 
@@ -130,8 +130,8 @@ public class JSONParser {
                                         .get(categoryCount)
                                         .getProductCategoryName());
 
-                                // ArrayList<Product> tempProductList = new
-                                // ArrayList<Product>();
+                                // ArrayList<ProductUI> tempProductList = new
+                                // ArrayList<ProductUI>();
 
                                 for (int i = 0; i < productListWithCategory
                                         .length(); i++) {
@@ -142,7 +142,7 @@ public class JSONParser {
 
                                     if (productListObjecty.length() != 0) {
 
-                                        tempProductList.add(new Product(
+                                        tempProductList.add(new ProductUI(
                                                 productListObjecty
 
                                                         .getString("productName"),
@@ -210,7 +210,7 @@ public class JSONParser {
                         // .getCenterRepository().getListOfCategory().size();
                         // categoryCount++) {
                         //
-                        ArrayList<Product> tempProductList = new ArrayList<Product>();
+                        ArrayList<ProductUI> tempProductList = new ArrayList<ProductUI>();
 
                         // get json array for stored category
 
@@ -231,8 +231,8 @@ public class JSONParser {
                         // .get(categoryCount)
                         // .getProductCategoryName());
 
-                        // ArrayList<Product> tempProductList = new
-                        // ArrayList<Product>();
+                        // ArrayList<ProductUI> tempProductList = new
+                        // ArrayList<ProductUI>();
 
                         for (int i = 0; i < mycartArray.length(); i++) {
 
@@ -244,7 +244,7 @@ public class JSONParser {
 
                                 CenterRepository
                                         .getCenterRepository()
-                                        .getListOfProductsInShoppingList().add(new Product(productListObjecty
+                                        .getListOfProductsInShoppingList().add(new ProductUI(productListObjecty
 
                                         .getString("productName"), productListObjecty
 

@@ -153,7 +153,7 @@ public class SimilarProductsPagerAdapter extends PagerAdapter {
                         .get(productCategory).get(position).getItemDetail());
 
         ((TextView) itemView.findViewById(R.id.category_discount))
-                .setText(Money.rupees(
+                .setText(Money.asIDR(
                         BigDecimal.valueOf(Long.valueOf(CenterRepository
                                 .getCenterRepository().getMapOfProductsInCategory()
                                 .get(productCategory).get(position)

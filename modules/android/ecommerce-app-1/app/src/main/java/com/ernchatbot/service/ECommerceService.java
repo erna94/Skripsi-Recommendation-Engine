@@ -41,11 +41,6 @@ public class ECommerceService {
         return allResponse;
     }
 
-    public void getAllCategories(int selectedCategory) {
-       // Ambil dari model yang telah kita masukan
-
-    }
-
     // Menggunakan daftar dari database dengan Category ID yang benar
     public void initCategory() {
         // ERNA: Perubahan dari fake category untuk menggunakan category asli dari micro service

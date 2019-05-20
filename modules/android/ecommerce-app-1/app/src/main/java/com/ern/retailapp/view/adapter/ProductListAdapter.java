@@ -25,7 +25,7 @@ import com.bumptech.glide.Glide;
 import com.ern.retailapp.R;
 import com.ern.retailapp.model.CenterRepository;
 import com.ern.retailapp.model.entities.Money;
-import com.ern.retailapp.model.entities.Product;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.util.ColorGenerator;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
@@ -52,7 +52,7 @@ public class ProductListAdapter extends
 
     private String ImageUrl;
 
-    private List<Product> productList = new ArrayList<Product>();
+    private List<ProductUI> productList = new ArrayList<ProductUI>();
     private OnItemClickListener clickListener;
 
     private Context context;
@@ -92,13 +92,13 @@ public class ProductListAdapter extends
         holder.itemDesc.setText(productList.get(position)
                 .getItemShortDesc());
 
-        String sellCostString = Money.rupees(
-                BigDecimal.valueOf(Long.valueOf(productList.get(position)
+        String sellCostString = Money.asIDR(
+                BigDecimal.valueOf(Double.valueOf(productList.get(position)
                         .getSellMRP()))).toString()
                 + "  ";
 
-        String buyMRP = Money.rupees(
-                BigDecimal.valueOf(Long.valueOf(productList.get(position)
+        String buyMRP = Money.asIDR(
+                BigDecimal.valueOf(Double.valueOf(productList.get(position)
                         .getMRP()))).toString();
 
         String costString = sellCostString + buyMRP;
@@ -133,7 +133,7 @@ public class ProductListAdapter extends
 
 
                         //current object
-                        Product tempObj = productList.get(position);
+                        ProductUI tempObj = productList.get(position);
 
 
                         //if current object is lready in shopping list
@@ -209,7 +209,7 @@ public class ProductListAdapter extends
             @Override
             public void onClick(View v) {
 
-                Product tempObj = (productList).get(position);
+                ProductUI tempObj = (productList).get(position);
 
                 if (CenterRepository.getCenterRepository().getListOfProductsInShoppingList()
                         .contains(tempObj)) {

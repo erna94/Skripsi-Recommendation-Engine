@@ -23,8 +23,8 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.ern.retailapp.model.entities.ProductUI;
 import com.google.gson.Gson;
-import com.ern.retailapp.model.entities.Product;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -345,14 +345,14 @@ public class TinyDB {
 
     // Put methods
 
-    public ArrayList<Product> getListObject(String key, Class<?> mClass) {
+    public ArrayList<ProductUI> getListObject(String key, Class<?> mClass) {
         Gson gson = new Gson();
 
         ArrayList<String> objStrings = getListString(key);
-        ArrayList<Product> objects = new ArrayList<Product>();
+        ArrayList<ProductUI> objects = new ArrayList<ProductUI>();
 
         for (String jObjString : objStrings) {
-            Product value = (Product) gson.fromJson(jObjString, mClass);
+            ProductUI value = (ProductUI) gson.fromJson(jObjString, mClass);
             objects.add(value);
         }
         return objects;
@@ -503,7 +503,7 @@ public class TinyDB {
         putString(key, gson.toJson(obj));
     }
 
-    public void putListObject(String key, List<Product> list) {
+    public void putListObject(String key, List<ProductUI> list) {
         checkForNullKey(key);
         Gson gson = new Gson();
         ArrayList<String> objStrings = new ArrayList<String>();

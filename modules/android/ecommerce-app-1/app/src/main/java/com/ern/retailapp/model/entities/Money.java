@@ -35,7 +35,7 @@ public class Money {
                 rounding);
     }
 
-    public static Money rupees(BigDecimal amount) {
+    public static Money asIDR(BigDecimal amount) {
         return new Money(amount, IDR);
     }
 

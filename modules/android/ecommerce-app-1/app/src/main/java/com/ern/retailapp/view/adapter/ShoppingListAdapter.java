@@ -28,7 +28,7 @@ import com.bumptech.glide.Glide;
 import com.ern.retailapp.R;
 import com.ern.retailapp.model.CenterRepository;
 import com.ern.retailapp.model.entities.Money;
-import com.ern.retailapp.model.entities.Product;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.util.ColorGenerator;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
@@ -61,7 +61,7 @@ public class ShoppingListAdapter extends
     private IBuilder mDrawableBuilder;
     private TextDrawable drawable;
     private String ImageUrl;
-    private List<Product> productList = new ArrayList<Product>();
+    private List<ProductUI> productList = new ArrayList<ProductUI>();
     private Context context;
 
     public ShoppingListAdapter(Context context,
@@ -87,12 +87,12 @@ public class ShoppingListAdapter extends
 
         holder.itemDesc.setText(productList.get(position).getItemShortDesc());
 
-        String sellCostString = Money.rupees(
+        String sellCostString = Money.asIDR(
                 BigDecimal.valueOf(Long.valueOf(productList.get(position)
                         .getSellMRP()))).toString()
                 + "  ";
 
-        String buyMRP = Money.rupees(
+        String buyMRP = Money.asIDR(
                 BigDecimal.valueOf(Long.valueOf(productList.get(position)
                         .getMRP()))).toString();
 

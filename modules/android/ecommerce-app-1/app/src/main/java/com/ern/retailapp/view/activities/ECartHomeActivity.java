@@ -32,7 +32,7 @@ import com.ern.retailapp.domain.mining.AprioriFrequentItemsetGenerator;
 import com.ern.retailapp.domain.mining.FrequentItemsetData;
 import com.ern.retailapp.model.CenterRepository;
 import com.ern.retailapp.model.entities.Money;
-import com.ern.retailapp.model.entities.Product;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.util.PreferenceHelper;
 import com.ern.retailapp.util.TinyDB;
 import com.ern.retailapp.util.Utils;
@@ -70,7 +70,7 @@ public class ECartHomeActivity extends AppCompatActivity {
 
         CenterRepository.getCenterRepository().setListOfProductsInShoppingList(
                 new TinyDB(getApplicationContext()).getListObject(
-                        PreferenceHelper.MY_CART_LIST_LOCAL, Product.class));
+                        PreferenceHelper.MY_CART_LIST_LOCAL, ProductUI.class));
 
         itemCount = CenterRepository.getCenterRepository().getListOfProductsInShoppingList()
                 .size();
@@ -85,7 +85,7 @@ public class ECartHomeActivity extends AppCompatActivity {
 
         checkOutAmount = (TextView) findViewById(R.id.checkout_amount);
         checkOutAmount.setSelected(true);
-        checkOutAmount.setText(Money.rupees(checkoutAmount).toString());
+        checkOutAmount.setText(Money.asIDR(checkoutAmount).toString());
         offerBanner.setSelected(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
@@ -109,7 +109,7 @@ public class ECartHomeActivity extends AppCompatActivity {
 
 
         if (itemCount != 0) {
-            for (Product product : CenterRepository.getCenterRepository()
+            for (ProductUI product : CenterRepository.getCenterRepository()
                     .getListOfProductsInShoppingList()) {
 
                 updateCheckOutAmount(
@@ -257,7 +257,7 @@ public class ECartHomeActivity extends AppCompatActivity {
                 checkoutAmount = checkoutAmount.subtract(amount);
         }
 
-        checkOutAmount.setText(Money.rupees(checkoutAmount).toString());
+        checkOutAmount.setText(Money.asIDR(checkoutAmount).toString());
     }
 
     @Override
@@ -354,7 +354,7 @@ public class ECartHomeActivity extends AppCompatActivity {
 
                         ArrayList<String> productId = new ArrayList<String>();
 
-                        for (Product productFromShoppingList : CenterRepository.getCenterRepository().getListOfProductsInShoppingList()) {
+                        for (ProductUI productFromShoppingList : CenterRepository.getCenterRepository().getListOfProductsInShoppingList()) {
 
                             //add product ids to array
                             productId.add(productFromShoppingList.getProductId());
@@ -383,7 +383,7 @@ public class ECartHomeActivity extends AppCompatActivity {
                         itemCount = 0;
                         itemCountTextView.setText(String.valueOf(0));
                         checkoutAmount = new BigDecimal(BigInteger.ZERO);
-                        checkOutAmount.setText(Money.rupees(checkoutAmount).toString());
+                        checkOutAmount.setText(Money.asIDR(checkoutAmount).toString());
 
                     }
                 });

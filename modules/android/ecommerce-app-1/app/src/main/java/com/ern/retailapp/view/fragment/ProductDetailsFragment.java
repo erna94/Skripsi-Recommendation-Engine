@@ -27,7 +27,7 @@ import android.widget.TextView.BufferType;
 import com.ern.retailapp.R;
 import com.ern.retailapp.model.CenterRepository;
 import com.ern.retailapp.model.entities.Money;
-import com.ern.retailapp.model.entities.Product;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.util.ColorGenerator;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.util.Utils.AnimationType;
@@ -171,7 +171,7 @@ public class ProductDetailsFragment extends Fragment {
                         } else {
 
                             // current object
-                            Product tempObj = CenterRepository
+                            ProductUI tempObj = CenterRepository
                                     .getCenterRepository().getMapOfProductsInCategory()
                                     .get(subcategoryKey).get(productListNumber);
 
@@ -318,7 +318,7 @@ public class ProductDetailsFragment extends Fragment {
 
                         } else {
 
-                            Product tempObj = CenterRepository
+                            ProductUI tempObj = CenterRepository
                                     .getCenterRepository().getMapOfProductsInCategory()
                                     .get(subcategoryKey).get(productListNumber);
 
@@ -484,14 +484,14 @@ public class ProductDetailsFragment extends Fragment {
                     .getMapOfProductsInCategory().get(subcategoryKey).get(productListNumber)
                     .getItemDetail());
 
-            String sellCostString = Money.rupees(
+            String sellCostString = Money.asIDR(
                     BigDecimal.valueOf(Long.valueOf(CenterRepository
                             .getCenterRepository().getMapOfProductsInCategory()
                             .get(subcategoryKey).get(productListNumber)
                             .getSellMRP()))).toString()
                     + "  ";
 
-            String buyMRP = Money.rupees(
+            String buyMRP = Money.asIDR(
                     BigDecimal.valueOf(Long.valueOf(CenterRepository
                             .getCenterRepository().getMapOfProductsInCategory()
                             .get(subcategoryKey).get(productListNumber)
@@ -566,13 +566,13 @@ public class ProductDetailsFragment extends Fragment {
             itemdescription.setText(CenterRepository.getCenterRepository()
                     .getListOfProductsInShoppingList().get(productListNumber).getItemDetail());
 
-            String sellCostString = Money.rupees(
+            String sellCostString = Money.asIDR(
                     BigDecimal.valueOf(Long.valueOf(CenterRepository
                             .getCenterRepository().getListOfProductsInShoppingList()
                             .get(productListNumber).getSellMRP()))).toString()
                     + "  ";
 
-            String buyMRP = Money.rupees(
+            String buyMRP = Money.asIDR(
                     BigDecimal.valueOf(Long.valueOf(CenterRepository
                             .getCenterRepository().getListOfProductsInShoppingList()
                             .get(productListNumber).getMRP()))).toString();

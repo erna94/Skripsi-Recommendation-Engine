@@ -53,11 +53,6 @@ public class ProductOverviewFragment extends Fragment {
 
         getActivity().setTitle("Products");
 
-        // Simulate Web service calls
-        // ERNa: DIGANTI DENGAN PANGGILAN KE WEB SERVICE
-        ECommerceService service = new ECommerceService();
-        service.getAllCategories( AppConstants.CURRENT_CATEGORY);
-
         // TODO We Can use Async task But pallete creation is problematic job
         // will
         // get back to it later

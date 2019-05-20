@@ -9,7 +9,7 @@
 package com.ern.retailapp.domain.mock;
 
 import com.ern.retailapp.model.CenterRepository;
-import com.ern.retailapp.model.entities.Product;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.model.entities.ProductCategoryModel;
 
 import java.util.ArrayList;
@@ -61,13 +61,13 @@ public class FakeWebServer {
 
     public void getAllElectronics() {
 
-        ConcurrentHashMap<String, ArrayList<Product>> productMap = new ConcurrentHashMap<String, ArrayList<Product>>();
+        ConcurrentHashMap<String, ArrayList<ProductUI>> productMap = new ConcurrentHashMap<String, ArrayList<ProductUI>>();
 
-        ArrayList<Product> productlist = new ArrayList<Product>();
+        ArrayList<ProductUI> productlist = new ArrayList<ProductUI>();
 
         // Ovens
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Solo Microwave Oven",
                         "IFB 17PMMEC1 17 L Solo Microwave Oven",
                         "Explore the joys of cooking with IFB 17PM MEC1 Solo Microwave Oven. The budget-friendly appliance has several nifty features including Multi Power Levels and Speed Defrost to make cooking a fun-filled experience.",
@@ -79,7 +79,7 @@ public class FakeWebServer {
                         "oven_1"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Solo Microwave Oven",
                         "Bajaj 1701MT 17 L Solo Microwave Oven",
                         "Explore the joys of cooking with IFB 17PM MEC1 Solo Microwave Oven. The budget-friendly appliance has several nifty features including Multi Power Levels and Speed Defrost to make cooking a fun-filled experience.",
@@ -91,7 +91,7 @@ public class FakeWebServer {
                         "oven_2"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Solo Microwave Oven",
                         "Whirlpool MW 25 BG 25 L Grill Microwave Oven",
                         "http://img6a.flixcart.com/image/microwave-new/a/y/f/whirlpool-mw-25-bg-400x400-imaebagzstnngjqt.jpeg",
@@ -103,7 +103,7 @@ public class FakeWebServer {
                         "oven_3"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Solo Microwave Oven",
                         "Morphy Richards 25CG 25 L Convection Microwave Oven",
                         "http://img5a.flixcart.com/image/microwave-new/v/q/y/morphy-richard-25cg-400x400-imadxecx93kb6q4f.jpeg",
@@ -115,7 +115,7 @@ public class FakeWebServer {
                         "oven_4"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Solo Microwave Oven",
                         "IFB 25SC4 25 L Convection Microwave Oven",
                         "http://img5a.flixcart.com/image/microwave-new/v/q/y/morphy-richard-25cg-400x400-imadxecx93kb6q4f.jpeg",
@@ -128,10 +128,10 @@ public class FakeWebServer {
 
         productMap.put("Sub-CAT 1", productlist);
 
-        ArrayList<Product> tvList = new ArrayList<Product>();
+        ArrayList<ProductUI> tvList = new ArrayList<ProductUI>();
 
         // TV
-        tvList.add(new Product(
+        tvList.add(new ProductUI(
                 "LED",
                 "Vu 80cm (32) HD Ready LED TV",
                 "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
@@ -142,7 +142,7 @@ public class FakeWebServer {
                 "http://img5a.flixcart.com/image/television/g/y/w/vu-32k160mrevd-400x400-imae93ahpwtchzys.jpeg",
                 "tv_1"));
 
-        tvList.add(new Product(
+        tvList.add(new ProductUI(
                 "LED 1",
                 "Vu 80cm (32) HD Ready LED TV",
                 "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
@@ -153,7 +153,7 @@ public class FakeWebServer {
                 "http://img6a.flixcart.com/image/television/z/f/w/bpl-bpl080d51h-400x400-imaeeztqvhxbnam2.jpeg",
                 "tv_2"));
 
-        tvList.add(new Product(
+        tvList.add(new ProductUI(
                 "LED 2",
                 "Vu 80cm (32) HD Ready LED TV",
                 "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
@@ -164,7 +164,7 @@ public class FakeWebServer {
                 "http://img6a.flixcart.com/image/television/f/b/z/micromax-43x6300mhd-400x400-imaednxv8bgznhbx.jpeg",
                 "tv_3"));
 
-        tvList.add(new Product(
+        tvList.add(new ProductUI(
                 "LED 3",
                 "Vu 80cm (32) HD Ready LED TV",
                 "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
@@ -175,7 +175,7 @@ public class FakeWebServer {
                 "http://img6a.flixcart.com/image/television/a/w/z/vu-32d6545-400x400-imaebagzbpzqhmxc.jpeg",
                 "tv_4"));
 
-        tvList.add(new Product(
+        tvList.add(new ProductUI(
                 "LED 4",
                 "Vu 80cm (32) HD Ready LED TV",
                 "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
@@ -188,11 +188,11 @@ public class FakeWebServer {
 
         productMap.put("Sub-Cat 2", tvList);
 
-        productlist = new ArrayList<Product>();
+        productlist = new ArrayList<ProductUI>();
 
         // Vaccum Cleaner
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Easy Clean Plus Hand-held ",
                         "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
                         "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
@@ -204,7 +204,7 @@ public class FakeWebServer {
                         "v_cleaner_1"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Easy Clean Plus Hand-held ",
                         "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
                         "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
@@ -216,7 +216,7 @@ public class FakeWebServer {
                         "v_cleaner_2"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Easy Clean Plus Hand-held ",
                         "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
                         "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
@@ -228,7 +228,7 @@ public class FakeWebServer {
                         "v_cleaner_3"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Easy Clean Plus Hand-held ",
                         "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
                         "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
@@ -240,7 +240,7 @@ public class FakeWebServer {
                         "v_cleaner_4"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Easy Clean Plus Hand-held ",
                         "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
                         "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
@@ -266,13 +266,13 @@ public class FakeWebServer {
 
     public void getAllFurnitures() {
 
-        ConcurrentHashMap<String, ArrayList<Product>> productMap = new ConcurrentHashMap<String, ArrayList<Product>>();
+        ConcurrentHashMap<String, ArrayList<ProductUI>> productMap = new ConcurrentHashMap<String, ArrayList<ProductUI>>();
 
-        ArrayList<Product> productlist = new ArrayList<Product>();
+        ArrayList<ProductUI> productlist = new ArrayList<ProductUI>();
 
         // Table
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         " Wood Coffee Table",
                         "Royal Oak Engineered Wood Coffee Table",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -284,7 +284,7 @@ public class FakeWebServer {
                         "table_1"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         " Wood Coffee Table",
                         "Royal Oak Engineered Wood Coffee Table",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -296,7 +296,7 @@ public class FakeWebServer {
                         "table_2"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         " Wood Coffee Table",
                         "Royal Oak Engineered Wood Coffee Table",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -308,7 +308,7 @@ public class FakeWebServer {
                         "table_3"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         " Wood Coffee Table",
                         "Royal Oak Engineered Wood Coffee Table",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -320,7 +320,7 @@ public class FakeWebServer {
                         "table_4"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         " Wood Coffee Table",
                         "Royal Oak Engineered Wood Coffee Table",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -332,7 +332,7 @@ public class FakeWebServer {
                         "table_5"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         " Wood Coffee Table",
                         "Royal Oak Engineered Wood Coffee Table",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -345,11 +345,11 @@ public class FakeWebServer {
 
         productMap.put("Tables", productlist);
 
-        productlist = new ArrayList<Product>();
+        productlist = new ArrayList<ProductUI>();
 
         // Chair
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Bean Bag Chair Cover",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -361,7 +361,7 @@ public class FakeWebServer {
                         "chair_1"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Bean Bag Chair Cover",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -373,7 +373,7 @@ public class FakeWebServer {
                         "chair_2"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Bean Bag Chair Cover",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -385,7 +385,7 @@ public class FakeWebServer {
                         "chair_3"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Adiko Leatherette Office Chair",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -397,7 +397,7 @@ public class FakeWebServer {
                         "chair_4"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Adiko Leatherette Office Chair",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -409,7 +409,7 @@ public class FakeWebServer {
                         "chair_5"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Adiko Leatherette Office Chair",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -421,7 +421,7 @@ public class FakeWebServer {
                         "chair_6"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Adiko Leatherette Office Chair",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -433,7 +433,7 @@ public class FakeWebServer {
                         "chair_7"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Adiko Leatherette Office Chair",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -445,7 +445,7 @@ public class FakeWebServer {
                         "chair_8"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Adiko Leatherette Office Chair",
                         "ab Homez XXXL Bean Bag Chair Cover (Without Filling)",
                         "With a contemporary design and gorgeous finish, this coffee table will be a brilliant addition to modern homes and even offices. The table has a glass table top with a floral print, and a pull-out drawer in the center.",
@@ -458,11 +458,11 @@ public class FakeWebServer {
 
         productMap.put("Chairs", productlist);
 
-        productlist = new ArrayList<Product>();
+        productlist = new ArrayList<ProductUI>();
 
         // Chair
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "l Collapsible Wardrobe",
                         "Everything Imported Carbon Steel Collapsible Wardrobe",
                         "Portable Wardrobe Has Hanging Space And Shelves Which Are Very Practical And The Roll Down Cover Keeps The Dust Out",
@@ -474,7 +474,7 @@ public class FakeWebServer {
                         "almirah_1"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "l Collapsible Wardrobe",
                         "Everything Imported Carbon Steel Collapsible Wardrobe",
                         "Portable Wardrobe Has Hanging Space And Shelves Which Are Very Practical And The Roll Down Cover Keeps The Dust Out",
@@ -486,7 +486,7 @@ public class FakeWebServer {
                         "almirah_2"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "l Collapsible Wardrobe",
                         "Everything Imported Carbon Steel Collapsible Wardrobe",
                         "Portable Wardrobe Has Hanging Space And Shelves Which Are Very Practical And The Roll Down Cover Keeps The Dust Out",
@@ -498,7 +498,7 @@ public class FakeWebServer {
                         "almirah_3"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "l Collapsible Wardrobe",
                         "Everything Imported Carbon Steel Collapsible Wardrobe",
                         "Portable Wardrobe Has Hanging Space And Shelves Which Are Very Practical And The Roll Down Cover Keeps The Dust Out",
@@ -510,7 +510,7 @@ public class FakeWebServer {
                         "almirah_4"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "l Collapsible Wardrobe",
                         "Everything Imported Carbon Steel Collapsible Wardrobe",
                         "Portable Wardrobe Has Hanging Space And Shelves Which Are Very Practical And The Roll Down Cover Keeps The Dust Out",
@@ -522,7 +522,7 @@ public class FakeWebServer {
                         "almirah_5"));
 
         productlist
-                .add(new Product(
+                .add(new ProductUI(
                         "Metal Free Standing Wardrobe",
                         "Everything Imported Carbon Steel Collapsible Wardrobe",
                         "Portable Wardrobe Has Hanging Space And Shelves Which Are Very Practical And The Roll Down Cover Keeps The Dust Out",

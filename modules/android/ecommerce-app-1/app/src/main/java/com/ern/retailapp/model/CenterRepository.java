@@ -8,7 +8,7 @@
 
 package com.ern.retailapp.model;
 
-import com.ern.retailapp.model.entities.Product;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.model.entities.ProductCategoryModel;
 
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ public class CenterRepository {
     private static CenterRepository centerRepository;
 
     private ArrayList<ProductCategoryModel> listOfCategory = new ArrayList<ProductCategoryModel>();
-    private ConcurrentHashMap<String, ArrayList<Product>> mapOfProductsInCategory = new ConcurrentHashMap<String, ArrayList<Product>>();
-    private List<Product> listOfProductsInShoppingList = Collections.synchronizedList(new ArrayList<Product>());
+    private ConcurrentHashMap<String, ArrayList<ProductUI>> mapOfProductsInCategory = new ConcurrentHashMap<String, ArrayList<ProductUI>>();
+    private List<ProductUI> listOfProductsInShoppingList = Collections.synchronizedList(new ArrayList<ProductUI>());
     private List<Set<String>> listOfItemSetsForDataMining = new ArrayList<>();
 
     public static CenterRepository getCenterRepository() {
@@ -37,20 +37,20 @@ public class CenterRepository {
     }
 
 
-    public List<Product> getListOfProductsInShoppingList() {
+    public List<ProductUI> getListOfProductsInShoppingList() {
         return listOfProductsInShoppingList;
     }
 
-    public void setListOfProductsInShoppingList(ArrayList<Product> getShoppingList) {
+    public void setListOfProductsInShoppingList(ArrayList<ProductUI> getShoppingList) {
         this.listOfProductsInShoppingList = getShoppingList;
     }
 
-    public Map<String, ArrayList<Product>> getMapOfProductsInCategory() {
+    public Map<String, ArrayList<ProductUI>> getMapOfProductsInCategory() {
 
         return mapOfProductsInCategory;
     }
 
-    public void setMapOfProductsInCategory(ConcurrentHashMap<String, ArrayList<Product>> mapOfProductsInCategory) {
+    public void setMapOfProductsInCategory(ConcurrentHashMap<String, ArrayList<ProductUI>> mapOfProductsInCategory) {
         this.mapOfProductsInCategory = mapOfProductsInCategory;
     }
 

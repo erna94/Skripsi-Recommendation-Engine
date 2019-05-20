@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.ern.retailapp.model.CenterRepository;
 import com.ern.retailapp.model.entities.ProductCategoryModel;
+import com.ern.retailapp.model.entities.ProductUI;
 import com.ernchatbot.service.response.Product;
 import com.ernchatbot.service.ECommerceService;
 import com.ern.retailapp.R;
@@ -31,11 +32,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The Class ImageLoaderTask.
  */
-public class ProductCategoryLoaderTask extends AsyncTask<String, Void, Void> {
+public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Product>> {
 
     private static final int NUMBER_OF_COLUMNS = 2;
     private Context context;
@@ -59,8 +61,11 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void, Void> {
     }
 
     @Override
-    protected void onPostExecute(Void result) {
+    protected void onPostExecute( List<Product> result) {
         super.onPostExecute(result);
+
+        // menaruh hasil product di dalam repository
+        putProductsInRepository(result);
 
         if (null != ((ECartHomeActivity) context).getProgressBar())
             ((ECartHomeActivity) context).getProgressBar().setVisibility(
@@ -89,17 +94,44 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void, Void> {
                         }
                     });
         }
+    }
 
+    public void putProductsInRepository(List<Product> products) {
+        ConcurrentHashMap<String, ArrayList<ProductUI>> productMap = new ConcurrentHashMap<String, ArrayList<ProductUI>>();
+        ArrayList<ProductUI> productlist = new ArrayList<ProductUI>();
+        CenterRepository repository = CenterRepository.getCenterRepository();
+        ArrayList<ProductCategoryModel> categories = repository.getListOfCategory();
+
+        if (categories.size() > 0) {
+            // Panggil Web Service dengan list of product untuk category pertama
+            String categoryName = categories.get(0).getProductCategoryName();
+
+            Log.println(Log.VERBOSE, "android-app", "Menemukan produk dengan jumlah " + products.size());
+            // membuat definisi untuk product dan menaruh di dalam central repository
+            for (int i = 0; i < products.size(); i++) {
+                Product current = products.get(i);
+                String description = current.getDeskripsiProduct();
+                String productName = current.getNamaProduct();
+                String longDescription = current.getDeskripsiProduct();
+                String salePrice = current.getHargaProduct() + "";
+                String imgUrl = current.getImageLink();
+                String productId = current.getIdProduct() + "";
+                Log.println(Log.VERBOSE, "android-app", "Title " + productName + " dengan harga " + salePrice);
+
+                ProductUI productUI = new ProductUI(productName, description, description, salePrice, "",
+                        salePrice, 1 +"", imgUrl, productId);
+
+                productlist.add(productUI);
+            }
+
+            productMap.put(categoryName, productlist);
+            repository.setMapOfProductsInCategory(productMap);
+        }
     }
 
     @Override
-    protected Void doInBackground(String... params) {
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    protected  List<Product> doInBackground(String... params) {
+        List<Product> products = new ArrayList<Product>();
 
         // ERNA: DIGANTI DENGAN memanggil ECommerce Service
         ECommerceService service = new ECommerceService();
@@ -119,10 +151,10 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void, Void> {
                 String response = service.getProductByCategory(categoryId);
                 ObjectMapper objectMapper = new ObjectMapper();
 
-                    // membuat mapping dari JSON Product list untuk mapping
-                    // JSON String ke dalam object
-                    List<Product> products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
-                    });
+                // membuat mapping dari JSON ProductUI list untuk mapping
+                // JSON String ke dalam object
+                products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
+                });
 
             }
         } catch (Exception e) {
@@ -132,7 +164,7 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void, Void> {
             // yang kita akan deteksi nanti
         }
 
-        return null;
+        return products;
     }
 
 }
