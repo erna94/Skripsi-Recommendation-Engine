@@ -229,7 +229,7 @@ public class ProductDetailsFragment extends Fragment {
                                         .getListOfProductsInShoppingList().add(tempObj);
 
                                 ((ECartHomeActivity) getContext()).updateCheckOutAmount(
-                                        BigDecimal.valueOf(Long
+                                        BigDecimal.valueOf(Double
                                                 .valueOf(CenterRepository
                                                         .getCentralRepository()
                                                         .getMapOfProductsInCategory()
@@ -251,11 +251,7 @@ public class ProductDetailsFragment extends Fragment {
 
                     @Override
                     public void onClick(View v) {
-
-                        if (isFromCart)
-
-                        {
-
+                        if (isFromCart) {
                             if (Integer.valueOf(CenterRepository
                                     .getCentralRepository().getListOfProductsInShoppingList()
                                     .get(productListNumber).getQuantity()) > 2) {
@@ -375,12 +371,8 @@ public class ProductDetailsFragment extends Fragment {
 
                                 }
 
-                            } else {
-
                             }
-
                         }
-
                     }
 
                 });

@@ -129,8 +129,6 @@ public class ProductListAdapter extends
 
                     @Override
                     public void onClick(View v) {
-
-
                         //current object
                         ProductUI tempObj = productList.get(position);
 
@@ -206,7 +204,6 @@ public class ProductListAdapter extends
 
             @Override
             public void onClick(View v) {
-
                 ProductUI tempObj = (productList).get(position);
 
                 if (CenterRepository.getCentralRepository().getListOfProductsInShoppingList()
@@ -253,11 +250,7 @@ public class ProductListAdapter extends
                         }
 
                     }
-
-                } else {
-
                 }
-
             }
 
         });
