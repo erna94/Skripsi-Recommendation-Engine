@@ -1,5 +1,7 @@
 package com.ernchatbot.service;
 
+import android.util.Log;
+
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

@@ -32,6 +32,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
     protected List<Product> doInBackground(WitAIResponse... witAIResponses) {
         String response = null;
         List<Product> products = new ArrayList<Product>();
+        Log.println(Log.VERBOSE, "android-app", "Mendapatkan response dengan size "+ witAIResponses.length);
 
         // mengevaluasi apakah keinginan user dan apa category yang di cari berdasarkan
         // mapping yang ada di wit.ai
@@ -41,7 +42,6 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
             WitEntity[] intents = entities.getIntent();
             WitEntity[] categories = entities.getCategoryProduct();
             WitEntity[] subcategories = entities.getSubCategoryProduct();
-
 
             if(intents != null && intents.length > 0) {
                 WitEntity intent = intents[0];
@@ -53,6 +53,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
                     // confidence di kategory > 80%
                     // confidence di sub-category > 80%
                     double confidenceIntent = intent.getConfidence();
+                    Log.println(Log.VERBOSE, "android-app", "Mendapatkan intent dengan confidence "+ confidenceIntent);
 
                     if(confidenceIntent > .85) {
                         // kalau benar, kita harus mengecheck apa category dan sub-category nya
@@ -103,23 +104,8 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
 
     @Override
     protected void onPostExecute(List<Product> products) {
-      
-       if(products != null && products.size() > 0) {
-           String buatReply = "Ini adalah 20 besar pencarian anda:";
-
-           int productSize = products.size();
-
-           if(productSize > 20) {
-               productSize = 20;
-           }
-
-           for(int i=0;i<productSize;i++) {
-               buatReply += "\n" + (i+1) + ": " + products.get(i).getNamaProduct();
-           }
-
-        }
-
-        searchView.setSelection(searchView.getCount() - 1);
+        Log.println(Log.VERBOSE, "android-app", "Mendapatkan product sejumlah "+ products.size());
+        searchAdapter.setProducts(products);
     }
 
     @Override

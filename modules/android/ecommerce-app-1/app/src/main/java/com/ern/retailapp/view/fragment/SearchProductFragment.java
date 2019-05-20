@@ -37,6 +37,7 @@ import com.ern.retailapp.view.activities.ECartHomeActivity;
 import com.ern.retailapp.view.adapter.ProductListAdapter;
 import com.ern.retailapp.view.adapter.ProductsInCategoryPagerAdapter;
 import com.ern.retailapp.view.adapter.SearchListAdapter;
+import com.ernchatbot.ui.WitAITask;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -75,16 +76,12 @@ public class SearchProductFragment extends Fragment {
         btnSpeak = (ImageButton) rootView.findViewById(R.id.btnSpeak);
 
         heading = (TextView) rootView.findViewById(R.id.txtSpeech_heading);
-
         searchInput = (EditText) rootView.findViewById(R.id.edt_search_input);
-
         searchInput.setSelected(true);
-
-        searchListView = (ListView) rootView
-                .findViewById(R.id.search_list_view);
+        searchListView = (ListView) rootView.findViewById(R.id.search_list_view);
 
 
-        SearchListAdapter searchAdapter = new SearchListAdapter(container, getContext());
+        final SearchListAdapter searchAdapter = new SearchListAdapter(container, getContext());
         searchListView.setAdapter(searchAdapter);
 
         searchListView.setOnItemClickListener(new OnItemClickListener() {
@@ -109,6 +106,8 @@ public class SearchProductFragment extends Fragment {
                             Log.println(Log.VERBOSE, "android-app", "Enter is pressed");
 
                             // memanggil Wit AsyncTask
+                            WitAITask witAITask = new WitAITask(searchAdapter, searchListView);
+                            witAITask.execute(searchInput.getText().toString());
                         }
 
                         return true;
@@ -229,9 +228,7 @@ public class SearchProductFragment extends Fragment {
                     break;
 
             }
-
         }
-
     }
 
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 
 import com.ern.retailapp.R;
@@ -25,19 +26,46 @@ import java.util.List;
  * ERNA: Class baru untuk menghandle hasil dari search result berdasarkan
  * percapakapan chatbot
  */
-public class SearchListAdapter implements ListAdapter {
+public class SearchListAdapter extends BaseAdapter {
     CenterRepository repository;
     ViewGroup viewGroup;
-    List<Product> products;
     Context context;
     ProductViewHolderMapper productViewHolderMapper;
+    // ERNA: Perlu membuat program ini menjadi lebih rapi dengan menggabungkan konsep dalam ProductCategoryLoaderTask
+    List<ProductUI> products;
 
     public SearchListAdapter(ViewGroup viewGroup, Context context) {
         repository =  CenterRepository.getCentralRepository();
         this.viewGroup = viewGroup;
-        products = new ArrayList<Product>();
         this.context = context;
+        products = new ArrayList<ProductUI>();
         this.productViewHolderMapper = new ProductViewHolderMapper(context);
+    }
+
+    public void setProducts(List<Product> microServiceResult) {
+        ProductViewHolder.OnItemClickListener onClickListener = new ProductViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+            }
+        };
+
+        for(int i=0;i<microServiceResult.size();i++) {
+            Product current = microServiceResult.get(i);
+            String description = current.getDeskripsiProduct();
+            String productName = current.getNamaProduct();
+            String longDescription = current.getDeskripsiProduct();
+            String salePrice = current.getHargaProduct() + "";
+            String imgUrl = current.getImageLink();
+            String productId = current.getIdProduct() + "";
+            Log.println(Log.VERBOSE, "android-app", "Title " + productName + " dengan harga " + salePrice);
+
+            ProductUI productUI = new ProductUI(productName, description, description, salePrice, "",
+                    salePrice, 1 + "", imgUrl, productId);
+
+            products.add(productUI);
+        }
+
+        notifyDataSetChanged();
     }
 
     @Override
@@ -72,7 +100,7 @@ public class SearchListAdapter implements ListAdapter {
 
     @Override
     public long getItemId(int position) {
-        return products.get(position).getIdProduct();
+        return position;
     }
 
     @Override
@@ -82,40 +110,17 @@ public class SearchListAdapter implements ListAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ProductUI productUI = products.get(position);
+
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.item_product_list, viewGroup, false);
 
-        ProductViewHolder.OnItemClickListener onClickListener = new ProductViewHolder.OnItemClickListener() {
-            @Override
+        ProductViewHolder holder = new ProductViewHolder(view, new ProductViewHolder.OnItemClickListener() {
             public void onItemClick(View view, int position) {
             }
-        };
+        });
 
-        // ERNA: Perlu membuat program ini menjadi lebih rapi dengan menggabungkan konsep dalam ProductCategoryLoaderTask
-        List<ProductUI> productlist = new ArrayList<ProductUI>();
-
-        for(int i=0;i<products.size();i++) {
-            Product current = products.get(i);
-            String description = current.getDeskripsiProduct();
-            String productName = current.getNamaProduct();
-            String longDescription = current.getDeskripsiProduct();
-            String salePrice = current.getHargaProduct() + "";
-            String imgUrl = current.getImageLink();
-            String productId = current.getIdProduct() + "";
-            Log.println(Log.VERBOSE, "android-app", "Title " + productName + " dengan harga " + salePrice);
-
-            ProductUI productUI = new ProductUI(productName, description, description, salePrice, "",
-                    salePrice, 1 + "", imgUrl, productId);
-
-            productlist.add(productUI);
-
-            ProductViewHolder holder = new ProductViewHolder(view, new ProductViewHolder.OnItemClickListener() {
-                public void onItemClick(View view, int position) {
-                }
-            });
-
-            productViewHolderMapper.mapProductViewHolder(holder, productUI);
-        }
+        productViewHolderMapper.mapProductViewHolder(holder, productUI);
 
         return view;
     }
