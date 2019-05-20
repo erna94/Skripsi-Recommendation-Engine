@@ -20,12 +20,9 @@ import com.ern.retailapp.model.entities.ProductUI;
 import com.ernchatbot.service.response.Product;
 import com.ernchatbot.service.ECommerceService;
 import com.ern.retailapp.R;
-import com.ern.retailapp.util.AppConstants;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.util.Utils.AnimationType;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
-import com.ern.retailapp.view.adapter.CategoryListAdapter;
-import com.ern.retailapp.view.adapter.CategoryListAdapter.OnItemClickListener;
 import com.ern.retailapp.view.fragment.ProductOverviewFragment;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,7 +85,7 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
     public void putProductsInRepository(List<Product> products) {
         ConcurrentHashMap<String, ArrayList<ProductUI>> productMap = new ConcurrentHashMap<String, ArrayList<ProductUI>>();
         ArrayList<ProductUI> productlist = new ArrayList<ProductUI>();
-        CenterRepository repository = CenterRepository.getCenterRepository();
+        CenterRepository repository = CenterRepository.getCentralRepository();
         ArrayList<ProductCategoryModel> categories = repository.getListOfCategory();
         Log.println(Log.VERBOSE, "android-app", "Category size " + categories.size() + " position " + position);
 
@@ -126,7 +123,7 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
         // ERNA: DIGANTI DENGAN memanggil ECommerce Service
         ECommerceService service = new ECommerceService();
 
-        CenterRepository repository = CenterRepository.getCenterRepository();
+        CenterRepository repository = CenterRepository.getCentralRepository();
         Long categoryId = 0L;
 
         try {
@@ -155,5 +152,4 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
 
         return products;
     }
-
 }

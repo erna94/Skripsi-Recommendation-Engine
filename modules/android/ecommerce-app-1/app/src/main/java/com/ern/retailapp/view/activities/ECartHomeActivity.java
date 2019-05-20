@@ -68,11 +68,11 @@ public class ECartHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecart);
 
-        CenterRepository.getCenterRepository().setListOfProductsInShoppingList(
+        CenterRepository.getCentralRepository().setListOfProductsInShoppingList(
                 new TinyDB(getApplicationContext()).getListObject(
                         PreferenceHelper.MY_CART_LIST_LOCAL, ProductUI.class));
 
-        itemCount = CenterRepository.getCenterRepository().getListOfProductsInShoppingList()
+        itemCount = CenterRepository.getCentralRepository().getListOfProductsInShoppingList()
                 .size();
 
         //	makeFakeVolleyJsonArrayRequest();
@@ -109,7 +109,7 @@ public class ECartHomeActivity extends AppCompatActivity {
 
 
         if (itemCount != 0) {
-            for (ProductUI product : CenterRepository.getCenterRepository()
+            for (ProductUI product : CenterRepository.getCentralRepository()
                     .getListOfProductsInShoppingList()) {
 
                 updateCheckOutAmount(
@@ -267,7 +267,7 @@ public class ECartHomeActivity extends AppCompatActivity {
         // Store Shopping Cart in DB
         new TinyDB(getApplicationContext()).putListObject(
                 PreferenceHelper.MY_CART_LIST_LOCAL, CenterRepository
-                        .getCenterRepository().getListOfProductsInShoppingList());
+                        .getCentralRepository().getListOfProductsInShoppingList());
     }
 
     @Override
@@ -354,19 +354,19 @@ public class ECartHomeActivity extends AppCompatActivity {
 
                         ArrayList<String> productId = new ArrayList<String>();
 
-                        for (ProductUI productFromShoppingList : CenterRepository.getCenterRepository().getListOfProductsInShoppingList()) {
+                        for (ProductUI productFromShoppingList : CenterRepository.getCentralRepository().getListOfProductsInShoppingList()) {
 
                             //add product ids to array
                             productId.add(productFromShoppingList.getProductId());
                         }
 
                         //pass product id array to Apriori ALGO
-                        CenterRepository.getCenterRepository()
+                        CenterRepository.getCentralRepository()
                                 .addToItemSetList(new HashSet<>(productId));
 
                         //Do Minning
                         FrequentItemsetData<String> data = generator.generate(
-                                CenterRepository.getCenterRepository().getItemSetList()
+                                CenterRepository.getCentralRepository().getItemSetList()
                                 , MINIMUM_SUPPORT);
 
                         for (Set<String> itemset : data.getFrequentItemsetList()) {
@@ -376,7 +376,7 @@ public class ECartHomeActivity extends AppCompatActivity {
                         }
 
                         //clear all list item
-                        CenterRepository.getCenterRepository().getListOfProductsInShoppingList().clear();
+                        CenterRepository.getCentralRepository().getListOfProductsInShoppingList().clear();
 
                         toggleBannerVisibility();
 

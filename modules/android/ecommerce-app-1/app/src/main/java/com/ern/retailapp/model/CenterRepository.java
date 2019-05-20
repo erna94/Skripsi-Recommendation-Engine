@@ -21,19 +21,19 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class CenterRepository {
 
-    private static CenterRepository centerRepository;
+    private static CenterRepository centralRepository;
 
     private ArrayList<ProductCategoryModel> listOfCategory = new ArrayList<ProductCategoryModel>();
     private ConcurrentHashMap<String, ArrayList<ProductUI>> mapOfProductsInCategory = new ConcurrentHashMap<String, ArrayList<ProductUI>>();
     private List<ProductUI> listOfProductsInShoppingList = Collections.synchronizedList(new ArrayList<ProductUI>());
     private List<Set<String>> listOfItemSetsForDataMining = new ArrayList<>();
 
-    public static CenterRepository getCenterRepository() {
+    public static CenterRepository getCentralRepository() {
 
-        if (null == centerRepository) {
-            centerRepository = new CenterRepository();
+        if (null == centralRepository) {
+            centralRepository = new CenterRepository();
         }
-        return centerRepository;
+        return centralRepository;
     }
 
 

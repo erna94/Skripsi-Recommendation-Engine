@@ -139,14 +139,14 @@ public class ProductDetailsFragment extends Fragment {
 
                             //Update Quantity on shopping List
                             CenterRepository
-                                    .getCenterRepository()
+                                    .getCentralRepository()
                                     .getListOfProductsInShoppingList()
                                     .get(productListNumber)
                                     .setQuantity(
                                             String.valueOf(
 
                                                     Integer.valueOf(CenterRepository
-                                                            .getCenterRepository()
+                                                            .getCentralRepository()
                                                             .getListOfProductsInShoppingList()
                                                             .get(productListNumber)
                                                             .getQuantity()) + 1));
@@ -154,7 +154,7 @@ public class ProductDetailsFragment extends Fragment {
 
                             //Update Ui
                             quantity.setText(CenterRepository
-                                    .getCenterRepository().getListOfProductsInShoppingList()
+                                    .getCentralRepository().getListOfProductsInShoppingList()
                                     .get(productListNumber).getQuantity());
 
                             Utils.vibrate(getActivity());
@@ -163,7 +163,7 @@ public class ProductDetailsFragment extends Fragment {
                             ((ECartHomeActivity) getActivity()).updateCheckOutAmount(
                                     BigDecimal.valueOf(Long
                                             .valueOf(CenterRepository
-                                                    .getCenterRepository()
+                                                    .getCentralRepository()
                                                     .getListOfProductsInShoppingList()
                                                     .get(productListNumber)
                                                     .getSellMRP())), true);
@@ -172,16 +172,16 @@ public class ProductDetailsFragment extends Fragment {
 
                             // current object
                             ProductUI tempObj = CenterRepository
-                                    .getCenterRepository().getMapOfProductsInCategory()
+                                    .getCentralRepository().getMapOfProductsInCategory()
                                     .get(subcategoryKey).get(productListNumber);
 
                             // if current object is lready in shopping list
-                            if (CenterRepository.getCenterRepository()
+                            if (CenterRepository.getCentralRepository()
                                     .getListOfProductsInShoppingList().contains(tempObj)) {
 
                                 // get position of current item in shopping list
                                 int indexOfTempInShopingList = CenterRepository
-                                        .getCenterRepository().getListOfProductsInShoppingList()
+                                        .getCentralRepository().getListOfProductsInShoppingList()
                                         .indexOf(tempObj);
 
                                 // increase quantity of current item in shopping
@@ -195,7 +195,7 @@ public class ProductDetailsFragment extends Fragment {
 
                                 // update quanity in shopping list
                                 CenterRepository
-                                        .getCenterRepository()
+                                        .getCentralRepository()
                                         .getListOfProductsInShoppingList()
                                         .get(indexOfTempInShopingList)
                                         .setQuantity(
@@ -207,7 +207,7 @@ public class ProductDetailsFragment extends Fragment {
                                 ((ECartHomeActivity) getContext()).updateCheckOutAmount(
                                         BigDecimal.valueOf(Long
                                                 .valueOf(CenterRepository
-                                                        .getCenterRepository()
+                                                        .getCentralRepository()
                                                         .getMapOfProductsInCategory()
                                                         .get(subcategoryKey)
                                                         .get(productListNumber)
@@ -225,13 +225,13 @@ public class ProductDetailsFragment extends Fragment {
 
                                 quantity.setText(tempObj.getQuantity());
 
-                                CenterRepository.getCenterRepository()
+                                CenterRepository.getCentralRepository()
                                         .getListOfProductsInShoppingList().add(tempObj);
 
                                 ((ECartHomeActivity) getContext()).updateCheckOutAmount(
                                         BigDecimal.valueOf(Long
                                                 .valueOf(CenterRepository
-                                                        .getCenterRepository()
+                                                        .getCentralRepository()
                                                         .getMapOfProductsInCategory()
                                                         .get(subcategoryKey)
                                                         .get(productListNumber)
@@ -257,37 +257,37 @@ public class ProductDetailsFragment extends Fragment {
                         {
 
                             if (Integer.valueOf(CenterRepository
-                                    .getCenterRepository().getListOfProductsInShoppingList()
+                                    .getCentralRepository().getListOfProductsInShoppingList()
                                     .get(productListNumber).getQuantity()) > 2) {
 
                                 CenterRepository
-                                        .getCenterRepository()
+                                        .getCentralRepository()
                                         .getListOfProductsInShoppingList()
                                         .get(productListNumber)
                                         .setQuantity(
                                                 String.valueOf(
 
                                                         Integer.valueOf(CenterRepository
-                                                                .getCenterRepository()
+                                                                .getCentralRepository()
                                                                 .getListOfProductsInShoppingList()
                                                                 .get(productListNumber)
                                                                 .getQuantity()) - 1));
 
                                 quantity.setText(CenterRepository
-                                        .getCenterRepository().getListOfProductsInShoppingList()
+                                        .getCentralRepository().getListOfProductsInShoppingList()
                                         .get(productListNumber).getQuantity());
 
                                 ((ECartHomeActivity) getActivity()).updateCheckOutAmount(
                                         BigDecimal.valueOf(Long
                                                 .valueOf(CenterRepository
-                                                        .getCenterRepository()
+                                                        .getCentralRepository()
                                                         .getListOfProductsInShoppingList()
                                                         .get(productListNumber)
                                                         .getSellMRP())), false);
 
                                 Utils.vibrate(getActivity());
                             } else if (Integer.valueOf(CenterRepository
-                                    .getCenterRepository().getListOfProductsInShoppingList()
+                                    .getCentralRepository().getListOfProductsInShoppingList()
                                     .get(productListNumber).getQuantity()) == 1) {
                                 ((ECartHomeActivity) getActivity())
                                         .updateItemCount(false);
@@ -295,12 +295,12 @@ public class ProductDetailsFragment extends Fragment {
                                 ((ECartHomeActivity) getActivity()).updateCheckOutAmount(
                                         BigDecimal.valueOf(Long
                                                 .valueOf(CenterRepository
-                                                        .getCenterRepository()
+                                                        .getCentralRepository()
                                                         .getListOfProductsInShoppingList()
                                                         .get(productListNumber)
                                                         .getSellMRP())), false);
 
-                                CenterRepository.getCenterRepository()
+                                CenterRepository.getCentralRepository()
                                         .getListOfProductsInShoppingList()
                                         .remove(productListNumber);
 
@@ -319,20 +319,20 @@ public class ProductDetailsFragment extends Fragment {
                         } else {
 
                             ProductUI tempObj = CenterRepository
-                                    .getCenterRepository().getMapOfProductsInCategory()
+                                    .getCentralRepository().getMapOfProductsInCategory()
                                     .get(subcategoryKey).get(productListNumber);
 
-                            if (CenterRepository.getCenterRepository()
+                            if (CenterRepository.getCentralRepository()
                                     .getListOfProductsInShoppingList().contains(tempObj)) {
 
                                 int indexOfTempInShopingList = CenterRepository
-                                        .getCenterRepository().getListOfProductsInShoppingList()
+                                        .getCentralRepository().getListOfProductsInShoppingList()
                                         .indexOf(tempObj);
 
                                 if (Integer.valueOf(tempObj.getQuantity()) != 0) {
 
                                     CenterRepository
-                                            .getCenterRepository()
+                                            .getCentralRepository()
                                             .getListOfProductsInShoppingList()
                                             .get(indexOfTempInShopingList)
                                             .setQuantity(
@@ -342,7 +342,7 @@ public class ProductDetailsFragment extends Fragment {
                                     ((ECartHomeActivity) getContext()).updateCheckOutAmount(
                                             BigDecimal.valueOf(Long
                                                     .valueOf(CenterRepository
-                                                            .getCenterRepository()
+                                                            .getCentralRepository()
                                                             .getMapOfProductsInCategory()
                                                             .get(subcategoryKey)
                                                             .get(productListNumber)
@@ -350,7 +350,7 @@ public class ProductDetailsFragment extends Fragment {
                                             false);
 
                                     quantity.setText(CenterRepository
-                                            .getCenterRepository()
+                                            .getCentralRepository()
                                             .getListOfProductsInShoppingList()
                                             .get(indexOfTempInShopingList)
                                             .getQuantity());
@@ -358,13 +358,13 @@ public class ProductDetailsFragment extends Fragment {
                                     Utils.vibrate(getContext());
 
                                     if (Integer.valueOf(CenterRepository
-                                            .getCenterRepository()
+                                            .getCentralRepository()
                                             .getListOfProductsInShoppingList()
                                             .get(indexOfTempInShopingList)
                                             .getQuantity()) == 0) {
 
                                         CenterRepository
-                                                .getCenterRepository()
+                                                .getCentralRepository()
                                                 .getListOfProductsInShoppingList()
                                                 .remove(indexOfTempInShopingList);
 
@@ -472,28 +472,28 @@ public class ProductDetailsFragment extends Fragment {
 
             //Fetch and display item from Gloabl Data Model
 
-            itemName.setText(CenterRepository.getCenterRepository()
+            itemName.setText(CenterRepository.getCentralRepository()
                     .getMapOfProductsInCategory().get(subcategoryKey).get(productListNumber)
                     .getItemName());
 
-            quantity.setText(CenterRepository.getCenterRepository()
+            quantity.setText(CenterRepository.getCentralRepository()
                     .getMapOfProductsInCategory().get(subcategoryKey).get(productListNumber)
                     .getQuantity());
 
-            itemdescription.setText(CenterRepository.getCenterRepository()
+            itemdescription.setText(CenterRepository.getCentralRepository()
                     .getMapOfProductsInCategory().get(subcategoryKey).get(productListNumber)
                     .getItemDetail());
 
             String sellCostString = Money.asIDR(
                     BigDecimal.valueOf(Double.valueOf(CenterRepository
-                            .getCenterRepository().getMapOfProductsInCategory()
+                            .getCentralRepository().getMapOfProductsInCategory()
                             .get(subcategoryKey).get(productListNumber)
                             .getSellMRP()))).toString()
                     + "  ";
 
             String buyMRP = Money.asIDR(
                     BigDecimal.valueOf(Double.valueOf(CenterRepository
-                            .getCenterRepository().getMapOfProductsInCategory()
+                            .getCentralRepository().getMapOfProductsInCategory()
                             .get(subcategoryKey).get(productListNumber)
                             .getMRP()))).toString();
 
@@ -510,16 +510,16 @@ public class ProductDetailsFragment extends Fragment {
                     .withBorder(4).endConfig().roundRect(10);
 
             drawable = mDrawableBuilder.build(
-                    String.valueOf(CenterRepository.getCenterRepository()
+                    String.valueOf(CenterRepository.getCentralRepository()
                             .getMapOfProductsInCategory().get(subcategoryKey)
                             .get(productListNumber).getItemName().charAt(0)),
                     mColorGenerator.getColor(CenterRepository
-                            .getCenterRepository().getMapOfProductsInCategory()
+                            .getCentralRepository().getMapOfProductsInCategory()
                             .get(subcategoryKey).get(productListNumber)
                             .getItemName()));
 
             Picasso.with(getActivity())
-                    .load(CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+                    .load(CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                             .get(subcategoryKey).get(productListNumber)
                             .getImageURL()).placeholder(drawable)
                     .error(drawable).fit().centerCrop()
@@ -535,7 +535,7 @@ public class ProductDetailsFragment extends Fragment {
                             // Try again online if cache failed
 
                             Picasso.with(getActivity())
-                                    .load(CenterRepository.getCenterRepository()
+                                    .load(CenterRepository.getCentralRepository()
                                             .getMapOfProductsInCategory()
                                             .get(subcategoryKey)
                                             .get(productListNumber)
@@ -547,7 +547,7 @@ public class ProductDetailsFragment extends Fragment {
 
             LabelView label = new LabelView(getActivity());
 
-            label.setText(CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+            label.setText(CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                     .get(subcategoryKey).get(productListNumber).getDiscount());
             label.setBackgroundColor(0xffE91E63);
 
@@ -557,24 +557,24 @@ public class ProductDetailsFragment extends Fragment {
 
             //Fetch and display products from Shopping list
 
-            itemName.setText(CenterRepository.getCenterRepository()
+            itemName.setText(CenterRepository.getCentralRepository()
                     .getListOfProductsInShoppingList().get(productListNumber).getItemName());
 
-            quantity.setText(CenterRepository.getCenterRepository()
+            quantity.setText(CenterRepository.getCentralRepository()
                     .getListOfProductsInShoppingList().get(productListNumber).getQuantity());
 
-            itemdescription.setText(CenterRepository.getCenterRepository()
+            itemdescription.setText(CenterRepository.getCentralRepository()
                     .getListOfProductsInShoppingList().get(productListNumber).getItemDetail());
 
             String sellCostString = Money.asIDR(
                     BigDecimal.valueOf(Long.valueOf(CenterRepository
-                            .getCenterRepository().getListOfProductsInShoppingList()
+                            .getCentralRepository().getListOfProductsInShoppingList()
                             .get(productListNumber).getSellMRP()))).toString()
                     + "  ";
 
             String buyMRP = Money.asIDR(
                     BigDecimal.valueOf(Long.valueOf(CenterRepository
-                            .getCenterRepository().getListOfProductsInShoppingList()
+                            .getCentralRepository().getListOfProductsInShoppingList()
                             .get(productListNumber).getMRP()))).toString();
 
             String costString = sellCostString + buyMRP;
@@ -590,15 +590,15 @@ public class ProductDetailsFragment extends Fragment {
                     .withBorder(4).endConfig().roundRect(10);
 
             drawable = mDrawableBuilder.build(
-                    String.valueOf(CenterRepository.getCenterRepository()
+                    String.valueOf(CenterRepository.getCentralRepository()
                             .getListOfProductsInShoppingList().get(productListNumber)
                             .getItemName().charAt(0)),
                     mColorGenerator.getColor(CenterRepository
-                            .getCenterRepository().getListOfProductsInShoppingList()
+                            .getCentralRepository().getListOfProductsInShoppingList()
                             .get(productListNumber).getItemName()));
 
             Picasso.with(getActivity())
-                    .load(CenterRepository.getCenterRepository()
+                    .load(CenterRepository.getCentralRepository()
                             .getListOfProductsInShoppingList().get(productListNumber)
                             .getImageURL()).placeholder(drawable)
                     .error(drawable).fit().centerCrop()
@@ -614,7 +614,7 @@ public class ProductDetailsFragment extends Fragment {
                             // Try again online if cache failed
 
                             Picasso.with(getActivity())
-                                    .load(CenterRepository.getCenterRepository()
+                                    .load(CenterRepository.getCentralRepository()
                                             .getListOfProductsInShoppingList()
                                             .get(productListNumber)
                                             .getImageURL())
@@ -625,7 +625,7 @@ public class ProductDetailsFragment extends Fragment {
 
             LabelView label = new LabelView(getActivity());
 
-            label.setText(CenterRepository.getCenterRepository()
+            label.setText(CenterRepository.getCentralRepository()
                     .getListOfProductsInShoppingList().get(productListNumber).getDiscount());
             label.setBackgroundColor(0xffE91E63);
 

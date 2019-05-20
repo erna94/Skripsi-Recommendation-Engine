@@ -56,7 +56,7 @@ public class FakeWebServer {
                         "https://i1.adis.ws/i/brown_thomas/wk06-denim-destination-hero-4-new-1280x720",
                         12l));
 
-        CenterRepository.getCenterRepository().setListOfCategory(listOfCategory);
+        CenterRepository.getCentralRepository().setListOfCategory(listOfCategory);
     }
 
     public void getAllElectronics() {
@@ -260,7 +260,7 @@ public class FakeWebServer {
 
         productMap.put("Sub Cat 6", productlist);
 
-        CenterRepository.getCenterRepository().setMapOfProductsInCategory(productMap);
+        CenterRepository.getCentralRepository().setMapOfProductsInCategory(productMap);
 
     }
 
@@ -537,7 +537,7 @@ public class FakeWebServer {
 
         productMap.put("Almirah", productlist);
 
-        CenterRepository.getCenterRepository().setMapOfProductsInCategory(productMap);
+        CenterRepository.getCentralRepository().setMapOfProductsInCategory(productMap);
 
     }
 

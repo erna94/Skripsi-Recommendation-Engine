@@ -75,12 +75,12 @@ public class JSONParser {
 
                         JSONArray categoryArray = new JSONArray(jsonResponse);
 
-                        CenterRepository.getCenterRepository().getListOfCategory()
+                        CenterRepository.getCentralRepository().getListOfCategory()
                                 .clear();
 
                         for (int i = 0; i < categoryArray.length(); i++) {
                             CenterRepository
-                                    .getCenterRepository()
+                                    .getCentralRepository()
                                     .getListOfCategory()
                                     .add(new ProductCategoryModel(categoryArray
                                             .getJSONObject(i).getString(
@@ -104,29 +104,29 @@ public class JSONParser {
 
                         JSONObject productMapObject = new JSONObject(jsonResponse);
 
-                        CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+                        CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                                 .clear();
 
                         for (int categoryCount = 0; categoryCount < CenterRepository
-                                .getCenterRepository().getListOfCategory().size(); categoryCount++) {
+                                .getCentralRepository().getListOfCategory().size(); categoryCount++) {
 
                             ArrayList<ProductUI> tempProductList = new ArrayList<ProductUI>();
 
                             // get json array for stored category
 
                             if (productMapObject.optJSONArray(CenterRepository
-                                    .getCenterRepository().getListOfCategory()
+                                    .getCentralRepository().getListOfCategory()
                                     .get(categoryCount).getProductCategoryName()) != null) {
 
                                 JSONArray productListWithCategory = productMapObject
                                         .getJSONArray(CenterRepository
-                                                .getCenterRepository()
+                                                .getCentralRepository()
                                                 .getListOfCategory()
                                                 .get(categoryCount)
                                                 .getProductCategoryName());
 
                                 System.out.println(CenterRepository
-                                        .getCenterRepository().getListOfCategory()
+                                        .getCentralRepository().getListOfCategory()
                                         .get(categoryCount)
                                         .getProductCategoryName());
 
@@ -180,7 +180,7 @@ public class JSONParser {
                                 }
                             }
                             CenterRepository
-                                    .getCenterRepository()
+                                    .getCentralRepository()
                                     .getMapOfProductsInCategory()
                                     .put(String.valueOf(categoryCount),
                                             tempProductList);
@@ -199,7 +199,7 @@ public class JSONParser {
                         // JSONObject productMapObject = new
                         // JSONObject(jsonResponse);
 
-                        CenterRepository.getCenterRepository().getListOfProductsInShoppingList()
+                        CenterRepository.getCentralRepository().getListOfProductsInShoppingList()
                                 .clear();
 
                         JSONArray mycartArray = new JSONArray(jsonResponse);
@@ -207,7 +207,7 @@ public class JSONParser {
                         //
                         // for (int categoryCount = 0; categoryCount <
                         // CenterRepository
-                        // .getCenterRepository().getListOfCategory().size();
+                        // .getCentralRepository().getListOfCategory().size();
                         // categoryCount++) {
                         //
                         ArrayList<ProductUI> tempProductList = new ArrayList<ProductUI>();
@@ -215,19 +215,19 @@ public class JSONParser {
                         // get json array for stored category
 
                         // if (productMapObject.optJSONArray(CenterRepository
-                        // .getCenterRepository().getListOfCategory()
+                        // .getCentralRepository().getListOfCategory()
                         // .get(categoryCount).getProductCategoryName()) != null) {
                         //
 
                         // JSONArray productListWithCategory = productMapObject
                         // .getJSONArray(CenterRepository
-                        // .getCenterRepository()
+                        // .getCentralRepository()
                         // .getListOfCategory()
                         // .get(categoryCount)
                         // .getProductCategoryName());
                         //
                         // System.out.println(CenterRepository
-                        // .getCenterRepository().getListOfCategory()
+                        // .getCentralRepository().getListOfCategory()
                         // .get(categoryCount)
                         // .getProductCategoryName());
 
@@ -243,7 +243,7 @@ public class JSONParser {
                             if (productListObjecty.length() != 0) {
 
                                 CenterRepository
-                                        .getCenterRepository()
+                                        .getCentralRepository()
                                         .getListOfProductsInShoppingList().add(new ProductUI(productListObjecty
 
                                         .getString("productName"), productListObjecty
@@ -275,7 +275,7 @@ public class JSONParser {
                         }
                         // }
 //					CenterRepository
-//							.getCenterRepository()
+//							.getCentralRepository()
 //							.getShppingItemList()
 //							.put( tempProductList);
 

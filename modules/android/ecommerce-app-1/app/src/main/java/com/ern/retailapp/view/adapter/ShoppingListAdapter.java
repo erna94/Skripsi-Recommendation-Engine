@@ -70,7 +70,7 @@ public class ShoppingListAdapter extends
 
         this.context = context;
 
-        productList = CenterRepository.getCenterRepository().getListOfProductsInShoppingList();
+        productList = CenterRepository.getCentralRepository().getListOfProductsInShoppingList();
     }
 
     @Override
@@ -114,7 +114,7 @@ public class ShoppingListAdapter extends
 
         ImageUrl = productList.get(position).getImageURL();
 
-        holder.quanitity.setText(CenterRepository.getCenterRepository()
+        holder.quanitity.setText(CenterRepository.getCentralRepository()
                 .getListOfProductsInShoppingList().get(position).getQuantity());
 
         Glide.with(context).load(ImageUrl).placeholder(drawable)
@@ -138,24 +138,24 @@ public class ShoppingListAdapter extends
             public void onClick(View v) {
 
                 CenterRepository
-                        .getCenterRepository()
+                        .getCentralRepository()
                         .getListOfProductsInShoppingList()
                         .get(position)
                         .setQuantity(
                                 String.valueOf(
 
                                         Integer.valueOf(CenterRepository
-                                                .getCenterRepository().getListOfProductsInShoppingList()
+                                                .getCentralRepository().getListOfProductsInShoppingList()
                                                 .get(position).getQuantity()) + 1));
 
-                holder.quanitity.setText(CenterRepository.getCenterRepository()
+                holder.quanitity.setText(CenterRepository.getCentralRepository()
                         .getListOfProductsInShoppingList().get(position).getQuantity());
 
                 Utils.vibrate(context);
 
                 ((ECartHomeActivity) context).updateCheckOutAmount(
                         BigDecimal.valueOf(Double.valueOf(CenterRepository
-                                .getCenterRepository().getListOfProductsInShoppingList()
+                                .getCentralRepository().getListOfProductsInShoppingList()
                                 .get(position).getSellMRP())), true);
 
             }
@@ -166,41 +166,41 @@ public class ShoppingListAdapter extends
             @Override
             public void onClick(View v) {
 
-                if (Integer.valueOf(CenterRepository.getCenterRepository()
+                if (Integer.valueOf(CenterRepository.getCentralRepository()
                         .getListOfProductsInShoppingList().get(position).getQuantity()) > 2) {
 
                     CenterRepository
-                            .getCenterRepository()
+                            .getCentralRepository()
                             .getListOfProductsInShoppingList()
                             .get(position)
                             .setQuantity(
                                     String.valueOf(
 
                                             Integer.valueOf(CenterRepository
-                                                    .getCenterRepository()
+                                                    .getCentralRepository()
                                                     .getListOfProductsInShoppingList().get(position)
                                                     .getQuantity()) - 1));
 
                     holder.quanitity.setText(CenterRepository
-                            .getCenterRepository().getListOfProductsInShoppingList()
+                            .getCentralRepository().getListOfProductsInShoppingList()
                             .get(position).getQuantity());
 
                     ((ECartHomeActivity) context).updateCheckOutAmount(
                             BigDecimal.valueOf(Double.valueOf(CenterRepository
-                                    .getCenterRepository().getListOfProductsInShoppingList()
+                                    .getCentralRepository().getListOfProductsInShoppingList()
                                     .get(position).getSellMRP())), false);
 
                     Utils.vibrate(context);
-                } else if (Integer.valueOf(CenterRepository.getCenterRepository()
+                } else if (Integer.valueOf(CenterRepository.getCentralRepository()
                         .getListOfProductsInShoppingList().get(position).getQuantity()) == 1) {
                     ((ECartHomeActivity) context).updateItemCount(false);
 
                     ((ECartHomeActivity) context).updateCheckOutAmount(
                             BigDecimal.valueOf(Double.valueOf(CenterRepository
-                                    .getCenterRepository().getListOfProductsInShoppingList()
+                                    .getCentralRepository().getListOfProductsInShoppingList()
                                     .get(position).getSellMRP())), false);
 
-                    CenterRepository.getCenterRepository().getListOfProductsInShoppingList()
+                    CenterRepository.getCentralRepository().getListOfProductsInShoppingList()
                             .remove(position);
 
                     if (Integer.valueOf(((ECartHomeActivity) context)
@@ -225,10 +225,10 @@ public class ShoppingListAdapter extends
 
         ((ECartHomeActivity) context).updateCheckOutAmount(
                 BigDecimal.valueOf(Double.valueOf(CenterRepository
-                        .getCenterRepository().getListOfProductsInShoppingList().get(position)
+                        .getCentralRepository().getListOfProductsInShoppingList().get(position)
                         .getSellMRP())), false);
 
-        CenterRepository.getCenterRepository().getListOfProductsInShoppingList().remove(position);
+        CenterRepository.getCentralRepository().getListOfProductsInShoppingList().remove(position);
 
         if (Integer.valueOf(((ECartHomeActivity) context).getItemCount()) == 0) {
 

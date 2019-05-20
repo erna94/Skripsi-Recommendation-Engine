@@ -74,10 +74,10 @@ public class SimilarProductsPagerAdapter extends PagerAdapter {
     @Override
     public int getCount() {
 
-        if (null != CenterRepository.getCenterRepository().getMapOfProductsInCategory()
-                && null != CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+        if (null != CenterRepository.getCentralRepository().getMapOfProductsInCategory()
+                && null != CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                 .get(productCategory)) {
-            return CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+            return CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                     .get(productCategory).size();
         }
 
@@ -114,15 +114,15 @@ public class SimilarProductsPagerAdapter extends PagerAdapter {
                 .endConfig().roundRect(10);
 
         drawable = mDrawableBuilder.build(
-                String.valueOf(CenterRepository.getCenterRepository()
+                String.valueOf(CenterRepository.getCentralRepository()
                         .getMapOfProductsInCategory().get(productCategory).get(position)
                         .getItemName().charAt(0)),
 
-                mColorGenerator.getColor(CenterRepository.getCenterRepository()
+                mColorGenerator.getColor(CenterRepository.getCentralRepository()
                         .getMapOfProductsInCategory().get(productCategory).get(position)
                         .getItemName()));
 
-        final String ImageUrl = CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+        final String ImageUrl = CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                 .get(productCategory).get(position).getImageURL();
 
         Picasso.with(mContext).load(ImageUrl).placeholder(drawable)
@@ -145,22 +145,22 @@ public class SimilarProductsPagerAdapter extends PagerAdapter {
                 });
 
         ((TextView) itemView.findViewById(R.id.item_name))
-                .setText(CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+                .setText(CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                         .get(productCategory).get(position).getItemName());
 
         ((TextView) itemView.findViewById(R.id.item_short_desc))
-                .setText(CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+                .setText(CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                         .get(productCategory).get(position).getItemDetail());
 
         ((TextView) itemView.findViewById(R.id.category_discount))
                 .setText(Money.asIDR(
                         BigDecimal.valueOf(Double.valueOf(CenterRepository
-                                .getCenterRepository().getMapOfProductsInCategory()
+                                .getCentralRepository().getMapOfProductsInCategory()
                                 .get(productCategory).get(position)
                                 .getSellMRP()))).toString());
 
         LabelView label = new LabelView(mContext);
-        label.setText(CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+        label.setText(CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                 .get(productCategory).get(position).getDiscount());
         label.setBackgroundColor(0xffE91E63);
         label.setTargetView(itemView.findViewById(R.id.imageView), 10,

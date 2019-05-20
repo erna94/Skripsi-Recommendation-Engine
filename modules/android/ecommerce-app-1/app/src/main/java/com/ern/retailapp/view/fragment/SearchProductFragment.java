@@ -15,6 +15,7 @@ import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,13 +29,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ern.retailapp.R;
+import com.ern.retailapp.model.CenterRepository;
 import com.ern.retailapp.model.entities.ProductUI;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.util.Utils.AnimationType;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
+import com.ern.retailapp.view.adapter.ProductListAdapter;
+import com.ern.retailapp.view.adapter.ProductsInCategoryPagerAdapter;
+import com.ern.retailapp.view.adapter.SearchListAdapter;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Set;
 
 public class SearchProductFragment extends Fragment {
 
@@ -44,8 +50,8 @@ public class SearchProductFragment extends Fragment {
     boolean searchInProgress = false;
     private TextView heading;
     private ImageButton btnSpeak;
-    private EditText serchInput;
-    private ListView serachListView;
+    private EditText searchInput;
+    private ListView searchListView;
 
     /** The search adapter. */
     // private SearchListArrayAdapter searchAdapter;
@@ -70,26 +76,45 @@ public class SearchProductFragment extends Fragment {
 
         heading = (TextView) rootView.findViewById(R.id.txtSpeech_heading);
 
-        serchInput = (EditText) rootView.findViewById(R.id.edt_search_input);
+        searchInput = (EditText) rootView.findViewById(R.id.edt_search_input);
 
-        serchInput.setSelected(true);
+        searchInput.setSelected(true);
 
-        serachListView = (ListView) rootView
+        searchListView = (ListView) rootView
                 .findViewById(R.id.search_list_view);
 
-        serachListView.setOnItemClickListener(new OnItemClickListener() {
+
+        SearchListAdapter searchAdapter = new SearchListAdapter(container);
+        searchListView.setAdapter(searchAdapter);
+
+        searchListView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
                 Toast.makeText(getActivity(), "Selected" + position, 500)
                         .show();
-
             }
         });
 
-        serchInput.addTextChangedListener(new TextWatcher() {
+
+        searchInput.setOnKeyListener(
+                new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                        Log.println(Log.VERBOSE, "android-app", "User menekan tombol " + keyCode);
+                        if(keyCode == KeyEvent.KEYCODE_ENTER) {
+                            // user menekan Enter
+                            Log.println(Log.VERBOSE, "android-app", "Enter is pressed");
+                        }
+
+                        return true;
+                    }
+                });
+
+
+        searchInput.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence inputString, int arg1,
@@ -97,6 +122,8 @@ public class SearchProductFragment extends Fragment {
 
                 heading.setText("Showing results for "
                         + inputString.toString().toLowerCase());
+
+                Log.println(Log.VERBOSE, "android-app", "Searching for ... " +  inputString.toString().toLowerCase());
             }
 
             @Override
@@ -111,6 +138,7 @@ public class SearchProductFragment extends Fragment {
             public void afterTextChanged(Editable arg0) {
             }
         });
+
         btnSpeak.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -126,14 +154,16 @@ public class SearchProductFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-                if (event.getAction() == KeyEvent.ACTION_UP
-                        && keyCode == KeyEvent.KEYCODE_BACK) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    Log.println(Log.VERBOSE, "android-app", "User menekan tombol " + keyCode);
 
                     Utils.switchContent(R.id.frag_container,
                             Utils.HOME_FRAGMENT,
                             ((ECartHomeActivity) (getContext())),
                             AnimationType.SLIDE_DOWN);
+
                 }
+
                 return true;
             }
         });

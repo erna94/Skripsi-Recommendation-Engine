@@ -13,12 +13,11 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.style.StrikethroughSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.TextView.BufferType;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +31,9 @@ import com.ern.retailapp.view.activities.ECartHomeActivity;
 import com.ern.retailapp.view.customview.TextDrawable;
 import com.ern.retailapp.view.customview.TextDrawable.IBuilder;
 
+// ERNA: custom item handler
+import com.ern.retailapp.view.customview.ProductViewHolder;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,8 +43,8 @@ import java.util.List;
  * @author Hitesh Sahu (hiteshsahu.com)
  */
 public class ProductListAdapter extends
-        RecyclerView.Adapter<ProductListAdapter.VersionViewHolder> implements
-        ItemTouchHelperAdapter {
+        RecyclerView.Adapter<ProductViewHolder> implements
+        ItemTouchHelperAdapter  {
 
     private ColorGenerator mColorGenerator = ColorGenerator.MATERIAL;
 
@@ -50,10 +52,10 @@ public class ProductListAdapter extends
 
     private TextDrawable drawable;
 
-    private String ImageUrl;
+    private String imageUrl;
 
     private List<ProductUI> productList = new ArrayList<ProductUI>();
-    private OnItemClickListener clickListener;
+    private ProductViewHolder.OnItemClickListener clickListener;
 
     private Context context;
 
@@ -61,13 +63,10 @@ public class ProductListAdapter extends
                               boolean isCartlist) {
 
         if (isCartlist) {
-
-            productList = CenterRepository.getCenterRepository()
+            productList = CenterRepository.getCentralRepository()
                     .getListOfProductsInShoppingList();
-
         } else {
-
-            productList = CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+            productList = CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                     .get(subcategoryKey);
         }
 
@@ -75,15 +74,15 @@ public class ProductListAdapter extends
     }
 
     @Override
-    public VersionViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ProductViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.item_product_list, viewGroup, false);
-        VersionViewHolder viewHolder = new VersionViewHolder(view);
+        ProductViewHolder viewHolder = new ProductViewHolder(view, clickListener);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final VersionViewHolder holder,
+    public void onBindViewHolder(final ProductViewHolder holder,
                                  final int position) {
 
         holder.itemName.setText(productList.get(position)
@@ -118,12 +117,11 @@ public class ProductListAdapter extends
                 .get(position).getItemName().charAt(0)), mColorGenerator
                 .getColor(productList.get(position).getItemName()));
 
-        ImageUrl = productList.get(position).getImageURL();
+        imageUrl = productList.get(position).getImageURL();
 
-
-        Glide.with(context).load(ImageUrl).placeholder(drawable)
+        Glide.with(context).load(imageUrl).placeholder(drawable)
                 .error(drawable).animate(R.anim.base_slide_right_in)
-                .centerCrop().into(holder.imagView);
+                .centerCrop().into(holder.imageView);
 
 
         holder.addItem.findViewById(R.id.add_item).setOnClickListener(
@@ -138,13 +136,13 @@ public class ProductListAdapter extends
 
 
                         //if current object is lready in shopping list
-                        if (CenterRepository.getCenterRepository()
+                        if (CenterRepository.getCentralRepository()
                                 .getListOfProductsInShoppingList().contains(tempObj)) {
 
 
                             //get position of current item in shopping list
                             int indexOfTempInShopingList = CenterRepository
-                                    .getCenterRepository().getListOfProductsInShoppingList()
+                                    .getCentralRepository().getListOfProductsInShoppingList()
                                     .indexOf(tempObj);
 
                             // increase quantity of current item in shopping list
@@ -158,7 +156,7 @@ public class ProductListAdapter extends
 
                             // update quanity in shopping list
                             CenterRepository
-                                    .getCenterRepository()
+                                    .getCentralRepository()
                                     .getListOfProductsInShoppingList()
                                     .get(indexOfTempInShopingList)
                                     .setQuantity(
@@ -187,7 +185,7 @@ public class ProductListAdapter extends
 
                             holder.quanitity.setText(tempObj.getQuantity());
 
-                            CenterRepository.getCenterRepository()
+                            CenterRepository.getCentralRepository()
                                     .getListOfProductsInShoppingList().add(tempObj);
 
                             ((ECartHomeActivity) getContext()).updateCheckOutAmount(
@@ -211,17 +209,17 @@ public class ProductListAdapter extends
 
                 ProductUI tempObj = (productList).get(position);
 
-                if (CenterRepository.getCenterRepository().getListOfProductsInShoppingList()
+                if (CenterRepository.getCentralRepository().getListOfProductsInShoppingList()
                         .contains(tempObj)) {
 
                     int indexOfTempInShopingList = CenterRepository
-                            .getCenterRepository().getListOfProductsInShoppingList()
+                            .getCentralRepository().getListOfProductsInShoppingList()
                             .indexOf(tempObj);
 
                     if (Integer.valueOf(tempObj.getQuantity()) != 0) {
 
                         CenterRepository
-                                .getCenterRepository()
+                                .getCentralRepository()
                                 .getListOfProductsInShoppingList()
                                 .get(indexOfTempInShopingList)
                                 .setQuantity(
@@ -234,16 +232,16 @@ public class ProductListAdapter extends
                                 false);
 
                         holder.quanitity.setText(CenterRepository
-                                .getCenterRepository().getListOfProductsInShoppingList()
+                                .getCentralRepository().getListOfProductsInShoppingList()
                                 .get(indexOfTempInShopingList).getQuantity());
 
                         Utils.vibrate(getContext());
 
                         if (Integer.valueOf(CenterRepository
-                                .getCenterRepository().getListOfProductsInShoppingList()
+                                .getCentralRepository().getListOfProductsInShoppingList()
                                 .get(indexOfTempInShopingList).getQuantity()) == 0) {
 
-                            CenterRepository.getCenterRepository()
+                            CenterRepository.getCentralRepository()
                                     .getListOfProductsInShoppingList()
                                     .remove(indexOfTempInShopingList);
 
@@ -278,7 +276,7 @@ public class ProductListAdapter extends
     }
 
     public void SetOnItemClickListener(
-            final OnItemClickListener itemClickListener) {
+            final ProductViewHolder.OnItemClickListener itemClickListener) {
         this.clickListener = itemClickListener;
     }
 
@@ -300,49 +298,6 @@ public class ProductListAdapter extends
             }
         }
         notifyItemMoved(fromPosition, toPosition);
-    }
-
-    public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
-    }
-
-    class VersionViewHolder extends RecyclerView.ViewHolder implements
-            View.OnClickListener {
-        TextView itemName, itemDesc, itemCost, availability, quanitity,
-                addItem, removeItem;
-        ImageView imagView;
-
-        public VersionViewHolder(View itemView) {
-            super(itemView);
-
-            itemName = (TextView) itemView.findViewById(R.id.item_name);
-
-            itemDesc = (TextView) itemView.findViewById(R.id.item_short_desc);
-
-            itemCost = (TextView) itemView.findViewById(R.id.item_price);
-
-            availability = (TextView) itemView
-                    .findViewById(R.id.iteam_avilable);
-
-            quanitity = (TextView) itemView.findViewById(R.id.iteam_amount);
-
-            itemName.setSelected(true);
-
-            imagView = ((ImageView) itemView.findViewById(R.id.product_thumb));
-
-            addItem = ((TextView) itemView.findViewById(R.id.add_item));
-
-            removeItem = ((TextView) itemView.findViewById(R.id.remove_item));
-
-            itemView.setOnClickListener(this);
-
-
-        }
-
-        @Override
-        public void onClick(View v) {
-            clickListener.onItemClick(v, getPosition());
-        }
     }
 
 }

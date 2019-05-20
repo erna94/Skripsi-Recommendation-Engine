@@ -23,11 +23,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ernchatbot.service.ECommerceService;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.ern.retailapp.R;
 import com.ern.retailapp.model.CenterRepository;
-import com.ern.retailapp.util.AppConstants;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.util.Utils.AnimationType;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
@@ -52,15 +50,6 @@ public class ProductOverviewFragment extends Fragment {
                 container, false);
 
         getActivity().setTitle("Products");
-
-        // TODO We Can use Async task But pallete creation is problematic job
-        // will
-        // get back to it later
-
-        // new ProductLoaderTask(null, getActivity(), viewPager, tabLayout);
-
-        // Volley can be used here very efficiently but Fake JSON creation is
-        // time consuming Leain it now
 
         viewPager = (ViewPager) view.findViewById(R.id.htab_viewpager);
 
@@ -243,7 +232,7 @@ public class ProductOverviewFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         ProductsInCategoryPagerAdapter adapter = new ProductsInCategoryPagerAdapter(
                 getActivity().getSupportFragmentManager());
-        Set<String> keys = CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+        Set<String> keys = CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                 .keySet();
 
         for (String string : keys) {

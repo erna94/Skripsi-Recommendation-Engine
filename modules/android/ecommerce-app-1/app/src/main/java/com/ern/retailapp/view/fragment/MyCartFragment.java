@@ -91,7 +91,7 @@ public class MyCartFragment extends Fragment implements OnStartDragListener {
         recyclerView = (RecyclerView) view
                 .findViewById(R.id.product_list_recycler_view);
 
-        if (CenterRepository.getCenterRepository().getListOfProductsInShoppingList().size() != 0) {
+        if (CenterRepository.getCentralRepository().getListOfProductsInShoppingList().size() != 0) {
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                     getActivity().getBaseContext());

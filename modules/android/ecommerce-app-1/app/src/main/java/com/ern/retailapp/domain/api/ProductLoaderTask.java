@@ -90,7 +90,7 @@ public class ProductLoaderTask extends AsyncTask<String, Void, Void> {
         ProductsInCategoryPagerAdapter adapter = new ProductsInCategoryPagerAdapter(
                 ((ECartHomeActivity) context).getSupportFragmentManager());
 
-        Set<String> keys = CenterRepository.getCenterRepository().getMapOfProductsInCategory()
+        Set<String> keys = CenterRepository.getCentralRepository().getMapOfProductsInCategory()
                 .keySet();
 
         for (String string : keys) {

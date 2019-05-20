@@ -24,7 +24,7 @@ import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.util.Utils.AnimationType;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
 import com.ern.retailapp.view.adapter.ProductListAdapter;
-import com.ern.retailapp.view.adapter.ProductListAdapter.OnItemClickListener;
+import com.ern.retailapp.view.customview.ProductViewHolder;
 
 public class ProductListFragment extends Fragment {
     private String subcategoryKey;
@@ -81,7 +81,7 @@ public class ProductListFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-        adapter.SetOnItemClickListener(new OnItemClickListener() {
+        adapter.SetOnItemClickListener(new ProductViewHolder.OnItemClickListener() {
 
             @Override
             public void onItemClick(View view, int position) {

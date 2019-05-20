@@ -186,7 +186,7 @@ public class APrioriResultActivity extends AppCompatActivity implements OnChartV
 //        generateTestData();
 
         FrequentItemsetData<String> aprioriDataSet = generator.generate(CenterRepository
-                        .getCenterRepository().getItemSetList()
+                        .getCentralRepository().getItemSetList()
                 , 0.1);
 
         if (null == aprioriDataSet)

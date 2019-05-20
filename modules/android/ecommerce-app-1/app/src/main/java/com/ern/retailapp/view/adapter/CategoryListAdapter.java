@@ -44,7 +44,7 @@ public class CategoryListAdapter extends
 
     public CategoryListAdapter(Context context) {
 
-        categoryList = CenterRepository.getCenterRepository().getListOfCategory();
+        categoryList = CenterRepository.getCentralRepository().getListOfCategory();
 
         this.context = context;
     }

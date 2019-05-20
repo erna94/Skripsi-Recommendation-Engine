@@ -69,6 +69,6 @@ public class ECommerceService {
                         "file:///android_asset/images/banner_12.jpg",
                         12l));
 
-        CenterRepository.getCenterRepository().setListOfCategory(listOfCategory);
+        CenterRepository.getCentralRepository().setListOfCategory(listOfCategory);
     }
 }
