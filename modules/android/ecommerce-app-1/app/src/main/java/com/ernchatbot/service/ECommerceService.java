@@ -1,5 +1,6 @@
 package com.ernchatbot.service;
 
+import android.net.Uri;
 import android.util.Log;
 
 import com.ern.retailapp.model.CenterRepository;
@@ -46,12 +47,18 @@ public class ECommerceService {
         // ERNA: Perubahan dari fake category untuk menggunakan category asli dari micro service
         ArrayList<ProductCategoryModel> listOfCategory = new ArrayList<ProductCategoryModel>();
 
+
+        // gambar alternatif
+        // http://blog.seasonsway.com/wp-content/uploads/2016/10/mzndyi3pqc2.png
+
+        Log.println(Log.VERBOSE, "android-app", "banner URL " + Uri.parse("R.drawable.banner_11").toString());
+
         listOfCategory
                 .add(new ProductCategoryModel(
                         "Atasan Wanita",
                         "Kemeja, Kaos",
                         "0%",
-                        "http://blog.seasonsway.com/wp-content/uploads/2016/10/mzndyi3pqc2.png",
+                        "file:///android_asset/images/banner_11.jpg",
                         11l));
 
         listOfCategory
@@ -59,7 +66,7 @@ public class ECommerceService {
                         "Celana Wanita",
                         "Celana Panjang, Celana Pendek, Celana Jeans",
                         "0%",
-                        "https://i1.adis.ws/i/brown_thomas/wk06-denim-destination-hero-4-new-1280x720",
+                        "file:///android_asset/images/banner_12.jpg",
                         12l));
 
         CenterRepository.getCenterRepository().setListOfCategory(listOfCategory);
