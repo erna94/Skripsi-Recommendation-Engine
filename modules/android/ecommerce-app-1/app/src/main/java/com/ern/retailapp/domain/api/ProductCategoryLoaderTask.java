@@ -42,11 +42,15 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
     private static final int NUMBER_OF_COLUMNS = 2;
     private Context context;
     private RecyclerView recyclerView;
+    private int position;
 
-    public ProductCategoryLoaderTask(RecyclerView listView, Context context) {
+    public ProductCategoryLoaderTask(RecyclerView listView, Context context, int position) {
 
         this.recyclerView = listView;
         this.context = context;
+
+        // posisi category yang kita click
+        this.position = position;
     }
 
     @Override
@@ -72,27 +76,12 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
                     View.GONE);
 
         if (recyclerView != null) {
-            CategoryListAdapter simpleRecyclerAdapter = new CategoryListAdapter(
-                    context);
 
-            recyclerView.setAdapter(simpleRecyclerAdapter);
-
-            simpleRecyclerAdapter
-                    .SetOnItemClickListener(new OnItemClickListener() {
-
-                        @Override
-                        public void onItemClick(View view, int position) {
-
-                            AppConstants.CURRENT_CATEGORY = position;
-
-                            Utils.switchFragmentWithAnimation(
-                                    R.id.frag_container,
-                                    new ProductOverviewFragment(),
-                                    ((ECartHomeActivity) context), null,
-                                    AnimationType.SLIDE_LEFT);
-
-                        }
-                    });
+            Utils.switchFragmentWithAnimation(
+                    R.id.frag_container,
+                    new ProductOverviewFragment(),
+                    ((ECartHomeActivity) context), null,
+                    AnimationType.SLIDE_LEFT);
         }
     }
 
@@ -101,10 +90,11 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
         ArrayList<ProductUI> productlist = new ArrayList<ProductUI>();
         CenterRepository repository = CenterRepository.getCenterRepository();
         ArrayList<ProductCategoryModel> categories = repository.getListOfCategory();
+        Log.println(Log.VERBOSE, "android-app", "Category size " + categories.size() + " position " + position);
 
-        if (categories.size() > 0) {
+        if (categories.size() > position) {
             // Panggil Web Service dengan list of product untuk category pertama
-            String categoryName = categories.get(0).getProductCategoryName();
+            String categoryName = categories.get(position).getProductCategoryName();
 
             Log.println(Log.VERBOSE, "android-app", "Menemukan produk dengan jumlah " + products.size());
             // membuat definisi untuk product dan menaruh di dalam central repository
@@ -136,8 +126,6 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
         // ERNA: DIGANTI DENGAN memanggil ECommerce Service
         ECommerceService service = new ECommerceService();
 
-        // memberikan category awal
-        service.initCategory();
         CenterRepository repository = CenterRepository.getCenterRepository();
         Long categoryId = 0L;
 
@@ -146,7 +134,7 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
 
             if (categories.size() > 0) {
                 // Panggil Web Service dengan list of product untuk category pertama
-                categoryId = categories.get(0).getCategoryId();
+                categoryId = categories.get(position).getCategoryId();
 
                 String response = service.getProductByCategory(categoryId);
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -156,6 +144,7 @@ public class ProductCategoryLoaderTask extends AsyncTask<String, Void,  List<Pro
                 products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
                 });
 
+                Log.println(Log.VERBOSE, "android-app", "Menemukan hasil dengan jumlah " + products.size());
             }
         } catch (Exception e) {
             Log.println(Log.VERBOSE, "eCommerceTask", "Tidak menemukan kategory " + categoryId);

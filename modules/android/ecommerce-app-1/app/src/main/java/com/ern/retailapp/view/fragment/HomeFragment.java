@@ -8,6 +8,7 @@
 
 package com.ern.retailapp.view.fragment;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,9 +31,12 @@ import android.widget.Toast;
 
 import com.ern.retailapp.R;
 import com.ern.retailapp.domain.api.ProductCategoryLoaderTask;
+import com.ern.retailapp.util.AppConstants;
 import com.ern.retailapp.util.Utils;
 import com.ern.retailapp.util.Utils.AnimationType;
 import com.ern.retailapp.view.activities.ECartHomeActivity;
+import com.ern.retailapp.view.adapter.CategoryListAdapter;
+import com.ernchatbot.service.ECommerceService;
 
 public class HomeFragment extends Fragment {
     int mutedColor = R.attr.colorPrimary;
@@ -52,7 +57,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // ERNA: DIGANTI DENGAN memanggil ECommerce Service
+        ECommerceService service = new ECommerceService();
+        // memberikan category awal
+        service.initCategory();
+
         View view = inflater.inflate(R.layout.frag_product_category, container, false);
+
+        Context context = getActivity();
 
         view.findViewById(R.id.search_item).setOnClickListener(
                 new OnClickListener() {
@@ -67,6 +79,11 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
+
+        if (null != ((ECartHomeActivity) context).getProgressBar())
+            ((ECartHomeActivity) context).getProgressBar().setVisibility(
+                    View.GONE);
+
 
         final Toolbar toolbar = (Toolbar) view.findViewById(R.id.anim_toolbar);
         ((ECartHomeActivity) getActivity()).setSupportActionBar(toolbar);
@@ -110,7 +127,31 @@ public class HomeFragment extends Fragment {
                 getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        new ProductCategoryLoaderTask(recyclerView, getActivity()).execute();
+
+        // ERNA: Diganti dengan menghubungkan listener dulu yang akan mengexecute AsyncTask
+        CategoryListAdapter simpleRecyclerAdapter = new CategoryListAdapter(
+                getActivity());
+
+        recyclerView.setAdapter(simpleRecyclerAdapter);
+
+
+
+        simpleRecyclerAdapter.SetOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        // ketika category di click, kita akan melaksanakan pemanggilan async Task
+                        AppConstants.CURRENT_CATEGORY = position;
+
+                        Log.println(Log.VERBOSE, "android-app", "Click category nomor " + position);
+                        ProductCategoryLoaderTask asyncProductTask = new ProductCategoryLoaderTask(recyclerView,
+                                getActivity(), position);
+                        asyncProductTask.execute();
+
+                    }
+                });
+
+
 
         view.setFocusableInTouchMode(true);
         view.requestFocus();
