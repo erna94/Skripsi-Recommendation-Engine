@@ -43,6 +43,8 @@ public class SearchListAdapter extends BaseAdapter {
     }
 
     public void setProducts(List<Product> microServiceResult) {
+        products.clear();
+
         ProductViewHolder.OnItemClickListener onClickListener = new ProductViewHolder.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {

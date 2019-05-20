@@ -12,7 +12,7 @@ android {
     compileSdkVersion 23
 
     defaultConfig {
-        applicationId "com.hitesh_sahu.retailshop"
+        applicationId "com.ern.retailapp"
         minSdkVersion 14
         targetSdkVersion 23
     }
