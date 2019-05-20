@@ -8,7 +8,7 @@
 
 <resources>
 
-    <string name="app_name">Retail Shop</string>
+    <string name="app_name">Ern Retail Shop</string>
     <string name="action_settings">Settings</string>
     <string name="empty_text">Select song from below to play</string>
     <string name="standard">Standard</string>
@@ -19,11 +19,11 @@
     <string name="action_anchor_enable">Enable Anchor Point</string>
     <string name="action_anchor_disable">Disable Anchor Point</string>
     <string name="idle">Idle</string>
-    <string name="crash_toast_text">Oops Crashe Occurred</string>
+    <string name="crash_toast_text">Oops!</string>
     <string name="offer_banner">"Erna e-commerce menggunakan common micro-services"</string>
     <string name="checkout">CheckOut</string>
     <string name="similar_product">You may also like</string>
-    <string name="slogan">Assignment</string>
+    <string name="slogan">Project Skripsi</string>
     <string name="email_developer_">Email Developer:</string>
     <string name="personal_website_">Personal Website :</string>
     <string name="site_hitesh">www.hiteshsahu.com</string>
