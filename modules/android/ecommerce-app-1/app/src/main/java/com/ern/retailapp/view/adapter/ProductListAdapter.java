@@ -101,7 +101,8 @@ public class ProductListAdapter extends
                 BigDecimal.valueOf(Double.valueOf(productList.get(position)
                         .getMRP()))).toString();
 
-        String costString = sellCostString + buyMRP;
+        // ERNA: Check nanti2 kalau discount lebih dari 0% ditambah dengan MRP
+        String costString = sellCostString;
 
         holder.itemCost.setText(costString, BufferType.SPANNABLE);
 
