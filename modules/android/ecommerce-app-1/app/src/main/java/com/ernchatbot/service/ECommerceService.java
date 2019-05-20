@@ -2,8 +2,8 @@ package com.ernchatbot.service;
 
 import android.util.Log;
 
-import com.hitesh_sahu.retailapp.model.CenterRepository;
-import com.hitesh_sahu.retailapp.model.entities.ProductCategoryModel;
+import com.ern.retailapp.model.CenterRepository;
+import com.ern.retailapp.model.entities.ProductCategoryModel;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
