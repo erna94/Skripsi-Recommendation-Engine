@@ -485,14 +485,14 @@ public class ProductDetailsFragment extends Fragment {
                     .getItemDetail());
 
             String sellCostString = Money.asIDR(
-                    BigDecimal.valueOf(Long.valueOf(CenterRepository
+                    BigDecimal.valueOf(Double.valueOf(CenterRepository
                             .getCenterRepository().getMapOfProductsInCategory()
                             .get(subcategoryKey).get(productListNumber)
                             .getSellMRP()))).toString()
                     + "  ";
 
             String buyMRP = Money.asIDR(
-                    BigDecimal.valueOf(Long.valueOf(CenterRepository
+                    BigDecimal.valueOf(Double.valueOf(CenterRepository
                             .getCenterRepository().getMapOfProductsInCategory()
                             .get(subcategoryKey).get(productListNumber)
                             .getMRP()))).toString();

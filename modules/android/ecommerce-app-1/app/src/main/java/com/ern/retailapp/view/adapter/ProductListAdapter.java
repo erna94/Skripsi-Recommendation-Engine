@@ -169,7 +169,7 @@ public class ProductListAdapter extends
                             //update checkout amount
                             ((ECartHomeActivity) getContext()).updateCheckOutAmount(
                                     BigDecimal
-                                            .valueOf(Long
+                                            .valueOf(Double
                                                     .valueOf(productList
                                                             .get(position)
                                                             .getSellMRP())),
@@ -191,8 +191,7 @@ public class ProductListAdapter extends
 
                             ((ECartHomeActivity) getContext()).updateCheckOutAmount(
                                     BigDecimal
-                                            .valueOf(Long
-                                                    .valueOf(productList
+                                            .valueOf(Double.valueOf(productList
                                                             .get(position)
                                                             .getSellMRP())),
                                     true);
@@ -229,7 +228,7 @@ public class ProductListAdapter extends
                                                 .getQuantity()) - 1));
 
                         ((ECartHomeActivity) getContext()).updateCheckOutAmount(
-                                BigDecimal.valueOf(Long.valueOf(productList
+                                BigDecimal.valueOf(Double.valueOf(productList
                                         .get(position).getSellMRP())),
                                 false);
 

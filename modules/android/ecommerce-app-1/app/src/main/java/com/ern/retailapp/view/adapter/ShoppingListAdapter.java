@@ -88,12 +88,12 @@ public class ShoppingListAdapter extends
         holder.itemDesc.setText(productList.get(position).getItemShortDesc());
 
         String sellCostString = Money.asIDR(
-                BigDecimal.valueOf(Long.valueOf(productList.get(position)
+                BigDecimal.valueOf(Double.valueOf(productList.get(position)
                         .getSellMRP()))).toString()
                 + "  ";
 
         String buyMRP = Money.asIDR(
-                BigDecimal.valueOf(Long.valueOf(productList.get(position)
+                BigDecimal.valueOf(Double.valueOf(productList.get(position)
                         .getMRP()))).toString();
 
         String costString = sellCostString + buyMRP;
@@ -154,7 +154,7 @@ public class ShoppingListAdapter extends
                 Utils.vibrate(context);
 
                 ((ECartHomeActivity) context).updateCheckOutAmount(
-                        BigDecimal.valueOf(Long.valueOf(CenterRepository
+                        BigDecimal.valueOf(Double.valueOf(CenterRepository
                                 .getCenterRepository().getListOfProductsInShoppingList()
                                 .get(position).getSellMRP())), true);
 
@@ -186,7 +186,7 @@ public class ShoppingListAdapter extends
                             .get(position).getQuantity());
 
                     ((ECartHomeActivity) context).updateCheckOutAmount(
-                            BigDecimal.valueOf(Long.valueOf(CenterRepository
+                            BigDecimal.valueOf(Double.valueOf(CenterRepository
                                     .getCenterRepository().getListOfProductsInShoppingList()
                                     .get(position).getSellMRP())), false);
 
@@ -196,7 +196,7 @@ public class ShoppingListAdapter extends
                     ((ECartHomeActivity) context).updateItemCount(false);
 
                     ((ECartHomeActivity) context).updateCheckOutAmount(
-                            BigDecimal.valueOf(Long.valueOf(CenterRepository
+                            BigDecimal.valueOf(Double.valueOf(CenterRepository
                                     .getCenterRepository().getListOfProductsInShoppingList()
                                     .get(position).getSellMRP())), false);
 
@@ -224,7 +224,7 @@ public class ShoppingListAdapter extends
         ((ECartHomeActivity) context).updateItemCount(false);
 
         ((ECartHomeActivity) context).updateCheckOutAmount(
-                BigDecimal.valueOf(Long.valueOf(CenterRepository
+                BigDecimal.valueOf(Double.valueOf(CenterRepository
                         .getCenterRepository().getListOfProductsInShoppingList().get(position)
                         .getSellMRP())), false);
 
