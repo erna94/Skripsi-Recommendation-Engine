@@ -54,11 +54,6 @@ public class ProductListFragment extends Fragment {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
 
-//							Utils.switchContent(R.id.top_container,
-//									Utils.HOME_FRAGMENT,
-//									((ECartHomeActivity) (getContext())),
-//									AnimationType.SLIDE_DOWN);
-
                             Utils.switchFragmentWithAnimation(
                                     R.id.frag_container,
                                     new HomeFragment(),
@@ -109,11 +104,6 @@ public class ProductListFragment extends Fragment {
 
                 if (event.getAction() == KeyEvent.ACTION_UP
                         && keyCode == KeyEvent.KEYCODE_BACK) {
-
-//					Utils.switchContent(R.id.top_container,
-//							Utils.HOME_FRAGMENT,
-//							((ECartHomeActivity) (getContext())),
-//							AnimationType.SLIDE_UP);
 
                     Utils.switchFragmentWithAnimation(
                             R.id.frag_container,

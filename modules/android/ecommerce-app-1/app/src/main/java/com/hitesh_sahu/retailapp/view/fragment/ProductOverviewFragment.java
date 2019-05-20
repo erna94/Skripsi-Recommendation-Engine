@@ -54,6 +54,7 @@ public class ProductOverviewFragment extends Fragment {
         getActivity().setTitle("Products");
 
         // Simulate Web service calls
+        // ERNa: HARUS DIGANTI DENGAN PANGGILAN KE WEB SERVICE
         FakeWebServer.getFakeWebServer().getAllProducts(
                 AppConstants.CURRENT_CATEGORY);
 

@@ -124,7 +124,7 @@ public class FakeWebServer {
                         "http://img6a.flixcart.com/image/microwave-new/y/k/m/ifb-25sc4-400x400-imaef2pztynvqjaf.jpeg",
                         "oven_5"));
 
-        productMap.put("Microwave oven", productlist);
+        productMap.put("Sub-CAT 1", productlist);
 
         ArrayList<Product> tvList = new ArrayList<Product>();
 
@@ -184,7 +184,7 @@ public class FakeWebServer {
                 "http://img6a.flixcart.com/image/television/s/r/t/lg-32lf550a-400x400-imae8nyvxyjds3qu.jpeg",
                 "tv_5"));
 
-        productMap.put("Television", tvList);
+        productMap.put("Sub-Cat 2", tvList);
 
         productlist = new ArrayList<Product>();
 
@@ -249,8 +249,14 @@ public class FakeWebServer {
                         "http://img6a.flixcart.com/image/vacuum-cleaner/s/c/j/eureka-forbes-trendy-steel-trendy-steel-400x400-imae7vashkfj2hgk.jpeg",
                         "v_cleaner_5"));
 
-        productMap.put("Vaccum Cleaner", productlist);
+        productMap.put("Sub Cat 3", productlist);
 
+        productMap.put("Sub Cat 4", productlist);
+
+
+        productMap.put("Sub Cat 5", productlist);
+
+        productMap.put("Sub Cat 6", productlist);
 
         CenterRepository.getCenterRepository().setMapOfProductsInCategory(productMap);
 
