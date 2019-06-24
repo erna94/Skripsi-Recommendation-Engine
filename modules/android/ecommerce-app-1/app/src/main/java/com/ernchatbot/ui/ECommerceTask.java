@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.ListView;
 
 import com.ern.retailapp.view.adapter.SearchListAdapter;
+import com.ern.retailapp.view.fragment.SearchProductFragment;
 import com.ernchatbot.service.ECommerceService;
 import com.ernchatbot.service.response.Product;
 import com.ernchatbot.service.response.WitAIResponse;
@@ -106,6 +107,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
     protected void onPostExecute(List<Product> products) {
         Log.println(Log.VERBOSE, "android-app", "Mendapatkan product sejumlah "+ products.size());
         searchAdapter.setProducts(products);
+        SearchProductFragment.hideKeyboardFrom(searchView.getContext(), searchView);
     }
 
     @Override

@@ -9,6 +9,7 @@
 package com.ern.retailapp.view.fragment;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -20,6 +21,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
@@ -115,31 +117,6 @@ public class SearchProductFragment extends Fragment {
                 });
 
 
-        searchInput.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence inputString, int arg1,
-                                      int arg2, int arg3) {
-
-                heading.setText("Showing results for "
-                        + inputString.toString().toLowerCase());
-
-                Log.println(Log.VERBOSE, "android-app", "Searching for ... " +  inputString.toString().toLowerCase());
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence arg0, int arg1,
-                                          int arg2, int arg3) {
-
-                heading.setText("Search Products");
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable arg0) {
-            }
-        });
-
         btnSpeak.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -170,6 +147,11 @@ public class SearchProductFragment extends Fragment {
         });
         return rootView;
 
+    }
+
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(android.app.Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     /**

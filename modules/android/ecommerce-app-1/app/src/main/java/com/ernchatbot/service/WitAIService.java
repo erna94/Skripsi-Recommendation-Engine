@@ -32,6 +32,7 @@ public class WitAIService {
         // %20 melambangkan spasi di URL encoding
         String encodedString = URLEncoder.encode(message,  java.nio.charset.StandardCharsets.UTF_8.toString());
         HttpGet request = new HttpGet("https://api.wit.ai/message?v=20160526&q=" + encodedString);
+        Log.println(Log.VERBOSE, "android-app", "Memanggil wit.ai " + "http://api.wit.ai/message?v=20160526&q=" + encodedString);
 
         // untuk memanggil Wit Micro Service, kita membutuhkan authToken untuk mengindetifikasikan diri kita
         request.setHeader("Authorization", authToken);
