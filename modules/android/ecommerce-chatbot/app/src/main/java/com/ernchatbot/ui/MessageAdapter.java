@@ -179,6 +179,7 @@ public class MessageAdapter extends BaseAdapter {
 
                     if (currentItemAmount == 0) {
                         MainActivity.cart.remove(productInfo);
+                        notifyDataSetChanged();
                     }
                 }
             }

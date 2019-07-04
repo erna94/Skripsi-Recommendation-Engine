@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        this.ernaEditTex.setText("");
+
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_cart:
