@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    // fungsi buat menampilkan keranjang icon di menu
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar, menu);
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    // fungsi untuk menghandle sewaktu cart icon di click user
     public boolean onOptionsItemSelected(MenuItem item) {
         this.ernaEditTex.setText("");
         hideKeyboardFrom(this,  this.getCurrentFocus());
