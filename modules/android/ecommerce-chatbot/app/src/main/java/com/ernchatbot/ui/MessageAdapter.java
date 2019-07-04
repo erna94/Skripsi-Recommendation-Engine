@@ -12,10 +12,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.ernchatbot.service.response.Product;
 
 public class MessageAdapter extends BaseAdapter {
     Context context;
@@ -31,6 +33,36 @@ public class MessageAdapter extends BaseAdapter {
         this.messages.add(message);
 
         // ERN_STEP 4: Memberi tahu UI untuk merefresh screen
+        notifyDataSetChanged();
+    }
+
+    public void setProducts(List<Product> microServiceResult) {
+        for(int i=0;i<microServiceResult.size();i++) {
+            Product current = microServiceResult.get(i);
+            String description = current.getDeskripsiProduct();
+            String productName = current.getNamaProduct();
+            String longDescription = current.getDeskripsiProduct();
+            double salePrice = current.getHargaProduct();
+            String imgUrl = current.getImageLink();
+            String productId = current.getIdProduct() + "";
+            Log.println(Log.VERBOSE, "android-app", "Title " + productName + " dengan harga " + salePrice);
+
+
+            ProductInfo productInfo = new ProductInfo();
+            productInfo.setImageLink(imgUrl);
+            productInfo.setItemName(productName);
+            productInfo.setItemPrice(salePrice);
+            productInfo.setItemDescription(description);
+
+            Message balasanSiBot =
+                    new Message("Product List", false);
+
+            balasanSiBot.setReplyType(Message.PRODUCT_LIST);
+            balasanSiBot.setProductInfo(productInfo);
+
+            messages.add(balasanSiBot);
+        }
+
         notifyDataSetChanged();
     }
 
