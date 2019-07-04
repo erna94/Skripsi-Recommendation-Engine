@@ -148,13 +148,13 @@ public class MessageAdapter extends BaseAdapter {
                 }
             }
 
-            tambahListeners(productInfo, productHolder.addItem, productHolder.removeItem,  productHolder.itemAmount);
+            tambahListeners(i, productInfo, productHolder.addItem, productHolder.removeItem,  productHolder.itemAmount);
         }
 
         return view;
     }
 
-    public void tambahListeners(final ProductInfo productInfo, TextView addItem, TextView removeItem, final TextView itemAmount) {
+    public void tambahListeners(final int index, final ProductInfo productInfo, TextView addItem, TextView removeItem, final TextView itemAmount) {
 
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,11 +175,13 @@ public class MessageAdapter extends BaseAdapter {
                 if(currentItemAmount > 0) {
                     currentItemAmount = currentItemAmount - 1;
                     itemAmount.setText(currentItemAmount + "");
-                    MainActivity.cart.put(productInfo, currentItemAmount);
 
                     if (currentItemAmount == 0) {
                         MainActivity.cart.remove(productInfo);
+                        messages.remove(index);
                         notifyDataSetChanged();
+                    } else {
+                        MainActivity.cart.put(productInfo, currentItemAmount);
                     }
                 }
             }
