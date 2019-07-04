@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         this.ernaEditTex.setText("");
         hideKeyboardFrom(this,  this.getCurrentFocus());
 
@@ -72,16 +71,21 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_cart:
                 Log.println(Log.VERBOSE, "ernaBot", "Masuk ke cart....");
                 ernaAdapter.hapusMessage();
+                String defaultMessage = "Keranjang anda kosong, silakan berbelanja dulu";
+
+                if(!MainActivity.cart.isEmpty()) {
+                    defaultMessage = "Berikut ini adalah isi keranjang anda";
+                }
 
                 Message balasanSiBot =
-                        new Message("Berikut ini adalah isi keranjang anda", false);
+                        new Message(defaultMessage, false);
 
                 balasanSiBot.setReplyType(Message.NORMAL_REPLY);
                 ernaAdapter.tambahMessage(balasanSiBot);
 
                 Set<Map.Entry<ProductInfo, Integer>> isiCart = cart.entrySet();
 
-                for(Map.Entry<ProductInfo, Integer> isiProduct : isiCart) {
+                for (Map.Entry<ProductInfo, Integer> isiProduct : isiCart) {
                     Message messageIsiCart =
                             new Message("Product List", false);
 
@@ -89,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     messageIsiCart.setProductInfo(isiProduct.getKey());
                     ernaAdapter.tambahMessage(messageIsiCart);
                 }
+
             default:
                 return super.onOptionsItemSelected(item);
         }
