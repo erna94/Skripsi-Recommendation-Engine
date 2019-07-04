@@ -8,4 +8,7 @@ public class ProductHolder {
     public TextView itemName;
     public TextView itemPrice;
     public TextView itemDescription;
+    public TextView addItem;
+    public TextView removeItem;
+    public TextView itemAmount;
 }

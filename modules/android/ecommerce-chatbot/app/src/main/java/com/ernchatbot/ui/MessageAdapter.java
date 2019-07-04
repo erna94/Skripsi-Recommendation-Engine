@@ -126,6 +126,10 @@ public class MessageAdapter extends BaseAdapter {
             productHolder.itemName = (TextView) view.findViewById(R.id.item_name);
             productHolder.itemPrice = (TextView) view.findViewById(R.id.item_price);
             productHolder.itemDescription = (TextView) view.findViewById(R.id.item_short_desc);
+            productHolder.itemAmount = (TextView) view.findViewById(R.id.item_amount);
+            productHolder.addItem = (TextView) view.findViewById(R.id.add_item);
+            productHolder.removeItem = (TextView) view.findViewById(R.id.remove_item);
+
 
             ProductInfo productInfo = message.getProductInfo();
 
@@ -138,9 +142,36 @@ public class MessageAdapter extends BaseAdapter {
                 productHolder.itemPrice.setText("IDR " +  productInfo.getItemPrice());
                 productHolder.itemDescription.setText(productInfo.getItemDescription());
             }
+
+            tambahListeners(productHolder.addItem, productHolder.removeItem,  productHolder.itemAmount);
         }
 
         return view;
+    }
+
+    public void tambahListeners(TextView addItem, TextView removeItem, final TextView itemAmount) {
+
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemAmountAsString = itemAmount.getText().toString();
+                Integer currentItemAmount = Integer.parseInt(itemAmountAsString);
+                currentItemAmount = currentItemAmount + 1;
+                itemAmount.setText(currentItemAmount + "");
+            }
+        });
+
+        removeItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemAmountAsString = itemAmount.getText().toString();
+                Integer currentItemAmount = Integer.parseInt(itemAmountAsString);
+                if(currentItemAmount > 0) {
+                    currentItemAmount = currentItemAmount - 1;
+                    itemAmount.setText(currentItemAmount + "");
+                }
+            }
+        });
     }
 }
 

@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="15dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/add_item"
@@ -150,7 +150,7 @@
                 android:singleLine="true"
                 android:text="0"
                 android:textColor="@android:color/background_dark"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/add_item"
