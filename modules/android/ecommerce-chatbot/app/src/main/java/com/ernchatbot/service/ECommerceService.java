@@ -3,9 +3,6 @@ package com.ernchatbot.service;
 import android.net.Uri;
 import android.util.Log;
 
-import com.ern.retailapp.model.CenterRepository;
-import com.ern.retailapp.model.entities.ProductCategoryModel;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -40,35 +37,5 @@ public class ECommerceService {
         }
 
         return allResponse;
-    }
-
-    // Menggunakan daftar dari database dengan Category ID yang benar
-    public void initCategory() {
-        // ERNA: Perubahan dari fake category untuk menggunakan category asli dari micro service
-        ArrayList<ProductCategoryModel> listOfCategory = new ArrayList<ProductCategoryModel>();
-
-
-        // gambar alternatif
-        // http://blog.seasonsway.com/wp-content/uploads/2016/10/mzndyi3pqc2.png
-
-        Log.println(Log.VERBOSE, "android-app", "banner URL " + Uri.parse("R.drawable.banner_11").toString());
-
-        listOfCategory
-                .add(new ProductCategoryModel(
-                        "Atasan Wanita",
-                        "Kemeja, Kaos",
-                        "0%",
-                        "file:///android_asset/images/banner_11.jpg",
-                        11l));
-
-        listOfCategory
-                .add(new ProductCategoryModel(
-                        "Celana Wanita",
-                        "Celana Panjang, Celana Pendek, Celana Jeans",
-                        "0%",
-                        "file:///android_asset/images/banner_12.jpg",
-                        12l));
-
-        CenterRepository.getCentralRepository().setListOfCategory(listOfCategory);
     }
 }
