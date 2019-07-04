@@ -104,7 +104,15 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
     @Override
     protected void onPostExecute(List<Product> products) {
         Log.println(Log.VERBOSE, "android-app", "Mendapatkan product sejumlah "+ products.size());
-        messageAdapter.setProducts(products);
+        if(products.isEmpty()) {
+            Message balasanSiBot =
+                    new Message("Maaf :( Saya tidak bisa memenuhi keinginan anda", false);
+
+            balasanSiBot.setReplyType(Message.NORMAL_REPLY);
+            messageAdapter.tambahMessage(balasanSiBot);
+        } else {
+            messageAdapter.setProducts(products);
+        }
     }
 
     @Override

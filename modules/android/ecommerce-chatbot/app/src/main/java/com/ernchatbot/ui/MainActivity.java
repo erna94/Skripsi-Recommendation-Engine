@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     WitAITask witAITask = new WitAITask(ernaAdapter, ernaListView);
-                    witAITask.execute();
+                    witAITask.execute(message);
                 }
             });
         }
