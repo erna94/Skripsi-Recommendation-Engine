@@ -10,11 +10,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText ernaEditTex;
     ListView ernaListView;
     MessageAdapter ernaAdapter;
+
+    // memakai LinkedHashMap supaya cartnya berurutan
+    static Map<ProductInfo, Integer> cart = new LinkedHashMap<ProductInfo, Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +65,24 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_cart:
                 Log.println(Log.VERBOSE, "ernaBot", "Masuk ke cart....");
+                ernaAdapter.hapusMessage();
+
+                Message balasanSiBot =
+                        new Message("Berikut ini adalah isi keranjang anda", false);
+
+                balasanSiBot.setReplyType(Message.NORMAL_REPLY);
+                ernaAdapter.tambahMessage(balasanSiBot);
+
+                Set<Map.Entry<ProductInfo, Integer>> isiCart = cart.entrySet();
+
+                for(Map.Entry<ProductInfo, Integer> isiProduct : isiCart) {
+                    Message messageIsiCart =
+                            new Message("Product List", false);
+
+                    messageIsiCart.setReplyType(Message.PRODUCT_LIST);
+                    messageIsiCart.setProductInfo(isiProduct.getKey());
+                    ernaAdapter.tambahMessage(messageIsiCart);
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }

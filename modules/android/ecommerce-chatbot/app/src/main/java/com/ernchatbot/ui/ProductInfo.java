@@ -6,6 +6,7 @@ public class ProductInfo {
     String itemName;
     Double itemPrice;
     String itemDescription;
+    String itemId;
 
     public String getImageLink() {
         return imageLink;
@@ -37,5 +38,28 @@ public class ProductInfo {
 
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    @Override
+    public int hashCode() {
+        return itemId.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof ProductInfo) {
+            ProductInfo toCompare = (ProductInfo)obj;
+            return toCompare.itemId.equals(this.itemId);
+        } else {
+            return false;
+        }
     }
 }

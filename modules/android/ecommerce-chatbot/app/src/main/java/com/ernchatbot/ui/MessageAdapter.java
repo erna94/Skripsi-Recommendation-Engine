@@ -57,6 +57,7 @@ public class MessageAdapter extends BaseAdapter {
             productInfo.setItemName(productName);
             productInfo.setItemPrice(salePrice);
             productInfo.setItemDescription(description);
+            productInfo.setItemId(productId);
 
             Message balasanSiBot =
                     new Message("Product List", false);
@@ -129,8 +130,6 @@ public class MessageAdapter extends BaseAdapter {
             productHolder.itemAmount = (TextView) view.findViewById(R.id.item_amount);
             productHolder.addItem = (TextView) view.findViewById(R.id.add_item);
             productHolder.removeItem = (TextView) view.findViewById(R.id.remove_item);
-
-
             ProductInfo productInfo = message.getProductInfo();
 
             if(productInfo != null) {
@@ -141,15 +140,21 @@ public class MessageAdapter extends BaseAdapter {
                 productHolder.itemName.setText(productInfo.getItemName());
                 productHolder.itemPrice.setText("IDR " +  productInfo.getItemPrice());
                 productHolder.itemDescription.setText(productInfo.getItemDescription());
+
+                // cek kalo barang sudah ada di cart, tambahkan jumlahnya sesuai dengan cart
+                if(MainActivity.cart.containsKey(productInfo)) {
+                    Integer cartAmount = MainActivity.cart.get(productInfo);
+                    productHolder.itemAmount.setText(cartAmount + "");
+                }
             }
 
-            tambahListeners(productHolder.addItem, productHolder.removeItem,  productHolder.itemAmount);
+            tambahListeners(productInfo, productHolder.addItem, productHolder.removeItem,  productHolder.itemAmount);
         }
 
         return view;
     }
 
-    public void tambahListeners(TextView addItem, TextView removeItem, final TextView itemAmount) {
+    public void tambahListeners(final ProductInfo productInfo, TextView addItem, TextView removeItem, final TextView itemAmount) {
 
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +163,7 @@ public class MessageAdapter extends BaseAdapter {
                 Integer currentItemAmount = Integer.parseInt(itemAmountAsString);
                 currentItemAmount = currentItemAmount + 1;
                 itemAmount.setText(currentItemAmount + "");
+                MainActivity.cart.put(productInfo, currentItemAmount);
             }
         });
 
@@ -169,6 +175,11 @@ public class MessageAdapter extends BaseAdapter {
                 if(currentItemAmount > 0) {
                     currentItemAmount = currentItemAmount - 1;
                     itemAmount.setText(currentItemAmount + "");
+                    MainActivity.cart.put(productInfo, currentItemAmount);
+
+                    if (currentItemAmount == 0) {
+                        MainActivity.cart.remove(productInfo);
+                    }
                 }
             }
         });
