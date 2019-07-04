@@ -28,6 +28,10 @@ public class MessageAdapter extends BaseAdapter {
         this.messages = new ArrayList<Message>();
     }
 
+    public void hapusMessage() {
+        messages.clear();
+    }
+
     public void tambahMessage(Message message) {
         // ERN_STEP 3: menambah ke ArrayList
         this.messages.add(message);
@@ -37,8 +41,6 @@ public class MessageAdapter extends BaseAdapter {
     }
 
     public void setProducts(List<Product> microServiceResult) {
-        messages.clear();
-
         for(int i=0;i<microServiceResult.size();i++) {
             Product current = microServiceResult.get(i);
             String description = current.getDeskripsiProduct();

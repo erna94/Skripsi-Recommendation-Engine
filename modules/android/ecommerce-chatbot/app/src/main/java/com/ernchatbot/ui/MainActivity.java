@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    Message messageBaru = new Message(message,true);
+                    ernaAdapter.hapusMessage();
+                    ernaAdapter.tambahMessage(messageBaru);
                     WitAITask witAITask = new WitAITask(ernaAdapter, ernaListView);
                     witAITask.execute(message);
                 }

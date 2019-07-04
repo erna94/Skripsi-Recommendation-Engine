@@ -49,8 +49,8 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
                 if(intent.getValue() != null && intent.getValue().equals(CARI_PRODUCT)) {
                     // kondisi untuk menerima permintaan user
                     // confidence di intent > 85%
-                    // confidence di kategory > 80%
-                    // confidence di sub-category > 80%
+                    // confidence di kategory > 70%
+                    // confidence di sub-category > 70%
                     double confidenceIntent = intent.getConfidence();
                     Log.println(Log.VERBOSE, "android-app", "Mendapatkan intent dengan confidence "+ confidenceIntent);
 
@@ -58,8 +58,8 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
                         // kalau benar, kita harus mengecheck apa category dan sub-category nya
                         // ada
                         if (categories != null && subcategories != null && categories.length > 0 && subcategories.length > 0
-                            && categories[0].getConfidence() > .80
-                            && subcategories[0].getConfidence() > .80) {
+                            && categories[0].getConfidence() > .70
+                            && subcategories[0].getConfidence() > .70) {
                             // menggabungkan category dan sub-category untuk mendapatkan
                             // kategoryId untuk barang2 nya
                             // Contoh: Untuk celana wanita, kategory id nya adalah 12
