@@ -17,10 +17,7 @@ public class ECommerceService {
         HttpClient client = new DefaultHttpClient();
 
         // di Android Emulator di Android Studio, localhost di tulis sebagai 10.0.2.2
-        Log.println(Log.VERBOSE, "eCommerceTask", "Lokasi micro service " + "http://10.0.2.2:8080/api/produk/list/" + categoryId);
         HttpGet request = new HttpGet("http://10.0.2.2:8080/api/produk/list/" + categoryId);
-
-
         HttpResponse response = client.execute(request);
 
         // Get the response

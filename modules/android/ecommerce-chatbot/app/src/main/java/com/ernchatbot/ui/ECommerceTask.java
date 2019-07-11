@@ -52,12 +52,14 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
                     // confidence di kategory > 70%
                     // confidence di sub-category > 70%
                     double confidenceIntent = intent.getConfidence();
-                    Log.println(Log.VERBOSE, "android-app", "Mendapatkan intent dengan confidence "+ confidenceIntent);
+                    Log.println(Log.VERBOSE, "android-app", "Mendapatkan intent dengan " +
+                            "confidence "+ confidenceIntent);
 
                     if(confidenceIntent > .85) {
                         // kalau benar, kita harus mengecheck apa category dan sub-category nya
                         // ada
-                        if (categories != null && subcategories != null && categories.length > 0 && subcategories.length > 0
+                        if (categories != null && subcategories != null && categories.length > 0
+                                && subcategories.length > 0
                             && categories[0].getConfidence() > .70
                             && subcategories[0].getConfidence() > .70) {
                             // menggabungkan category dan sub-category untuk mendapatkan
@@ -72,7 +74,8 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
 
                             String categoryAsString = categories[0].getValue();
                             String subCategoryAsString = subcategories[0].getValue();
-                            Log.println(Log.VERBOSE, "eCommerceTask", "Mencari  " + categoryAsString + " " + subCategoryAsString);
+                            Log.println(Log.VERBOSE, "eCommerceTask",
+                                    "Mencari  " + categoryAsString + " " + subCategoryAsString);
                             Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
 
                             try {
@@ -85,7 +88,8 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
                                 products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
                                 });
                             } catch (Exception e) {
-                                Log.println(Log.VERBOSE, "eCommerceTask", "Tidak menemukan kategory " + categoryId);
+                                Log.println(Log.VERBOSE, "eCommerceTask",
+                                        "Tidak menemukan kategory " + categoryId);
                                 e.printStackTrace();
                                 // abaikan error dan response akan tetap menjadi null
                                 // yang kita akan deteksi nanti
@@ -106,7 +110,8 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
         Log.println(Log.VERBOSE, "android-app", "Mendapatkan product sejumlah "+ products.size());
         if(products.isEmpty()) {
             Message balasanSiBot =
-                    new Message("Maaf :( Saya tidak bisa memenuhi keinginan anda", false);
+                    new Message("Maaf :( Saya tidak bisa memenuhi " +
+                            "keinginan anda", false);
 
             balasanSiBot.setReplyType(Message.NORMAL_REPLY);
             messageAdapter.tambahMessage(balasanSiBot);

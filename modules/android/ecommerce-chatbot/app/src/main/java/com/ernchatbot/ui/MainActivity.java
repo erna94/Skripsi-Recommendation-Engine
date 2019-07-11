@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendMessage(View view) {
         final String message = ernaEditTex.getText().toString();
-        Log.println(Log.VERBOSE, "ernaBot", "Tertekan tombol... HAHA!" + message);
+        Log.println(Log.VERBOSE, "ernaBot", "Tertekan tombol... " + message);
 
         // kalo input yg dimasukkan di edit text lebih dari nol maka akan dijalankan
         if (message.length() > 0) {
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    // fungsi untuk menghandle sewaktu cart icon di click user
+    // fungsi untuk menghandle click sewaktu cart icon di click user
     public boolean onOptionsItemSelected(MenuItem item) {
         this.ernaEditTex.setText("");
         hideKeyboardFrom(this,  this.getCurrentFocus());
