@@ -3,6 +3,7 @@ package com.ernchatbot.ui;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -45,5 +46,10 @@ public class PembayaranActivity extends AppCompatActivity {
         }
 
         this.totalPembayaran.setText(totalHarga + " IDR");
+    }
+
+    public void bayar(View view) {
+        // kirim email
+
     }
 }
