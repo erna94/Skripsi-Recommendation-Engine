@@ -15,17 +15,10 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="175dp"
-            android:layout_height="176dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/icon_robot" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ErnBot"
-            android:textSize="30dp"
-            android:textColor="#4CAF50"
-            android:textStyle="bold"/>
 
     </LinearLayout>
 

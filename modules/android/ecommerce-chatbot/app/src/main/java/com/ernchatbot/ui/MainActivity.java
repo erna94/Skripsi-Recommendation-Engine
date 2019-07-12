@@ -1,6 +1,7 @@
 package com.ernchatbot.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -71,31 +72,8 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_cart:
-                Log.println(Log.VERBOSE, "ernaBot", "Masuk ke cart....");
-                ernaAdapter.hapusMessage();
-                String defaultMessage = "Keranjang anda kosong, silakan berbelanja dulu";
-
-                if(!MainActivity.cart.isEmpty()) {
-                    defaultMessage = "Berikut ini adalah isi keranjang anda";
-                }
-
-                Message balasanSiBot =
-                        new Message(defaultMessage, false);
-
-                balasanSiBot.setReplyType(Message.NORMAL_REPLY);
-                ernaAdapter.tambahMessage(balasanSiBot);
-
-                Set<Map.Entry<ProductInfo, Integer>> isiCart = cart.entrySet();
-
-                for (Map.Entry<ProductInfo, Integer> isiProduct : isiCart) {
-                    Message messageIsiCart =
-                            new Message("Product List", false);
-
-                    messageIsiCart.setReplyType(Message.PRODUCT_LIST);
-                    messageIsiCart.setProductInfo(isiProduct.getKey());
-                    ernaAdapter.tambahMessage(messageIsiCart);
-                }
-
+                Intent intent = new Intent(this, KeranjangActivity.class);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }
