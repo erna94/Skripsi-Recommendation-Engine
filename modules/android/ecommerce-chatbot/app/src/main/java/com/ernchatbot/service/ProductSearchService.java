@@ -12,12 +12,12 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class ECommerceService {
+public class ProductSearchService {
     public String getProductByCategory(Long categoryId) throws Exception {
         HttpClient client = new DefaultHttpClient();
 
         // di Android Emulator di Android Studio, localhost di tulis sebagai 10.0.2.2
-        HttpGet request = new HttpGet("http://10.0.2.2:8080/api/produk/list/" + categoryId);
+        HttpGet request = new HttpGet("http://54.169.172.250:8080/api/produk/list/" + categoryId);
         HttpResponse response = client.execute(request);
 
         // Get the response

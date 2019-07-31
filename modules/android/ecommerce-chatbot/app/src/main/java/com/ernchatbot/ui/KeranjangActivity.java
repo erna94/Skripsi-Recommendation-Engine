@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.Map;
@@ -21,7 +22,6 @@ public class KeranjangActivity extends AppCompatActivity {
         this.ernaListView = findViewById(R.id.erna_messages_view);
         this.ernaAdapter = new MessageAdapter(this);
         ernaListView.setAdapter(ernaAdapter);
-
         setupKeranjang();
     }
 
@@ -52,7 +52,7 @@ public class KeranjangActivity extends AppCompatActivity {
         }
     }
 
-    public void checkout(View view) {
+        public void checkout(View view) {
         Intent intent = new Intent(this, PembayaranActivity.class);
         startActivity(intent);
     }

@@ -1,20 +1,25 @@
 package com.ernchatbot.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
+
 
 public class PembayaranActivity extends AppCompatActivity {
 
     ListView ernaListView;
     MessageAdapter ernaAdapter;
     TextView totalPembayaran;
+    EditText emailPemesan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,8 @@ public class PembayaranActivity extends AppCompatActivity {
         this.ernaListView = findViewById(R.id.erna_messages_view);
         this.ernaAdapter = new MessageAdapter(this);
         this.totalPembayaran = findViewById(R.id.txt_total_pembayaran);
+        this.emailPemesan = findViewById(R.id.email_pemesan);
+
         ernaListView.setAdapter(ernaAdapter);
         setupRingkasanPembayaran();
     }
@@ -49,7 +56,9 @@ public class PembayaranActivity extends AppCompatActivity {
     }
 
     public void bayar(View view) {
-        // kirim email
+        Intent intent = new Intent(PembayaranActivity.this, MainActivity.class);
+        startActivity(intent);
+
 
     }
 }

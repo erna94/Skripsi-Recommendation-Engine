@@ -7,5 +7,7 @@
         android:icon="@drawable/cart"
         android:title="cart"
         app:showAsAction="ifRoom"
-        />
+        >
+    </item>
+
 </menu>
