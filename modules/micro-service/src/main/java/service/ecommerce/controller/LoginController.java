@@ -33,11 +33,16 @@ public class LoginController {
 		System.out.println ("Username= " + u.getUserName());
 		System.out.println ("Password= " + u.getPassword());
 		
-		if (userId > 0) {
-			System.out.println("The number is positive.");
-		}
-		System.out.println("This statement is always executed");
+		String nama = "Erna Smart Khan";
+		String nama2 = "Erna Keep Smart";
 		
+		
+		if (nama.equals(nama2)) {
+			System.out.println(",kedua variable mempunyai nilai sama");
+		}
+		else {
+		System.out.println(",kedua variable mempunyai nilai berbeda");
+		}
         return u;
     }
 	
