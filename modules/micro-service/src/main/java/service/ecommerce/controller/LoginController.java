@@ -22,29 +22,39 @@ public class LoginController {
 	LoginRepository loginRepository;
 	
 	@GetMapping("/{userId}/{password}")
-    public Login getLogin(@PathVariable Long userId, String password) {
+    public Login getLogin(@PathVariable Long userId, @PathVariable String password) {
 		// panggil database buat dapetin produk berdasarkan id yang di kasih
 		Login u = getLoginFromDB(userId, password);
 		
 		//buat print variable userId & password
-		System.out.println("UserId: " + userId + "Password: " + password);
+		System.out.println("UserId: " + userId + " Password: " + password);
 		//print objek login yang dari database
-		//buat print objek. ambil username & password dari Login u atau dari class Login.java
+		//buat print objek. dapetin username & password dari Login u atau dari class Login.java
 		System.out.println ("Username= " + u.getUserName());
 		System.out.println ("Password= " + u.getPassword());
 		
-		String nama = "Erna Smart Khan";
-		String nama2 = "Erna Keep Smart";
+		//ganti variable nama dgn parameter password
+		String nama = password ;
+		String nama2 = u.getPassword() ;
 		
-		
+		//membandingkan variable nama dgn variable nama2 apakah isinya sama atau tidak
 		if (nama.equals(nama2)) {
+			
 			System.out.println(",kedua variable mempunyai nilai sama");
+			
+			return u;
 		}
+		
 		else {
-		System.out.println(",kedua variable mempunyai nilai berbeda");
-		}
-        return u;
-    }
+			Login u2 = getLoginFromDB(userId, password);
+			
+			System.out.println(",kedua variable mempunyai nilai berbeda");
+			
+			return u2;
+        }
+        
+	}
+	
 	
 	private Login getLoginFromDB(Long userId, String password) {
 		// code buat panggil database
