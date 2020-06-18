@@ -40,19 +40,17 @@ public class LoginController {
 		//membandingkan variable nama dgn variable nama2 apakah isinya sama atau tidak
 		if (nama.equals(nama2)) {
 			
-			System.out.println(",kedua variable mempunyai nilai sama");
+			System.out.println("success");
 			
 			return u;
 		}
 		
 		else {
-			Login u2 = getLoginFromDB(userId, password);
-			
-			System.out.println(",kedua variable mempunyai nilai berbeda");
+			//buat objek login kosong
+			Login u2 = new Login();	
 			
 			return u2;
-        }
-        
+        }       
 	}
 	
 	

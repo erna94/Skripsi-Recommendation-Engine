@@ -1,4 +1,4 @@
-use db_produc;
+use db_product;
 
 drop table rekomendasi;
 drop table user_rating;
@@ -7,8 +7,32 @@ drop table badge;
 drop table product;
 drop table penjual;
 drop table category;
+drop table login;
 
 select count(*) from Product p WHERE p.id_category = 11
+
+select @@GLOBAL.time_zone
+SET GLOBAL time_zone = '+7:00';
+
+select * from login;
+select * from product;
+desc product;
+desc category;
+
+
+create table login (
+id_user int not null primary key AUTO_INCREMENT,
+email varchar(225) not null,
+username varchar(225) not null UNIQUE,
+password varchar(20) not null);
+
+insert into login (id_user, email, username, password) values
+(1, 'erna9470@gmail.com', 'erna', 'abc123'),
+(2, 'nadachai1811@gmail.com', 'nada', 'abc1234'),
+(3, 'zalita284@gmail.com', 'zalita', 'abc45'),
+(4, 'pritafauziah@gmail.com', 'prita', 'abc1'),
+(5, 'ullyanadda@gmail.com', 'ullya', 'abc12');
+
 
 create table category (id_category int not null PRIMARY KEY AUTO_INCREMENT, nama_category varchar(225) not null, parent_id int not null);
 
