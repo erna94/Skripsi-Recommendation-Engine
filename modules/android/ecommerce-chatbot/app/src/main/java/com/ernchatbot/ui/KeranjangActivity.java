@@ -52,7 +52,7 @@ public class KeranjangActivity extends AppCompatActivity {
         }
     }
 
-        public void checkout(View view) {
+        public void Checkout(View view) {
         Intent intent = new Intent(this, PembayaranActivity.class);
         startActivity(intent);
     }

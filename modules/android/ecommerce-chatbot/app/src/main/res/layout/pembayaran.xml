@@ -170,7 +170,7 @@
             android:textStyle="bold"
             android:textSize="20dp"
             android:backgroundTint="@color/buttonSend"
-            android:onClick="bayar"
+            android:onClick="Bayar"
             />
     </LinearLayout>
 </LinearLayout>

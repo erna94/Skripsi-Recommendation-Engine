@@ -55,7 +55,7 @@ public class PembayaranActivity extends AppCompatActivity {
         this.totalPembayaran.setText(totalHarga + " IDR");
     }
 
-    public void bayar(View view) {
+    public void Bayar(View view) {
         Intent intent = new Intent(PembayaranActivity.this, MainActivity.class);
         startActivity(intent);
 
