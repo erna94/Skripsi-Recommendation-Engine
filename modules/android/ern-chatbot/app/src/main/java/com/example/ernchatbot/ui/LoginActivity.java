@@ -30,23 +30,13 @@ public class LoginActivity extends AppCompatActivity {
         username_id = (EditText) findViewById(R.id.username_id);
         password_id = (EditText) findViewById(R.id.password_id);
         btn_Login = (Button) findViewById(R.id.btn_Login);
-        btn_Login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
 
-        });
 
-        btn_Login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (username_id.getText().toString().equals("") || password_id.getText().toString().equals("")) {
-                    builder = new AlertDialog.Builder(LoginActivity.this);
-                }
-            }
-        });
+        }
+    public void login(View view){
+        final String username = username_id.getText().toString();
+        final String password = password_id.getText().toString();
+        System.out.println(username_id.getText().toString() + "password" + password_id.getText().toString());
 
     }
 }
