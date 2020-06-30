@@ -18,7 +18,7 @@ import com.example.ernchatbot.R;
 public class LoginActivity extends AppCompatActivity {
 
     Button btn_Login;
-    EditText username_id, password_id;
+    EditText username, password;
     TextView yuk;
     AlertDialog.Builder builder;
 
@@ -27,16 +27,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        username_id = (EditText) findViewById(R.id.username_id);
-        password_id = (EditText) findViewById(R.id.password_id);
+        username = (EditText) findViewById(R.id.username_input);
+        password = (EditText) findViewById(R.id.password_input);
         btn_Login = (Button) findViewById(R.id.btn_Login);
 
 
         }
     public void login(View view){
-        final String username = username_id.getText().toString();
-        final String password = password_id.getText().toString();
-        System.out.println(username_id.getText().toString() + "password" + password_id.getText().toString());
+        final String username1 = username.getText().toString();
+        final String password1 = password.getText().toString();
+        System.out.println("username" + username.getText().toString() + "password" + password.getText().toString());
 
     }
 }
