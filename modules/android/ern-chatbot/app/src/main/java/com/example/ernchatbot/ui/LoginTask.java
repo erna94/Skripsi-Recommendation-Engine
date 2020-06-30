@@ -7,6 +7,7 @@ import android.widget.ListView;
 import com.example.ernchatbot.service.ECommerceService;
 import com.example.ernchatbot.service.LoginService;
 import com.example.ernchatbot.service.WitAIService;
+import com.example.ernchatbot.service.response.LoginResponse;
 import com.example.ernchatbot.service.response.Product;
 import com.example.ernchatbot.service.response.WitAIResponse;
 import com.example.ernchatbot.service.response.WitEntities;
@@ -25,20 +26,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class LoginTask extends AsyncTask<String, Void, LoginService> {
+public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
 
-    private LoginService loginService;
+    private LoginResponse loginResponse;
 
-    public LoginTask(LoginService loginService) {
+    public LoginTask(LoginResponse loginResponse) {
         // object untuk memanggil micro service dari Wit AI
-        this.loginService = new LoginService();
+        this.loginResponse = new LoginResponse();
     }
 
     @Override
-    protected LoginService doInBackground(String... strings) {
+    protected LoginResponse doInBackground(String... message) {
+        String username;
+        String password;
 
+        LoginResponse loginResponse = new LoginResponse();
+        System.out.println(loginResponse.getUserName());
+
+        return loginResponse;
     }
-        @Override
-    protected void onPostExecute (LoginService result){
+
+    @Override
+    protected void onPostExecute (LoginResponse result){
     }
 }

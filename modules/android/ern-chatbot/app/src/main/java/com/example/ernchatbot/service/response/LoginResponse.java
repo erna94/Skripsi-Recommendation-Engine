@@ -8,7 +8,6 @@ public class LoginResponse {
     String email;
     String userName;
     String password;
-    LoginEntities entities;
 
     @JsonSetter("idUser")
     public Long getIdUser() {return idUser; }
@@ -30,9 +29,5 @@ public class LoginResponse {
 
     public void setPassword(String password) {this.password = password; }
 
-    @JsonSetter("entities")
-    public LoginEntities getEntities() {return entities; }
-
-    public void setEntities(LoginEntities entities) {this.entities = entities;}
 }
 
