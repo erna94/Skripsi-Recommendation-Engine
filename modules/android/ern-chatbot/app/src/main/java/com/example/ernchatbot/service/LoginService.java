@@ -16,17 +16,17 @@ import java.net.URL;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LoginService {
-    String username1;
-    String password1;
+    String username_input;
+    String password_input;
 
 
-    public String getLogin(String username1, String password1) throws Exception {
+    public String getLogin(String username_input, String password_input) throws Exception {
         //bikin object baru
         LoginService login = new LoginService();
         //panggil object dan print
         System.out.println(login.getLogin("erna", "abc123"));
 
-        return username1;
+        return username_input;
     }
 
 

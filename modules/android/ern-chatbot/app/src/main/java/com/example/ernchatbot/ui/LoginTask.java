@@ -4,27 +4,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.example.ernchatbot.service.ECommerceService;
-import com.example.ernchatbot.service.LoginService;
-import com.example.ernchatbot.service.WitAIService;
 import com.example.ernchatbot.service.response.LoginResponse;
-import com.example.ernchatbot.service.response.Product;
-import com.example.ernchatbot.service.response.WitAIResponse;
-import com.example.ernchatbot.service.response.WitEntities;
-import com.example.ernchatbot.service.response.WitEntity;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
 
@@ -37,11 +22,25 @@ public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
 
     @Override
     protected LoginResponse doInBackground(String... message) {
-        String username;
-        String password;
+        String username = message[0];
+        String password = message[1];
 
         LoginResponse loginResponse = new LoginResponse();
         System.out.println(loginResponse.getUserName());
+
+        try {
+            username = loginResponse.getUserName();
+            password = loginResponse.getPassword();
+
+            // object ini adalah untuk mengubah dari suatu String berbentuk JSON
+            // ke dalam object tertentu. Dalam hal ini kita mau mengubah bentuk
+            // String ke dalam object WitAIResponse
+            ObjectMapper objectMapper = new ObjectMapper();
+            loginResponse = objectMapper.readValue(username + password, LoginResponse.class);
+
+        } catch(Throwable t) {
+            t.printStackTrace();
+        }
 
         return loginResponse;
     }
