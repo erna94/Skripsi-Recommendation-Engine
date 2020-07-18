@@ -1,6 +1,8 @@
 package com.example.ernchatbot.service;
 
 import android.util.Log;
+
+import com.example.ernchatbot.service.response.LoginResponse;
 import com.example.ernchatbot.ui.LoginActivity;
 
 import org.apache.http.HttpResponse;
@@ -13,6 +15,8 @@ import java.io.InputStreamReader;
 
 import android.os.AsyncTask;
 import java.net.URL;
+import java.net.URLEncoder;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LoginService {
@@ -21,14 +25,34 @@ public class LoginService {
 
 
     public String getLogin(String username_input, String password_input) throws Exception {
-        //bikin object baru
-        LoginService login = new LoginService();
-        //panggil object dan print
-        System.out.println(login.getLogin("erna", "abc123"));
 
-        return username_input;
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet("http://127.0.0.1:8080/api/login/" + username_input + password_input);
+
+        HttpResponse response = client.execute(request);
+
+        // Get the response
+        BufferedReader rd = new BufferedReader
+                (new InputStreamReader(
+                        response.getEntity().getContent()));
+
+        String allResponse = "";
+        String line = "";
+        while ((line = rd.readLine()) != null) {
+            // selama masih ada baris dari hasil pemanggilan micro service, kita akan terus menambah baris tersebut
+            // ke hasil kita
+            allResponse = allResponse + line;
+        }
+
+        return allResponse;
     }
 
 
 }
+
+
+
+
+
+
 

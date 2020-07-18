@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ernchatbot.R;
+import com.example.ernchatbot.service.response.LoginResponse;
+import com.example.ernchatbot.ui.LoginTask;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,10 +35,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
         }
-    public void login(View view){
-        final String username1 = username.getText().toString();
-        final String password1 = password.getText().toString();
-        System.out.println("username" + username.getText().toString() + "password" + password.getText().toString());
+    public void onLogin(View view){
+
+        final String name = username.getText().toString();
+        final String pass = password.getText().toString();
+        System.out.println("username: " + username.getText().toString() + "password: " + password.getText().toString());
 
     }
 }
