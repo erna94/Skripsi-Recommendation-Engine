@@ -19,7 +19,7 @@ public class DataSourceConfig {
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         dataSource.setUrl(
-          "jdbc:mysql://localhost:3306/db_product"); 
+          "jdbc:mysql://localhost:3306/db_produc"); 
          
         return dataSource;
     }
