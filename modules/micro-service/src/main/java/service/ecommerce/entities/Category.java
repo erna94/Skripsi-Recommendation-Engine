@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name="category")
 public class Category {
 
-
 	@Id // @ID ini untuk menandakan kalau column id_product itu adalah primary keynya 
 	// @Column buat kasih tau kalau ini idProduct 
 	// di object di hubungkan ke kolom id_product di database
