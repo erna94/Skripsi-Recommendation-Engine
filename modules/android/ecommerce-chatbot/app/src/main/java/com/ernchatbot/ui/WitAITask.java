@@ -46,7 +46,7 @@ public class WitAITask extends AsyncTask<String, Void, WitAIResponse> {
     protected void onPostExecute(WitAIResponse result) {
         // ini akan membuat pemanggilan micro-service berantai yang akan mengarah kepada
         // panggilan e-commerce berikutnya
-        ECommerceTask eCommerceTask = new ECommerceTask(messageAdapter, searchView);
+        ProductSearchTask eCommerceTask = new ProductSearchTask(messageAdapter, searchView);
         eCommerceTask.execute(result);
     }
 }

@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
 
-import com.ernchatbot.service.ECommerceService;
+import com.ernchatbot.service.ProductSearchService;
 import com.ernchatbot.service.response.Product;
 import com.ernchatbot.service.response.WitAIResponse;
 import com.ernchatbot.service.response.WitEntities;
@@ -15,14 +15,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>> {
+public class ProductSearchTask extends AsyncTask<WitAIResponse, Void, List<Product>> {
     MessageAdapter messageAdapter;
     ListView searchView;
 
     public final static String CARI_PRODUCT = "cari_product";
     public final static String CARI_CATEGORY = "cari_category";
 
-    public ECommerceTask(MessageAdapter adapter, ListView messagesView) {
+    public ProductSearchTask(MessageAdapter adapter, ListView messagesView) {
         this.messageAdapter = adapter;
         this.searchView = messagesView;
     }
@@ -79,7 +79,7 @@ public class ECommerceTask extends AsyncTask<WitAIResponse, Void, List<Product>>
                             Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
 
                             try {
-                                ECommerceService service = new ECommerceService();
+                                ProductSearchService service = new ProductSearchService();
                                 response = service.getProductByCategory(categoryId);
                                 ObjectMapper objectMapper = new ObjectMapper();
 
