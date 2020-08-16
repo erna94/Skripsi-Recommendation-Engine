@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import service.ecommerce.entities.Login;
 import service.ecommerce.entities.User;
+import java.lang.Math;
 
 public class RekomendasiEngine {
 	/***
@@ -21,16 +23,18 @@ public class RekomendasiEngine {
 		Map<User, Double> jarakDenganUserLain = new HashMap<User, Double>();
 		
 		for(int i=0;i<semuaUser.size();i++) {
-			User userUntukDibandingkan = semuaUser.get(i);
-			double jarakUser = hitungJarak(userUntukDianalisa, userUntukDibandingkan);
-			jarakDenganUserLain.put(userUntukDibandingkan, jarakUser);
+			User user2 = semuaUser.get(i);
+			double jarakUser = hitungJarak(userUntukDianalisa, user2);
+			jarakDenganUserLain.put(user2, jarakUser);
 		}
 		
 		return userYangMirip;
 	}
 	
-	public double hitungJarak(User userUntukDibandingkan, User userYangLain) {
-		// hitung semua attribute user dan memberikan jarak
-		return 0.0;
+	public double hitungJarak(User user2, User user1) {
+		// hitung semua attribute user dan memberikan jarak	
+		int bedaUmur = user2.getUmur() - user1.getUmur();
+		double bedaUmurPangkat2 = Math.pow(2, bedaUmur);
+	
 	}
 }
