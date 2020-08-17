@@ -1,6 +1,7 @@
 package service.ecommerce.rekomendasi;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -37,7 +38,24 @@ public class RekomendasiEngine {
 			
 			listUserUntukDitampung.add(user2);
 			jarakDenganUserLain.put(jarakUser, listUserUntukDitampung);
-			
+		}
+		
+		userYangMirip = jalankanIterasiKNN(10,jarakDenganUserLain);
+		
+		return userYangMirip;
+	}
+	
+	public List<User> jalankanIterasiKNN(int k, Map<Double, ArrayList<User>> listUserDenganJarak) {
+		List<User> userYangMirip = new ArrayList<User>();
+		
+		Iterator<ArrayList<User>> jumlahUserDenganJarak = listUserDenganJarak.values().iterator();
+		
+		while(userYangMirip.size() <= k && jumlahUserDenganJarak.hasNext()) {
+			ArrayList<User> userDalamData = jumlahUserDenganJarak.next();		
+			for(int j=0;j<userDalamData.size() & userYangMirip.size() <= k;j++) {
+				User userMiripUntukDitambah = userDalamData.get(j);
+				userYangMirip.add(userMiripUntukDitambah);
+			}
 		}
 		
 		return userYangMirip;
@@ -62,5 +80,14 @@ public class RekomendasiEngine {
 		double akarSemua = Math.sqrt(tambahPangkat);
 		
 		return akarSemua;
+	}
+	
+	
+	/**
+	 * Hanya untuk testing, bukan bagian dari kode
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
 	}
 }
