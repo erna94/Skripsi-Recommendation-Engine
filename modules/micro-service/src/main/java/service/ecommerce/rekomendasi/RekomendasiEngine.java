@@ -1,13 +1,11 @@
 package service.ecommerce.rekomendasi;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
-import service.ecommerce.entities.Login;
 import service.ecommerce.entities.User;
-import java.lang.Math;
 
 public class RekomendasiEngine {
 	/***
@@ -18,14 +16,28 @@ public class RekomendasiEngine {
 	public List<User> cariUserYangMirip(User userUntukDianalisa, List<User> semuaUser) {
 		List<User> userYangMirip = new ArrayList<User>();
 		
-		// Map itu kaya table dua kolom, di kolom pertama adalah Usernya yang dibandingkan, di kolom kedua
-		// kita mengisikan jarak antara userUntukDianalisa dengan user yang dibandingkan
-		Map<User, Double> jarakDenganUserLain = new HashMap<User, Double>();
+		// Map itu kaya table dua kolom, di kolom pertama adalah perbedaan jaraknya
+		// dan di kolom ke dua, semua user yang mempunyai jarak tersebut ketika
+		// dibandingkan dengan userUntukDianalasisa
+		Map<Double, ArrayList<User>> jarakDenganUserLain = 
+				new TreeMap<Double, ArrayList<User>>();
 		
 		for(int i=0;i<semuaUser.size();i++) {
+			ArrayList<User> listUserUntukDitampung = new ArrayList<User>();
+			
 			User user2 = semuaUser.get(i);
 			double jarakUser = hitungJarak(userUntukDianalisa, user2);
-			jarakDenganUserLain.put(user2, jarakUser);
+			
+			// Kalau sudah pernah ada user dengan jarak yang sama, kita ambil 
+			// list tersebut dan menambahkan usernya. If statement ini hanya
+			// terjadi kalau sudah ada user dengan jarak yang sama
+			if(jarakDenganUserLain.containsKey(jarakUser)) {
+				listUserUntukDitampung = jarakDenganUserLain.get(jarakUser);
+			} 
+			
+			listUserUntukDitampung.add(user2);
+			jarakDenganUserLain.put(jarakUser, listUserUntukDitampung);
+			
 		}
 		
 		return userYangMirip;
@@ -50,6 +62,5 @@ public class RekomendasiEngine {
 		double akarSemua = Math.sqrt(tambahPangkat);
 		
 		return akarSemua;
-	
 	}
 }
