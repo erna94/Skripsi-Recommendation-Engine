@@ -1,8 +1,24 @@
 package service.ecommerce.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+
+/***
+ * memberitahu kalau kelas ini berhubungan dengan SQL Table user
+ * id_product int not null PRIMARY KEY AUTO_INCREMENT, 
+ * id_category int not null, 
+ * nama_product varchar(225) not null, 
+ * deskripsi_product text, 
+ * harga_product decimal not null,  
+ * id_penjual int not null, 
+ * image_link varchar(225) not null,
+ *
+ */
+@Table(name="users")
 public class User {
 	
 	@Id // @ID ini untuk menandakan kalau column id_product itu adalah primary keynya 

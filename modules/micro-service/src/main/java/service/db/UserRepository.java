@@ -10,9 +10,9 @@ import service.ecommerce.entities.User;
 
 public interface UserRepository extends CrudRepository<User, Long>{
 	
-	User findBySearch(Long idUser);
+	User findByUser();
 	
-	@Query("SELECT u FROM Users u WHERE u.idUser = :userId" )
-	List<User> findUserBySearch(@Param(value = "userId") Long userId);
+	@Query("SELECT u FROM User u" )
+	List<User>findByUserSemua();
 
 }
