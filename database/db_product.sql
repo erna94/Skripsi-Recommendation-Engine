@@ -7,7 +7,7 @@ SET GLOBAL time_zone = '+7:00';
 
 select * from login;
 select * from produk;
-select * from demographic;
+select * from users;
 select * from riwayat_pembelian;
 select * from preferensi;
 desc produk;
@@ -20,7 +20,7 @@ email varchar(225) not null,
 username varchar(225) not null UNIQUE,
 password varchar(20) not null);
 
-create table demographic (
+create table users (
 id_user int not null,
 lokasi varchar(225) not null,
 pekerjaan varchar(225) not null,
@@ -111,7 +111,7 @@ insert into login (id_user, email, username, password) values
 (49, 'nadir@gmail.com', 'nadir', 'aaa44'),
 (50, 'cinta@gmail.com', 'cinta', 'aaa45');
 
-insert into demographic (id_user, lokasi, pekerjaan, umur) values
+insert into users (id_user, lokasi, pekerjaan, umur) values
 (1, 'dki jakarta', 'pelajar', 15),
 (2, 'dki jakarta', 'pelajar', 15),
 (3, 'dki jakarta', 'pelajar', 15),
@@ -161,7 +161,7 @@ insert into demographic (id_user, lokasi, pekerjaan, umur) values
 (47, 'papua', 'dokter', 40),
 (48, 'papua', 'dokter', 40),
 (49, 'sumatera', 'pns', 40),
-(50, 'bali', 'pns', 40),
+(50, 'bali', 'pns', 40);
 
 insert into preferensi(id_user, brand, warna, bahan) values
 (1, 'zara', 'hitam', 'katun'),

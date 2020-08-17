@@ -33,8 +33,23 @@ public class RekomendasiEngine {
 	
 	public double hitungJarak(User user2, User user1) {
 		// hitung semua attribute user dan memberikan jarak	
+		
+		//0.0 artinya lokasi kita sama, kalo 1.0 berati lokasi kita berbeda.
+		double bedaLokasi = 1.0;
+		if(! user2.getLokasi().equals(user1.getLokasi()));
+		double bedaLokasiPangkat2 = Math.pow(2, bedaLokasi);
+		
+		double bedaKerjaan = 1.0;
+		if(! user2.getPekerjaan().equals(user1.getPekerjaan()));
+		double bedaKerjaanPangkat2 = Math.pow(2, bedaKerjaan);
+		
 		int bedaUmur = user2.getUmur() - user1.getUmur();
 		double bedaUmurPangkat2 = Math.pow(2, bedaUmur);
+		
+		double tambahPangkat = bedaLokasiPangkat2 + bedaKerjaanPangkat2 + bedaUmurPangkat2;
+		double akarSemua = Math.sqrt(tambahPangkat);
+		
+		return akarSemua;
 	
 	}
 }
