@@ -64,7 +64,7 @@ public class RekomendasiEngine {
 	public double hitungJarak(User user2, User user1) {
 		// hitung semua attribute user dan memberikan jarak	
 		
-		//0.0 artinya lokasi kita sama, kalo 1.0 berati lokasi kita berbeda.
+		//0.0 artinya lokasinya sama, kalo 1.0 berati lokasinya berbeda.
 		double bedaLokasi = 1.0;
 		if(! user2.getLokasi().equals(user1.getLokasi()));
 		double bedaLokasiPangkat2 = Math.pow(2, bedaLokasi);
