@@ -97,6 +97,8 @@ public class RekomendasiEngine {
 		List<User> semuaUser = userRepository.findByUserSemua();		
 		List<User> userYangMirip = cariUserYangMirip(userUntukDicarikanRekomendasi, semuaUser);
 		
+		// Ambil semua purchase history yang mirip untuk list of user
+		
 		return rekomendasiProduk;
 	}
 	
