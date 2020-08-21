@@ -17,6 +17,8 @@ public class RekomendasiProdukController {
 	@GetMapping("/{userid}")
     public List<Product>  getRekomendasiProduk(@PathVariable Long userid) {
 		List<Product> rekomendasiProduk = new ArrayList<Product>();
+		
+		
 		 
 		// panggil step KNN, purchase history dan ranking
         return rekomendasiProduk;

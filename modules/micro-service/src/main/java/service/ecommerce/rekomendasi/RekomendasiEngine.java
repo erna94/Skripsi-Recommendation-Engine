@@ -6,9 +6,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import service.db.UserRepository;
+import service.ecommerce.entities.Product;
 import service.ecommerce.entities.User;
 
 public class RekomendasiEngine {
+	UserRepository userRepository;
+	
+	public RekomendasiEngine(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+	
 	/***
 	 * Menggunakan algoritma untuk mencari user yang mirip dengan userUntukDianalisa
 	 * @param userUntukDianalisa
@@ -83,11 +91,21 @@ public class RekomendasiEngine {
 	}
 	
 	
+	public List<Product> cariRekomendasi(User userUntukDicarikanRekomendasi) {
+		List<Product> rekomendasiProduk = new ArrayList<Product>();
+		
+		List<User> semuaUser = userRepository.findByUserSemua();		
+		List<User> userYangMirip = cariUserYangMirip(userUntukDicarikanRekomendasi, semuaUser);
+		
+		return rekomendasiProduk;
+	}
+	
+	
 	/**
 	 * Hanya untuk testing, bukan bagian dari kode
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		System.out.println("Running application");
 	}
 }
