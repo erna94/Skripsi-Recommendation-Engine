@@ -11,8 +11,8 @@ import javax.persistence.Table;
 public class Category {
 
 	@Id // @ID ini untuk menandakan kalau column id_product itu adalah primary keynya 
-	// @Column buat kasih tau kalau ini idProduct 
-	// di object di hubungkan ke kolom id_product di database
+	// @Column buat kasih tau kalau ini idCategory 
+	// di object di hubungkan ke kolom id_category di database
 	@Column(name="id_category", unique = true) 
 	Long idCategory;
 	

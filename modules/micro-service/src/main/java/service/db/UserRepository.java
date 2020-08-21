@@ -9,7 +9,6 @@ import service.ecommerce.entities.User;
 
 public interface UserRepository extends CrudRepository<User, Long>{
 	
-	@Query("SELECT u FROM User u" )
-	List<User>findByUserSemua();
-
+	@Query("SELECT u FROM User u")
+		List<User>findByUserSemua();
 }

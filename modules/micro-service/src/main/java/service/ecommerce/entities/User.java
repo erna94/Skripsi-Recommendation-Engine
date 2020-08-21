@@ -9,13 +9,10 @@ import javax.persistence.Table;
 
 /***
  * memberitahu kalau kelas ini berhubungan dengan SQL Table user
- * id_product int not null PRIMARY KEY AUTO_INCREMENT, 
- * id_category int not null, 
- * nama_product varchar(225) not null, 
- * deskripsi_product text, 
- * harga_product decimal not null,  
- * id_penjual int not null, 
- * image_link varchar(225) not null,
+ * id_user int not null PRIMARY KEY AUTO_INCREMENT, 
+ * lokasi varchar(225) not null, 
+ * pekerjaan varchar(225) not null, 
+ * umur int not null, 
  *
  */
 @Table(name="users")
