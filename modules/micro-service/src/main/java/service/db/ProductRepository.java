@@ -26,4 +26,8 @@ public interface ProductRepository extends CrudRepository<Product, Long>{
 	
 	@Query("SELECT p FROM Product p where p.idCategory IN  (SELECT c.idCategory  FROM Category c WHERE c.parentId = :categoryId)")
 	List<Product> findProductByParentCategory(@Param(value = "categoryId") Long categoryId);
+	
+	
+	 @Query("SELECT p FROM Product p JOIN PurchaseHistory ph ON p.idProduct = ph.idProduk")     // 2. Spring JPA In cause using @Query
+	 List<Product> findProductByPurchaseHistory();
 }

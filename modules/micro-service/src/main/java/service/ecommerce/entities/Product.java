@@ -18,29 +18,26 @@ import javax.persistence.Table;
  * image_link varchar(225) not null,
  *
  */
-@Table(name="product")
+@Table(name="produk")
 public class Product {
 	
 	@Id // @ID ini untuk menandakan kalau column id_product itu adalah primary keynya 
 	// @Column buat kasih tau kalau ini idProduct 
 	// di object di hubungkan ke kolom id_product di database
-	@Column(name="id_product", unique = true) 
+	@Column(name="id_produk", unique = true) 
 	Long idProduct;
 	
-	@Column(name="id_category")
+	@Column(name="id_kategori")
 	Long idCategory;
 	
-	@Column(name="nama_product")
+	@Column(name="nama_produk")
 	String namaProduct;
 	
-	@Column(name="deskripsi_product")
+	@Column(name="deskripsi_produk")
 	String deskripsiProduct;
 	
-	@Column(name="harga_product")
+	@Column(name="harga_produk")
 	double hargaProduct;
-	
-	@Column(name="id_penjual")
-	Long idPenjual;
 	
 	@Column(name="image_link")
 	String imageLink;
@@ -85,14 +82,7 @@ public class Product {
 		this.hargaProduct = hargaProduct;
 	}
 
-	public Long getIdPenjual() {
-		return idPenjual;
-	}
-
-	public void setIdPenjual(Long idPenjual) {
-		this.idPenjual = idPenjual;
-	}
-
+	
 	public String getImageLink() {
 		return imageLink;
 	}
