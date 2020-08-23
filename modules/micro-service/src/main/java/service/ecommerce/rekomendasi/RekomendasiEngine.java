@@ -6,15 +6,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import service.db.ProductRepository;
 import service.db.UserRepository;
 import service.ecommerce.entities.Product;
 import service.ecommerce.entities.User;
 
 public class RekomendasiEngine {
 	UserRepository userRepository;
+	ProductRepository productRepository;
 	
-	public RekomendasiEngine(UserRepository userRepository) {
+	public RekomendasiEngine(UserRepository userRepository, ProductRepository productRepository) {
 		this.userRepository = userRepository;
+		this.productRepository = productRepository;
 	}
 	
 	/***
@@ -34,7 +37,7 @@ public class RekomendasiEngine {
 		for(int i=0;i<semuaUser.size();i++) {
 			ArrayList<User> listUserUntukDitampung = new ArrayList<User>();
 			
-			User user2 = semuaUser.get(i);
+			User user2 = semuaUser.get(i); 
 			double jarakUser = hitungJarak(userUntukDianalisa, user2);
 			
 			// Kalau sudah pernah ada user dengan jarak yang sama, kita ambil 
@@ -92,12 +95,12 @@ public class RekomendasiEngine {
 	
 	
 	public List<Product> cariRekomendasi(User userUntukDicarikanRekomendasi) {
-		List<Product> rekomendasiProduk = new ArrayList<Product>();
 		
-		List<User> semuaUser = userRepository.findByUserSemua();		
+		List<User> semuaUser = userRepository.findSemuaUsers();		
 		List<User> userYangMirip = cariUserYangMirip(userUntukDicarikanRekomendasi, semuaUser);
 		
 		// Ambil semua purchase history yang mirip untuk list of user
+		List<Product> rekomendasiProduk = this.productRepository.findProductByPurchaseHistory();
 		
 		return rekomendasiProduk;
 	}

@@ -23,7 +23,7 @@ public class UserController {
 		// panggil database buat dapetin semua user
 		List<User> u = new ArrayList<User>();
 		
-		u = userRepository.findByUserSemua();
+		u = userRepository.findSemuaUsers();
 		
         return u;   
     }
