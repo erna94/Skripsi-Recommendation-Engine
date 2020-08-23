@@ -35,9 +35,9 @@ public class ProductListController {
     }
 	
 	@GetMapping("/purchaseHistory")
-	public List<Product> getProductByPurchaseHistory() {
+	public List<Product> getProductByPurchaseHistory(ArrayList<Long> ids) {
 		// panggil database buat dapetin produk berdasarkan category yang di kasih
-		List<Product> p = productRepository.findProductByPurchaseHistory();
+		List<Product> p = productRepository.findProductByPurchaseHistory(ids);
         return p;   
     }
 }

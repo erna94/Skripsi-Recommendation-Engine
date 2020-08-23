@@ -26,6 +26,11 @@ public class RekomendasiEngine {
 	 * @return
 	 */
 	public List<User> cariUserYangMirip(User userUntukDianalisa, List<User> semuaUser) {
+		
+		System.out.println("Mencari user yang mirip dengan umur " + userUntukDianalisa.getUmur() 
+					+ " - pekerjaan " + userUntukDianalisa.getPekerjaan() 
+					+ " dan lokasi " + userUntukDianalisa.getLokasi()  + "\n");
+		
 		List<User> userYangMirip = new ArrayList<User>();
 		
 		// Map itu kaya table dua kolom, di kolom pertama adalah perbedaan jaraknya
@@ -99,8 +104,15 @@ public class RekomendasiEngine {
 		List<User> semuaUser = userRepository.findSemuaUsers();		
 		List<User> userYangMirip = cariUserYangMirip(userUntukDicarikanRekomendasi, semuaUser);
 		
+		ArrayList<Long> idUserYangMirip = new ArrayList<Long>();
+		for(int i=0;i<userYangMirip.size();i++) {
+			User userDiList = userYangMirip.get(i);
+			Long idUser = userDiList.getIdUser();
+			idUserYangMirip.add(idUser);
+		}
+		
 		// Ambil semua purchase history yang mirip untuk list of user
-		List<Product> rekomendasiProduk = this.productRepository.findProductByPurchaseHistory();
+		List<Product> rekomendasiProduk = this.productRepository.findProductByPurchaseHistory(idUserYangMirip);
 		
 		return rekomendasiProduk;
 	}
