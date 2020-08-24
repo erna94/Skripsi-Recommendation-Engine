@@ -50,10 +50,10 @@ public class KeranjangController {
 	private Keranjang getKeranjangDariDB(Long id) {
 		// code buat panggil database
 		Product p = new Product();
-		p.setDeskripsiProduct("Ini deskripsi");
-		p.setHargaProduct(500);
-		p.setIdProduct(1l);
-		p.setNamaProduct("Product Erna");
+		p.setDeskripsiProduk("Ini deskripsi");
+		p.setHargaProduk(500);
+		p.setIdProduk(1l);
+		p.setNamaProduk("Product Erna");
 
 		Keranjang k = new Keranjang();
 	

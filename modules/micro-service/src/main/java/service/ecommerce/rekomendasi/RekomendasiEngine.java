@@ -117,7 +117,6 @@ public class RekomendasiEngine {
 		return rekomendasiProduk;
 	}
 	
-	
 	/**
 	 * Hanya untuk testing, bukan bagian dari kode
 	 * @param args

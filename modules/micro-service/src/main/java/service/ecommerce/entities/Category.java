@@ -7,35 +7,35 @@ import javax.persistence.Table;
 
 @Entity
 
-@Table(name="category")
+@Table(name="kategori")
 public class Category {
-
+	
 	@Id // @ID ini untuk menandakan kalau column id_product itu adalah primary keynya 
 	// @Column buat kasih tau kalau ini idCategory 
 	// di object di hubungkan ke kolom id_category di database
-	@Column(name="id_category", unique = true) 
-	Long idCategory;
+	@Column(name="id_kategori", unique = true) 
+	Long idKategori;
 	
-	@Column(name="nama_category")
-	String namaCategory;
+	@Column(name="nama_kategori")
+	String namaKategori;
 	
 	@Column(name="parent_id")
 	Long parentId;
 
-	public Long getIdCategory() {
-		return idCategory;
+	public Long getIdKategori() {
+		return idKategori;
 	}
 
-	public void setIdCategory(Long idCategory) {
-		this.idCategory = idCategory;
+	public void setIdKategori(Long idKategori) {
+		this.idKategori = idKategori;
 	}
 
-	public String getNamaCategory() {
-		return namaCategory;
+	public String getNamaKategori() {
+		return namaKategori;
 	}
 
-	public void setNamaCategory(String namaCategory) {
-		this.namaCategory = namaCategory;
+	public void setNamaKategori(String namaKategori) {
+		this.namaKategori = namaKategori;
 	}
 
 	public Long getParentId() {
@@ -45,6 +45,4 @@ public class Category {
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
-	
-	
 }

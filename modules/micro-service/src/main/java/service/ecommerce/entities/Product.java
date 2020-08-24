@@ -25,64 +25,72 @@ public class Product {
 	// @Column buat kasih tau kalau ini idProduct 
 	// di object di hubungkan ke kolom id_product di database
 	@Column(name="id_produk", unique = true) 
-	Long idProduct;
+	Long idProduk;
 	
 	@Column(name="id_kategori")
-	Long idCategory;
+	Long idKategori;
 	
 	@Column(name="nama_produk")
-	String namaProduct;
+	String namaProduk;
 	
 	@Column(name="deskripsi_produk")
-	String deskripsiProduct;
+	String deskripsiProduk;
 	
 	@Column(name="harga_produk")
-	double hargaProduct;
+	double hargaProduk;
 	
 	@Column(name="image_link")
 	String imageLink;
-
-	public Long getIdProduct() {
-		return idProduct;
-	}
-
-	public void setIdProduct(Long idProduct) {
-		this.idProduct = idProduct;
-	}
-
-	public Long getIdCategory() {
-		return idCategory;
-	}
-
-	public void setIdCategory(Long idCategory) {
-		this.idCategory = idCategory;
-	}
-
-	public String getNamaProduct() {
-		return namaProduct;
-	}
-
-	public void setNamaProduct(String namaProduct) {
-		this.namaProduct = namaProduct;
-	}
-
-	public String getDeskripsiProduct() {
-		return deskripsiProduct;
-	}
-
-	public void setDeskripsiProduct(String deskripsiProduct) {
-		this.deskripsiProduct = deskripsiProduct;
-	}
-
-	public double getHargaProduct() {
-		return hargaProduct;
-	}
-
-	public void setHargaProduct(double hargaProduct) {
-		this.hargaProduct = hargaProduct;
-	}
-
 	
+	@Column(name="brand")
+	String brand;
+	
+	@Column(name="warna")
+	String warna;
+	
+	@Column(name="bahan")
+	String bahan;
+	
+	public Long getIdProduk() {
+		return idProduk;
+	}
+
+	public void setIdProduk(Long idProduk) {
+		this.idProduk = idProduk;
+	}
+
+	public Long getIdKategori() {
+		return idKategori;
+	}
+
+	public void setIdKategori(Long idKategori) {
+		this.idKategori = idKategori;
+	}
+
+	public String getNamaProduk() {
+		return namaProduk;
+	}
+
+	public void setNamaProduk(String namaProduk) {
+		this.namaProduk = namaProduk;
+	}
+
+	public String getDeskripsiProduk() {
+		return deskripsiProduk;
+	}
+
+	public void setDeskripsiProduk(String deskripsiProduk) {
+		this.deskripsiProduk = deskripsiProduk;
+	}
+
+	public double getHargaProduk() {
+		return hargaProduk;
+	}
+
+	public void setHargaProduk(double hargaProduk) {
+		this.hargaProduk = hargaProduk;
+	}
+
 	public String getImageLink() {
 		return imageLink;
 	}
@@ -90,6 +98,28 @@ public class Product {
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
 	}
-	
-	
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getWarna() {
+		return warna;
+	}
+
+	public void setWarna(String warna) {
+		this.warna = warna;
+	}
+
+	public String getBahan() {
+		return bahan;
+	}
+
+	public void setBahan(String bahan) {
+		this.bahan = bahan;
+	}
 }

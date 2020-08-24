@@ -13,16 +13,16 @@ import service.db.CategoryRepository;
 import service.ecommerce.entities.Category;
 
 @RestController
-@RequestMapping("/api/category/children")
+@RequestMapping("/api/kategori/children")
 public class CategoryController {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
 	
 	
-	private List<Category> getProductByIdCategoryFromDB(Long categoryId) {
+	private List<Category> getProductByIdKategoriFromDB(Long kategoriId) {
 		// code buat panggil database
-		List<Category> categoryList = categoryRepository.findChildCategory(categoryId);
+		List<Category> categoryList = categoryRepository.findChildCategory(kategoriId);
 		return categoryList;
 	}
 }
