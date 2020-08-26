@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 
@@ -33,6 +34,14 @@ public class User {
 	@Column(name="umur")
 	int umur;
 	
+	
+	// Pakai @Transient karena tidak termasuk data di database
+	@Transient
+	double average;
+	
+	@Transient
+	double standardDeviation;
+	
 	public Long getIdUser() {
 		return idUser;
 	}
@@ -57,5 +66,27 @@ public class User {
 	public void setUmur(int umur) {
 		this.umur = umur;
 	}
+	public double getAverage() {
+		return average;
+	}
+	public void setAverage(double average) {
+		this.average = average;
+	}
+	public double getStandardDeviation() {
+		return standardDeviation;
+	}
+	public void setStandardDeviation(double standardDeviation) {
+		this.standardDeviation = standardDeviation;
+	}
+	
+	public double getZScoreUmur() {
+		double zScore = (umur-average)/standardDeviation;
+		return zScore;
+	}
+	
+	public String toString() {
+		return "UserID > " + idUser + " - umur " + umur + " - lokasi " + lokasi + " pekerjaan " + pekerjaan + " - zScore "+ getZScoreUmur();
+	}
+	
 	
 }

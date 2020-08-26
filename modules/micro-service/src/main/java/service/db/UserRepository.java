@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import service.ecommerce.entities.Category;
 import service.ecommerce.entities.User;
 
 public interface UserRepository extends CrudRepository<User, Long>{

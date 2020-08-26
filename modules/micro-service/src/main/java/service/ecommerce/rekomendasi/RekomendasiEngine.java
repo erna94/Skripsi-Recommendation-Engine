@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import service.db.ProductRepository;
 import service.db.UserRepository;
@@ -15,9 +18,14 @@ public class RekomendasiEngine {
 	UserRepository userRepository;
 	ProductRepository productRepository;
 	
+	// library buat menghitung statistics
+	DescriptiveStatistics statEngine;
+	
 	public RekomendasiEngine(UserRepository userRepository, ProductRepository productRepository) {
 		this.userRepository = userRepository;
 		this.productRepository = productRepository;
+		this.statEngine = new DescriptiveStatistics();
+		
 	}
 	
 	/***
@@ -39,11 +47,28 @@ public class RekomendasiEngine {
 		Map<Double, ArrayList<User>> jarakDenganUserLain = 
 				new TreeMap<Double, ArrayList<User>>();
 		
+		
+		// hitung data statistics untuk rata2 dan standard deviasi
+		for(int i=0;i<semuaUser.size();i++) {
+			User user = semuaUser.get(i); 
+			statEngine.addValue((double)user.getUmur());
+		}
+		
+		double rata2 = statEngine.getMean();
+		double std = statEngine.getStandardDeviation();
+		
+		userUntukDianalisa.setAverage(rata2);
+		userUntukDianalisa.setStandardDeviation(std);
+		
 		for(int i=0;i<semuaUser.size();i++) {
 			ArrayList<User> listUserUntukDitampung = new ArrayList<User>();
 			
 			User user2 = semuaUser.get(i); 
+			user2.setAverage(rata2);
+			user2.setStandardDeviation(std);
+			
 			double jarakUser = hitungJarak(userUntukDianalisa, user2);
+			
 			
 			// Kalau sudah pernah ada user dengan jarak yang sama, kita ambil 
 			// list tersebut dan menambahkan usernya. If statement ini hanya
@@ -54,6 +79,18 @@ public class RekomendasiEngine {
 			
 			listUserUntukDitampung.add(user2);
 			jarakDenganUserLain.put(jarakUser, listUserUntukDitampung);
+		}
+		
+		System.out.println("User yang mirip dengan " + userUntukDianalisa);
+		
+		// buat debug saja
+		Iterator<Double> keys = jarakDenganUserLain.keySet().iterator();
+		while(keys.hasNext()) {
+			double jarak = keys.next();
+			List<User> users = jarakDenganUserLain.get(jarak);
+			for(int i=0;i<users.size();i++) {
+				System.out.println((i+1) + ". Jarak " + jarak + " untuk " + users.get(i));
+			}
 		}
 		
 		userYangMirip = jalankanIterasiKNN(10,jarakDenganUserLain);
@@ -89,7 +126,7 @@ public class RekomendasiEngine {
 		if(! user2.getPekerjaan().equals(user1.getPekerjaan()));
 		double bedaKerjaanPangkat2 = Math.pow(2, bedaKerjaan);
 		
-		int bedaUmur = user2.getUmur() - user1.getUmur();
+		double bedaUmur = user2.getZScoreUmur() - user1.getZScoreUmur();
 		double bedaUmurPangkat2 = Math.pow(2, bedaUmur);
 		
 		double tambahPangkat = bedaLokasiPangkat2 + bedaKerjaanPangkat2 + bedaUmurPangkat2;
@@ -98,6 +135,7 @@ public class RekomendasiEngine {
 		return akarSemua;
 	}
 	
+
 	
 	public List<Product> cariRekomendasi(User userUntukDicarikanRekomendasi) {
 		
