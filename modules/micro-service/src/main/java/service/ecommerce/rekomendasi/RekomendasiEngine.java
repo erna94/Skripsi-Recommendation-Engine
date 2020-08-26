@@ -83,16 +83,6 @@ public class RekomendasiEngine {
 		
 		System.out.println("User yang mirip dengan " + userUntukDianalisa);
 		
-		// buat debug saja
-		Iterator<Double> keys = jarakDenganUserLain.keySet().iterator();
-		while(keys.hasNext()) {
-			double jarak = keys.next();
-			List<User> users = jarakDenganUserLain.get(jarak);
-			for(int i=0;i<users.size();i++) {
-				System.out.println((i+1) + ". Jarak " + jarak + " untuk " + users.get(i));
-			}
-		}
-		
 		userYangMirip = jalankanIterasiKNN(10,jarakDenganUserLain);
 		
 		return userYangMirip;
@@ -101,15 +91,18 @@ public class RekomendasiEngine {
 	public List<User> jalankanIterasiKNN(int k, Map<Double, ArrayList<User>> listUserDenganJarak) {
 		List<User> userYangMirip = new ArrayList<User>();
 		
-		Iterator<ArrayList<User>> jumlahUserDenganJarak = listUserDenganJarak.values().iterator();
-		
-		while(userYangMirip.size() <= k && jumlahUserDenganJarak.hasNext()) {
-			ArrayList<User> userDalamData = jumlahUserDenganJarak.next();		
-			for(int j=0;j<userDalamData.size() & userYangMirip.size() <= k;j++) {
-				User userMiripUntukDitambah = userDalamData.get(j);
+		// buat debug saja
+		Iterator<Double> keys = listUserDenganJarak.keySet().iterator();
+		while(userYangMirip.size() <= k && keys.hasNext()) {
+			double jarak = keys.next();
+			List<User> users = listUserDenganJarak.get(jarak);
+			for(int i=0;i<users.size();i++) {
+				User userMiripUntukDitambah = users.get(i);
+				System.out.println((i+1) + ". Jarak " + jarak + " untuk " + userMiripUntukDitambah);
 				userYangMirip.add(userMiripUntukDitambah);
 			}
 		}
+		
 		
 		return userYangMirip;
 	}
@@ -118,12 +111,18 @@ public class RekomendasiEngine {
 		// hitung semua attribute user dan memberikan jarak	
 		
 		//0.0 artinya lokasinya sama, kalo 1.0 berati lokasinya berbeda.
-		double bedaLokasi = 1.0;
-		if(! user2.getLokasi().equals(user1.getLokasi()));
+		double bedaLokasi = 0.0;
+		if(! user2.getLokasi().equals(user1.getLokasi())) {
+			bedaLokasi = 1.0;
+		}
+		
 		double bedaLokasiPangkat2 = Math.pow(2, bedaLokasi);
 		
-		double bedaKerjaan = 1.0;
-		if(! user2.getPekerjaan().equals(user1.getPekerjaan()));
+		double bedaKerjaan = 0.0;
+		if(! user2.getPekerjaan().equals(user1.getPekerjaan())) {
+			bedaKerjaan = 1.0;
+		}
+		
 		double bedaKerjaanPangkat2 = Math.pow(2, bedaKerjaan);
 		
 		double bedaUmur = user2.getZScoreUmur() - user1.getZScoreUmur();
