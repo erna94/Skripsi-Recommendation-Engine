@@ -153,12 +153,4 @@ public class RekomendasiEngine {
 		
 		return rekomendasiProduk;
 	}
-	
-	/**
-	 * Hanya untuk testing, bukan bagian dari kode
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		System.out.println("Running application");
-	}
 }
