@@ -1,5 +1,6 @@
 package com.ernchatbot.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
@@ -34,6 +35,12 @@ public class LoginActivity extends AppCompatActivity {
 
         LoginTask login = new LoginTask();
         login.execute(name, pass);
+
+        //intent pindah halaman
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+
     }
 }
 

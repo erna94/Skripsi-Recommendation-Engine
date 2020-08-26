@@ -34,7 +34,7 @@ public class Keranjang {
 	 * @param produkBuatDitambahkan
 	 */
 	public void addProduct(Product produkBuatDitambahkan, int jumlahPenambahan) {
-		Long id = produkBuatDitambahkan.getIdProduct();
+		Long id = produkBuatDitambahkan.getIdProduk();
 		// update isi produk dengan jumlahnya
 		isiProduct.put(produkBuatDitambahkan, jumlahPenambahan);			
 	}
@@ -44,7 +44,7 @@ public class Keranjang {
 	 * @param produkBuatDitambahkan
 	 */
 	public void subtractProduct(Product produkBuatDitambahkan) {
-		Long id = produkBuatDitambahkan.getIdProduct();
+		Long id = produkBuatDitambahkan.getIdProduk();
 
 		int jumlahProduk = isiProduct.get(id) - 1;
 		

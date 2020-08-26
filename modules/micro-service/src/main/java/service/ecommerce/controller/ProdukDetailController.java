@@ -21,16 +21,16 @@ public class ProdukDetailController {
 	ProductRepository productRepository;
 	
 	@GetMapping("/{id}")
-    public Product getProdukDetail(@PathVariable Long id) {
+    public Product getProductDetail(@PathVariable Long id) {
 		// panggil database buat dapetin produk berdasarkan id yang di kasih
 		Product p = getProductFromDB(id);
         return p;
     }
 	
 	
-	private Product getProductFromDB(Long idProduct) {
+	private Product getProductFromDB(Long idProduk) {
 		// code buat panggil database
-		Product p = productRepository.findByIdProduct(idProduct);
+		Product p = productRepository.findByIdProduk(idProduk);
 		return p;
 	}
 }

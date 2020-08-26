@@ -19,16 +19,16 @@ public class ProductListController {
 	@Autowired
 	ProductRepository productRepository;
 	
-	@GetMapping("/{categoryId}")
-	public List<Product> getProductByCategory(@PathVariable Long categoryId) {
+	@GetMapping("/{kategoriId}")
+	public List<Product> getProductByCategory(@PathVariable Long kategoriId) {
 		// panggil database buat dapetin produk berdasarkan category yang di kasih
 		List<Product> p = new ArrayList<Product>();
 		
 		// ini sudah category paling bawah kalau lebih dari 100
-		if(categoryId > 100) {
-			p = productRepository.findProductByCategory(categoryId);
-		} else if (categoryId > 10 && categoryId < 100) {
-			p = productRepository.findProductByParentCategory(categoryId);
+		if(kategoriId > 100) {
+			p = productRepository.findProductByCategory(kategoriId);
+		} else if (kategoriId > 10 && kategoriId < 100) {
+			p = productRepository.findProductByParentCategory(kategoriId);
 		}
 		
         return p;   

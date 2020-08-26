@@ -69,7 +69,8 @@
                 android:text="Sign in"
                 android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:onClick="onLogin"/>
         </LinearLayout>
     </RelativeLayout>
 
