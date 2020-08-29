@@ -1,5 +1,7 @@
 package com.ernchatbot.service.response;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 public class Product {
     Long idProduct;
     Long idCategory;
@@ -13,6 +15,7 @@ public class Product {
         return idProduct;
     }
 
+    @JsonSetter("idProduk")
     public void setIdProduct(Long idProduct) {
         this.idProduct = idProduct;
     }
@@ -29,6 +32,7 @@ public class Product {
         return namaProduct;
     }
 
+    @JsonSetter("namaProduk")
     public void setNamaProduct(String namaProduct) {
         this.namaProduct = namaProduct;
     }
@@ -37,6 +41,7 @@ public class Product {
         return deskripsiProduct;
     }
 
+    @JsonSetter("deskripsiProduk")
     public void setDeskripsiProduct(String deskripsiProduct) {
         this.deskripsiProduct = deskripsiProduct;
     }
