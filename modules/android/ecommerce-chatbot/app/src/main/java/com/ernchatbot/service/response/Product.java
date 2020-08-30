@@ -10,6 +10,9 @@ public class Product {
     double hargaProduct;
     Long idPenjual;
     String imageLink;
+    String brand;
+    String warna;
+    String bahan;
 
     public Long getIdProduct() {
         return idProduct;
@@ -24,6 +27,7 @@ public class Product {
         return idCategory;
     }
 
+    @JsonSetter("idKategori")
     public void setIdCategory(Long idCategory) {
         this.idCategory = idCategory;
     }
@@ -50,6 +54,7 @@ public class Product {
         return hargaProduct;
     }
 
+    @JsonSetter("hargaProduk")
     public void setHargaProduct(double hargaProduct) {
         this.hargaProduct = hargaProduct;
     }
@@ -68,5 +73,29 @@ public class Product {
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getWarna() {
+        return warna;
+    }
+
+    public void setWarna(String warna) {
+        this.warna = warna;
+    }
+
+    public String getBahan() {
+        return bahan;
+    }
+
+    public void setBahan(String bahan) {
+        this.bahan = bahan;
     }
 }

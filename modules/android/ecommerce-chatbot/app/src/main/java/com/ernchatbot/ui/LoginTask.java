@@ -1,6 +1,7 @@
 package com.ernchatbot.ui;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.ernchatbot.service.response.LoginResponse;
 import com.ernchatbot.service.LoginService;
@@ -37,7 +38,8 @@ public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
 
             String username_output = loginResponse.getUserName();
             String password_output = loginResponse.getPassword();
-            System.out.println("\n\n ######### ini dari asyntask username =" + username_output + "password =" + password_output);
+            Log.println(Log.DEBUG,  this.getClass().toString(), "\n\n ######### ini dari asyntask username =" + username_output + " dengan password =" + password_output);
+
 
         } catch(Throwable r) {
             r.printStackTrace();
@@ -49,6 +51,6 @@ public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
     @Override
     protected void onPostExecute (LoginResponse result){
         // set ke static kalo ada user ID nya buat di pake
-        LoginResponse.loggedInUser = result.getIdUser();
+        LoginTask.loggedInUser = result.getIdUser();
     }
 }

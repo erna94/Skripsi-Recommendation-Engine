@@ -21,6 +21,7 @@ public class ProductSearchTask extends AsyncTask<WitAIResponse, Void, List<Produ
 
     public final static String CARI_PRODUCT = "cari_product";
     public final static String CARI_CATEGORY = "cari_category";
+    public final static String CARI_REKOMENDASI = "cari_rekomendasi";
 
     public ProductSearchTask(MessageAdapter adapter, ListView messagesView) {
         this.messageAdapter = adapter;
@@ -48,8 +49,8 @@ public class ProductSearchTask extends AsyncTask<WitAIResponse, Void, List<Produ
                 // mendeteksi apakah intent dari user adalah untuk mencari product dengan sesuatu yang pasti
                 if(intent.getValue() != null && intent.getValue().equals(CARI_PRODUCT)) {
                     products = getProducts(products, categories, subcategories, intent);
-                } else {
-                    products = findRecommendation(products);
+                } else  if(intent.getValue() != null && intent.getValue().equals(CARI_REKOMENDASI)) {
+                    products = findRecommendation();
                 }
             }
         }
@@ -57,17 +58,22 @@ public class ProductSearchTask extends AsyncTask<WitAIResponse, Void, List<Produ
         return products;
     }
 
-    private List<Product> findRecommendation(List<Product> products) {
+    private List<Product> findRecommendation() {
         String response;// cari rekomendasi
+        List<Product> products = new ArrayList<Product>();
         try {
             ProductSearchService service = new ProductSearchService();
-            response = service.getRecommendation(15l);
-            ObjectMapper objectMapper = new ObjectMapper();
 
-            // membuat mapping dari JSON Product list untuk mapping
-            // JSON String ke dalam object
-            products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
-            });
+            // menggunakan id dari yang berhasil login
+            if(LoginTask.loggedInUser != null) {
+                response = service.getRecommendation(LoginTask.loggedInUser);
+                ObjectMapper objectMapper = new ObjectMapper();
+
+                // membuat mapping dari JSON Product list untuk mapping
+                // JSON String ke dalam object
+                products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
+                });
+            }
         } catch (Exception e) {
             Log.println(Log.VERBOSE, "eCommerceTask",
                     "Tidak menemukan rekomendasi " + 15);
@@ -84,7 +90,7 @@ public class ProductSearchTask extends AsyncTask<WitAIResponse, Void, List<Produ
         // confidence di kategory > 70%
         // confidence di sub-category > 70%
         double confidenceIntent = intent.getConfidence();
-        Log.println(Log.VERBOSE, "android-app", "Mendapatkan intent dengan " +
+        Log.println(Log.DEBUG, "android-app", "Mendapatkan intent dengan " +
                 "confidence "+ confidenceIntent);
 
         if(confidenceIntent > .85) {
@@ -106,7 +112,7 @@ public class ProductSearchTask extends AsyncTask<WitAIResponse, Void, List<Produ
 
                 String categoryAsString = categories[0].getValue();
                 String subCategoryAsString = subcategories[0].getValue();
-                Log.println(Log.VERBOSE, "eCommerceTask",
+                Log.println(Log.DEBUG, "eCommerceTask",
                         "Mencari  " + categoryAsString + " " + subCategoryAsString);
                 Long categoryId = Long.parseLong(categoryAsString + subCategoryAsString);
 
@@ -120,7 +126,7 @@ public class ProductSearchTask extends AsyncTask<WitAIResponse, Void, List<Produ
                     products = objectMapper.readValue(response, new TypeReference<List<Product>>() {
                     });
                 } catch (Exception e) {
-                    Log.println(Log.VERBOSE, "eCommerceTask",
+                    Log.println(Log.DEBUG, "eCommerceTask",
                             "Tidak menemukan kategory " + categoryId);
                     e.printStackTrace();
                     // abaikan error dan response akan tetap menjadi null
@@ -135,7 +141,7 @@ public class ProductSearchTask extends AsyncTask<WitAIResponse, Void, List<Produ
 
     @Override
     protected void onPostExecute(List<Product> products) {
-        Log.println(Log.VERBOSE, "android-app", "Mendapatkan product sejumlah "+ products.size());
+        Log.println(Log.DEBUG, "android-app", "Mendapatkan product sejumlah "+ products.size());
         if(products.isEmpty()) {
             Message balasanSiBot =
                     new Message("Maaf :( Saya tidak bisa memenuhi " +

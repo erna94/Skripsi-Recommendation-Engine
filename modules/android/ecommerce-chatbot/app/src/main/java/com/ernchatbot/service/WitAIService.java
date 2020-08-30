@@ -48,6 +48,8 @@ public class WitAIService {
             allResponse = allResponse + line;
         }
 
+        Log.println(Log.DEBUG, "WitAITask", "Response from WitAI " + allResponse);
+
         return allResponse;
     }
 }

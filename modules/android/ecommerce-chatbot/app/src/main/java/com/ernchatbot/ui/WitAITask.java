@@ -5,6 +5,7 @@ import android.widget.ListView;
 
 import com.ernchatbot.service.WitAIService;
 import com.ernchatbot.service.response.WitAIResponse;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class WitAITask extends AsyncTask<String, Void, WitAIResponse> {
@@ -30,7 +31,7 @@ public class WitAITask extends AsyncTask<String, Void, WitAIResponse> {
             // object ini adalah untuk mengubah dari suatu String berbentuk JSON
             // ke dalam object tertentu. Dalam hal ini kita mau mengubah bentuk
             // String ke dalam object WitAIResponse
-            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             witResponse = objectMapper.readValue(response, WitAIResponse.class);
         } catch(Throwable t) {
             t.printStackTrace();
