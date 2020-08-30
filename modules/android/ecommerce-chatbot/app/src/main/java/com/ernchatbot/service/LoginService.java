@@ -11,12 +11,13 @@ import java.io.InputStreamReader;
 public class LoginService {
     String username_input;
     String password_input;
+    static String URL_LOCAL = "http://10.0.2.2:8080";
 
 
     public String getLogin(String username_input, String password_input) throws Exception {
 
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet("http://127.0.0.1:8080/api/login/" + username_input + password_input);
+        HttpGet request = new HttpGet(URL_LOCAL + "/api/login/" + username_input + "/" + password_input);
 
         HttpResponse response = client.execute(request);
 

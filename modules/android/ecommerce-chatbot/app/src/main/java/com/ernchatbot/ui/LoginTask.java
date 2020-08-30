@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
 
     private LoginResponse loginResponse;
+    public static Long loggedInUser;
 
     public LoginTask() {
 
@@ -36,7 +37,7 @@ public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
 
             String username_output = loginResponse.getUserName();
             String password_output = loginResponse.getPassword();
-            System.out.println("\n\n ini dari asyntask username =" + username_output + "password =" + password_output);
+            System.out.println("\n\n ######### ini dari asyntask username =" + username_output + "password =" + password_output);
 
         } catch(Throwable r) {
             r.printStackTrace();
@@ -47,5 +48,7 @@ public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
 
     @Override
     protected void onPostExecute (LoginResponse result){
+        // set ke static kalo ada user ID nya buat di pake
+        LoginResponse.loggedInUser = result.getIdUser();
     }
 }
