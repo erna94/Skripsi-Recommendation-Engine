@@ -27,7 +27,7 @@ public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
         try {
 
             LoginService loginService= new LoginService();
-            String r = loginService.getLogin("erna", "abc123");
+            String r = loginService.getLogin(username_input, password_input);
             System.out.println(r);
 
             // object ini adalah untuk mengubah dari suatu String berbentuk JSON

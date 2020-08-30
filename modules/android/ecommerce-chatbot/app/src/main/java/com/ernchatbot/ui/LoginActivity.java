@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username_input);
         password = (EditText) findViewById(R.id.password_input);
         btn_Login = (Button) findViewById(R.id.btn_Login);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEMULAI LOGIN ACTIVITY");
     }
 
     public void onLogin(View view){
