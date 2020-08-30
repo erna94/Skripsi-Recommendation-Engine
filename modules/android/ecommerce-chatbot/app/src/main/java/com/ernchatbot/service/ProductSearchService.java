@@ -19,7 +19,7 @@ public class ProductSearchService {
 
     public String getProductByCategory(Long categoryId) throws Exception {
 
-        String url = URL_AWS + "/api/produk/list/" + categoryId;
+        String url = URL_LOCAL + "/api/produk/list/" + categoryId;
         String response = callHttpGet(url);
         return response;
     }
