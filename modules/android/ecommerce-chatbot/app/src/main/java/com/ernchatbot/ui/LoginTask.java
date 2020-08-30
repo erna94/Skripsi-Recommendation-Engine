@@ -49,6 +49,6 @@ public class LoginTask extends AsyncTask<String, Void, LoginResponse> {
     @Override
     protected void onPostExecute (LoginResponse result){
         // set ke static kalo ada user ID nya buat di pake
-        LoginResponse.loggedInUser = result.getIdUser();
+        LoginTask.loggedInUser = result.getIdUser();
     }
 }
