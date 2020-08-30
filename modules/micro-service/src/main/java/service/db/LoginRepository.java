@@ -19,8 +19,8 @@ public interface LoginRepository extends CrudRepository<Login, Long>{
 	 */
 	  Login findByIdUser(Long idUser);
 	  
-	  @Query("SELECT u.password FROM Login u WHERE u.idUser = :userId" )
-	  List<Login> findLoginByIdUser(@Param(value = "userId") Long userId);
+	  @Query("SELECT u FROM Login u WHERE u.userName = :userName" )
+	  Login findLoginByUserName(@Param(value = "userName") String userName);
 	  
 	  @Query("SELECT u FROM Login u WHERE u.password = :password")
 	  List<Login> findLoginByPassword(@Param(value = "password") String password);
