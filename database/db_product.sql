@@ -5,13 +5,15 @@ select count(*) from Product p WHERE p.id_category = 11
 select @@GLOBAL.time_zone
 SET GLOBAL time_zone = '+7:00';
 
+show databases;
+
 select * from login;
 select * from produk;
 select * from users;
 select * from riwayat_pembelian;
 select * from preferensi;
-desc produk;
-desc kategori;
+select * from kategori;
+desc login;
 
 
 create table login (
@@ -112,56 +114,56 @@ insert into login (id_user, email, username, password) values
 (50, 'cinta@gmail.com', 'cinta', 'aaa45');
 
 insert into users (id_user, lokasi, pekerjaan, umur) values
-(1, 'dki jakarta', 'pelajar', 15),
-(2, 'dki jakarta', 'pelajar', 15),
-(3, 'dki jakarta', 'pelajar', 15),
-(4, 'dki jakarta', 'pelajar', 15),
-(5, 'dki jakarta', 'pelajar', 15),
-(6, 'jawa timur', 'mahasiswa', 18),
-(7, 'jawa timur', 'mahasiswa', 18),
-(8, 'jawa barat', 'mahasiswa', 18),
-(9, 'jawa barat', 'mahasiswa', 21),
-(10, 'jawa timur', 'mahasiswa', 21),
-(11, 'jawa tengah', 'mahasiswa', 21),
-(12, 'bali', 'model', 25),
-(13, 'bali', 'model', 25),
-(14, 'jawa barat', 'model', 25),
-(15, 'jawa barat', 'model', 27),
-(16, 'bali', 'model', 27),
-(17, 'papua', 'model', 30),
-(18, 'bali', 'model', 30),
-(19, 'dki jakarta', 'pramugari', 27),
-(20, 'dki jakarta', 'pramugari', 27),
-(21, 'kalimantan', 'pramugari', 27),
-(22, 'kalimantan', 'pramugari', 30),
-(23, 'sumatera', 'pramugari', 30),
-(24, 'kalimantan', 'pramugari', 30),
-(25, 'jawa tengah', 'pegawai swasta', 33),
-(26, 'kalimantan', 'pegawai swasta', 33),
-(27, 'bali', 'pegawai swasta', 33),
-(28, 'jawa timur', 'pegawai swasta', 33),
-(29, 'jawa barat', 'pegawai swasta', 36),
-(30, 'jawa barat', 'pegawai swasta', 36),
-(31, 'jawa timur', 'pegawai swasta', 36),
-(32, 'jawa timur', 'perawat', 33),
-(33, 'jawa tengah', 'perawat', 33),
-(34, 'papua', 'perawat', 33),
-(35, 'jawatengah', 'perawat', 33),
-(36, 'jawa tengah', 'perawat', 36),
-(37, 'kalimantan', 'pns', 45),
-(38, 'kalimantan', 'pns', 45),
-(39, 'jawa barat', 'pns', 45),
-(40, 'sumatera', 'pns', 40),
-(41, 'bali', 'pns', 40),
-(42, 'papua', 'dokter', 40),
-(43, 'sumatera', 'dokter', 45),
-(44, 'bali', 'dokter', 45),
-(45, 'papua', 'dokter', 45),
-(46, 'papua', 'dokter', 45),
-(47, 'papua', 'dokter', 40),
-(48, 'papua', 'dokter', 40),
-(49, 'sumatera', 'pns', 40),
-(50, 'bali', 'pns', 40);
+(1, 'jakarta', 'pelajar', 15),
+(2, 'jakarta', 'pelajar', 15),
+(3, 'depok', 'pelajar', 15),
+(4, 'depok', 'pelajar', 16),
+(5, 'jakarta', 'pelajar', 16),
+(6, 'jakarta', 'mahasiswa', 18),
+(7, 'depok', 'mahasiswa', 18),
+(8, 'depok', 'mahasiswa', 18),
+(9, 'surabaya', 'mahasiswa', 21),
+(10, 'surabaya', 'model', 21),
+(11, 'jogja', 'mahasiswa', 21),
+(12, 'jogja', 'model', 25),
+(13, 'denpasar', 'pramugari', 25),
+(14, 'denpasar', 'model', 21),
+(15, 'bandung', 'pramugari', 27),
+(16, 'denpasar', 'model', 27),
+(17, 'cirebon', 'pramugari', 30),
+(18, 'cirebon', 'pns', 30),
+(19, 'bandung', 'pramugari', 27),
+(20, 'denpasar', 'pramugari', 27),
+(21, 'denpasar', 'pramugari', 27),
+(22, 'bandung', 'pramugari', 28),
+(23, 'bandung', 'pramugari', 28),
+(24, 'cirebon', 'pramugari', 28),
+(25, 'cirebon', 'pegawai swasta', 30),
+(26, 'bekasi', 'pegawai swasta', 30),
+(27, 'manado', 'pegawai swasta', 33),
+(28, 'manado', 'pegawai swasta', 33),
+(29, 'manado', 'pegawai swasta', 36),
+(30, 'bekasi', 'pegawai swasta', 36),
+(31, 'bekasi', 'pegawai swasta', 36),
+(32, 'manado', 'perawat', 33),
+(33, 'bekasi', 'perawat', 33),
+(34, 'ambon', 'perawat', 33),
+(35, 'ambon', 'perawat', 33),
+(36, 'bekasi', 'perawat', 36),
+(37, 'palu', 'pns', 45),
+(38, 'palu', 'dokter', 45),
+(39, 'palu', 'pns', 44),
+(40, 'palu', 'pns', 44),
+(41, 'malang', 'pns', 40),
+(42, 'malang', 'pns', 41),
+(43, 'malang', 'programmer', 41),
+(44, 'lampung', 'programmer', 40),
+(45, 'lampung', 'dokter', 40),
+(46, 'palu', 'dokter', 44),
+(47, 'lampung', 'dokter', 41),
+(48, 'palu', 'dokter', 44),
+(49, 'lampung', 'programmer', 41),
+(50, 'lampung', 'programmer', 40);
 
 insert into preferensi(id_user, brand, warna, bahan) values
 (1, 'zara', 'hitam', 'katun'),

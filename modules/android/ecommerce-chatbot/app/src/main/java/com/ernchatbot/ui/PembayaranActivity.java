@@ -56,7 +56,7 @@ public class PembayaranActivity extends AppCompatActivity {
     }
 
     public void Bayar(View view) {
-        Intent intent = new Intent(PembayaranActivity.this, MainActivity.class);
+        Intent intent = new Intent(PembayaranActivity.this, LoginActivity.class);
         startActivity(intent);
 
 
