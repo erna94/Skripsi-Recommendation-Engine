@@ -94,12 +94,13 @@ public class RekomendasiEngine {
 		
 		// buat debug saja
 		Iterator<Double> keys = listUserDenganJarak.keySet().iterator();
+		int j = 1;
 		while(userYangMirip.size() <= k && keys.hasNext()) {
 			double jarak = keys.next();
 			List<User> users = listUserDenganJarak.get(jarak);
 			for(int i=0;i<users.size();i++) {
 				User userMiripUntukDitambah = users.get(i);
-				System.out.println((i+1) + ". Jarak " + jarak + " untuk " + userMiripUntukDitambah);
+				System.out.println(j++ + ". Jarak " + jarak + " untuk " + userMiripUntukDitambah);
 				userYangMirip.add(userMiripUntukDitambah);
 			}
 		}
