@@ -184,7 +184,8 @@ public class RekomendasiEngine {
 			produkDenganFrequency.put(idProduk, produkYangSama);
 		}
 		
-		System.out.println("Setelah mencari mendapatkan purchase history unik sebanyak " + produkDenganFrequency.keySet().size());
+		int hasilAnalisaUnik = produkDenganFrequency.keySet().size();
+		System.out.println("Setelah mencari mendapatkan purchase history unik sebanyak " + hasilAnalisaUnik);
 		
 		
 		// pada akhir iterasi dari baris 159-172, kita mendapatkan hasil id dengan list produk
@@ -226,7 +227,7 @@ public class RekomendasiEngine {
 		
 		Collection< ArrayList<ArrayList<Product>>> hasilAkhir = hasilUrutanFrequency.values(); 
 		
-		System.out.println("\nANALISA FREKUENSI " + hasilPurchaseHistory.size());
+		System.out.println(hasilAnalisaUnik + " HASIL ANALISA FREKUENSI UNTUK REKOMENDASI");
 		int i = 1;
 		List<Product>  hasilAkhirRekomendasi = new ArrayList<Product>();
 		for(ArrayList<ArrayList<Product>> hasilUrutan : hasilAkhir) {
