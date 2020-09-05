@@ -136,7 +136,14 @@ public class RekomendasiEngine {
 	}
 	
 
-	
+	/***
+	 * Mencari hasil rekomendasi berdasarkan langkah2 berikut
+	 * 1. Cari user yang mirip
+	 * 2. Untuk semua user yang mirip cari riwayat pembelian (Purchase History)
+	 * 3. Untuk semua purchase history di cari frequensi yang paling sering di beli lalu rekomendasi di urutkan berdasarkan itu
+	 * @param userUntukDicarikanRekomendasi
+	 * @return
+	 */
 	public List<Product> cariRekomendasi(User userUntukDicarikanRekomendasi) {
 		
 		List<User> semuaUser = userRepository.findSemuaUsers();		
