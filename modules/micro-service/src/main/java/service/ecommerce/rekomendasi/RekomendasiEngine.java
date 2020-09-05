@@ -238,7 +238,7 @@ public class RekomendasiEngine {
 				Long idProduk = pertama.getIdProduk();
 				Integer frequency = current.size();
 				
-				System.out.println(i++ + ". " + namaProduk + "- Produk " + idProduk + " dengan frequency " + frequency);
+				System.out.println(i++ + ". " + namaProduk + "- dengan idProduk " + idProduk + " dengan frequency " + frequency);
 				hasilAkhirRekomendasi.add(pertama);
 			}
 		}
