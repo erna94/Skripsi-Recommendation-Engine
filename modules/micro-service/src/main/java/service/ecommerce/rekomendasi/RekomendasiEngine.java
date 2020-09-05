@@ -152,6 +152,8 @@ public class RekomendasiEngine {
 		// Ambil semua purchase history yang mirip untuk list of user
 		List<Product> hasilPurchaseHistory = this.productRepository.findProductByPurchaseHistory(idUserYangMirip);
 		
+		System.out.println("\n\nMenemukan purchase History dengan jumlah " + hasilPurchaseHistory.size());
+		
 		// Ini TreeMap adalah tabel dua kolom yang kolom pertama adalah IDnya, kolom ke dua adalah
 		// produk2 yang sesuai dengan ID tersebut
 		Map<Long, ArrayList<Product>> produkDenganFrequency = new TreeMap<Long, ArrayList<Product>>();
@@ -175,6 +177,9 @@ public class RekomendasiEngine {
 			produkDenganFrequency.put(idProduk, produkYangSama);
 		}
 		
+		System.out.println("Setelah mencari mendapatkan purchase history unik sebanyak " + produkDenganFrequency.keySet().size());
+		
+		
 		// pada akhir iterasi dari baris 159-172, kita mendapatkan hasil id dengan list produk
 		// contoh kalo dalam purchase history ada dua sandal dengan id 2 dan tiga baju dengan id 5, 
 		// kita akan punya isi tabel Map
@@ -189,31 +194,45 @@ public class RekomendasiEngine {
 		// dan di berikan ke hasil rekomendasinya
 		// treeMap mengorder dari kecil ke besar, tapi kita mau sebaliknya jadi harus menggunakan reverseOrder
 		
-		Map<Integer, ArrayList<Product>> hasilUrutanFrequency = 
-				new TreeMap<Integer, ArrayList<Product>>(Collections.reverseOrder());
+		Map<Integer, ArrayList<ArrayList<Product>>> hasilUrutanFrequency = 
+				new TreeMap<Integer, ArrayList<ArrayList<Product>>>(Collections.reverseOrder());
 		
 		Collection<ArrayList<Product>> hasilPerhitunganFrequency = produkDenganFrequency.values(); 
 		
 		for(ArrayList<Product> current : hasilPerhitunganFrequency) {
 			Integer jumlahFrequency = current.size();
-			hasilUrutanFrequency.put(jumlahFrequency, current);
+			
+
+			ArrayList<ArrayList<Product>> koleksiProdukDenganFrequensiSama = new ArrayList<ArrayList<Product>>();
+			
+			if(hasilUrutanFrequency.containsKey(jumlahFrequency)) {
+				koleksiProdukDenganFrequensiSama = hasilUrutanFrequency.get(jumlahFrequency);
+			}
+	
+			koleksiProdukDenganFrequensiSama.add(current);
+
+			hasilUrutanFrequency.put(jumlahFrequency, koleksiProdukDenganFrequensiSama);
 		}
 		
 		// skrg kita sudah mengurutkan dengan menggunakan TreeMap, kita akan menaruh mulai
 		// dari frequency paling besar ke paling kecil
 		
-		Collection<ArrayList<Product>> hasilAkhir = hasilUrutanFrequency.values(); 
+		Collection< ArrayList<ArrayList<Product>>> hasilAkhir = hasilUrutanFrequency.values(); 
 		
+		System.out.println("\nANALISA FREKUENSI " + hasilPurchaseHistory.size());
+		int i = 1;
 		List<Product>  hasilAkhirRekomendasi = new ArrayList<Product>();
-		for(ArrayList<Product> current : hasilAkhir) {
-			// kita cuma perlu mendapatkan produk pertama
-			Product pertama = current.get(0);
-			String namaProduk = pertama.getNamaProduk();
-			Long idProduk = pertama.getIdProduk();
-			Integer frequency = current.size();
-			
-			System.out.println(namaProduk + "- Produk " + idProduk + " dengan frequency " + frequency);
-			hasilAkhirRekomendasi.add(pertama);
+		for(ArrayList<ArrayList<Product>> hasilUrutan : hasilAkhir) {
+			for(ArrayList<Product> current: hasilUrutan) {		
+				// kita cuma perlu mendapatkan produk pertama
+				Product pertama = current.get(0);
+				String namaProduk = pertama.getNamaProduk();
+				Long idProduk = pertama.getIdProduk();
+				Integer frequency = current.size();
+				
+				System.out.println(i++ + ". " + namaProduk + "- Produk " + idProduk + " dengan frequency " + frequency);
+				hasilAkhirRekomendasi.add(pertama);
+			}
 		}
 		
 		return hasilAkhirRekomendasi;
