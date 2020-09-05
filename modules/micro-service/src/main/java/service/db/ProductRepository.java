@@ -28,6 +28,6 @@ public interface ProductRepository extends CrudRepository<Product, Long>{
 	List<Product> findProductByParentCategory(@Param(value = "kategoriId") Long kategoriId);
 	
 	
-	 @Query("SELECT DISTINCT p FROM Product p JOIN PurchaseHistory ph ON p.idProduk = ph.idProduk WHERE ph.idUser IN (:ids) ")     // 2. Spring JPA In cause using @Query
+	 @Query("SELECT p FROM Product p JOIN PurchaseHistory ph ON p.idProduk = ph.idProduk WHERE ph.idUser IN (:ids) ")     // 2. Spring JPA In cause using @Query
 	 List<Product> findProductByPurchaseHistory(@Param("ids")List<Long> ids);
 }

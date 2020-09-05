@@ -1,10 +1,11 @@
 package service.ecommerce.rekomendasi;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
@@ -149,8 +150,72 @@ public class RekomendasiEngine {
 		}
 		
 		// Ambil semua purchase history yang mirip untuk list of user
-		List<Product> rekomendasiProduk = this.productRepository.findProductByPurchaseHistory(idUserYangMirip);
+		List<Product> hasilPurchaseHistory = this.productRepository.findProductByPurchaseHistory(idUserYangMirip);
 		
-		return rekomendasiProduk;
+		// Ini TreeMap adalah tabel dua kolom yang kolom pertama adalah IDnya, kolom ke dua adalah
+		// produk2 yang sesuai dengan ID tersebut
+		Map<Long, ArrayList<Product>> produkDenganFrequency = new TreeMap<Long, ArrayList<Product>>();
+		
+		// cari frequensi tiap produk skrg, pertama2 itung frequency tiap productID
+		for(int i=0;i<hasilPurchaseHistory.size();i++) {
+			Product produkDiAnalisa = hasilPurchaseHistory.get(i);
+			Long idProduk = produkDiAnalisa.getIdProduk();
+			
+			
+			ArrayList<Product> produkYangSama = new ArrayList<Product>();
+			
+			if(produkDenganFrequency.containsKey(idProduk)) {
+				// kalau sudah pernah disimpan listnya, ambil yang dulu ada 
+				// trus di ganti isi variablenya dengan yang ada di dalam tabel
+				produkYangSama = produkDenganFrequency.get(idProduk);
+			}
+			
+			// masukin is produk yang akan di analisa ke dalam listnya
+			produkYangSama.add(produkDiAnalisa);
+			produkDenganFrequency.put(idProduk, produkYangSama);
+		}
+		
+		// pada akhir iterasi dari baris 159-172, kita mendapatkan hasil id dengan list produk
+		// contoh kalo dalam purchase history ada dua sandal dengan id 2 dan tiga baju dengan id 5, 
+		// kita akan punya isi tabel Map
+		// sebagai berikut:
+		/*
+		id      |       barang
+		2		|		sandal, sandal		
+		5		|		baju, baju, baju		
+		*/
+		
+		// Setelah mendapatkan hasil frekuensi, kita akkan mengurutkan mana yang paling banyak
+		// dan di berikan ke hasil rekomendasinya
+		// treeMap mengorder dari kecil ke besar, tapi kita mau sebaliknya jadi harus menggunakan reverseOrder
+		
+		Map<Integer, ArrayList<Product>> hasilUrutanFrequency = 
+				new TreeMap<Integer, ArrayList<Product>>(Collections.reverseOrder());
+		
+		Collection<ArrayList<Product>> hasilPerhitunganFrequency = produkDenganFrequency.values(); 
+		
+		for(ArrayList<Product> current : hasilPerhitunganFrequency) {
+			Integer jumlahFrequency = current.size();
+			hasilUrutanFrequency.put(jumlahFrequency, current);
+		}
+		
+		// skrg kita sudah mengurutkan dengan menggunakan TreeMap, kita akan menaruh mulai
+		// dari frequency paling besar ke paling kecil
+		
+		Collection<ArrayList<Product>> hasilAkhir = hasilUrutanFrequency.values(); 
+		
+		List<Product>  hasilAkhirRekomendasi = new ArrayList<Product>();
+		for(ArrayList<Product> current : hasilAkhir) {
+			// kita cuma perlu mendapatkan produk pertama
+			Product pertama = current.get(0);
+			String namaProduk = pertama.getNamaProduk();
+			Long idProduk = pertama.getIdProduk();
+			Integer frequency = current.size();
+			
+			System.out.println(namaProduk + "- Produk " + idProduk + " dengan frequency " + frequency);
+			hasilAkhirRekomendasi.add(pertama);
+		}
+		
+		return hasilAkhirRekomendasi;
 	}
 }
