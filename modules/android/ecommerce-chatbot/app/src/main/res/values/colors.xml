@@ -8,5 +8,6 @@
     <color name="colorText">#737373</color>
     <color name="colorTextHint">#999999</color>
     <color name="buttonSend">#efb550</color>
+    <color name="textColor">#000000</color>
 
 </resources>

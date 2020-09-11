@@ -23,7 +23,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="30dp">
+            android:paddingTop="20dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -52,25 +52,21 @@
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:paddingTop="5dp"
-                android:text="Forgot Password?" />
-
-
             <Button
                 android:id="@+id/btn_Login"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="22dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="2dp"
                 android:background="#d67601"
                 android:text="Sign in"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:onClick="onLogin"/>
+
         </LinearLayout>
     </RelativeLayout>
 
@@ -91,10 +87,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:gravity="center_horizontal"
-        android:text="Login "
+        android:text="Login"
         android:textColor="#fff"
         android:textSize="26sp"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>

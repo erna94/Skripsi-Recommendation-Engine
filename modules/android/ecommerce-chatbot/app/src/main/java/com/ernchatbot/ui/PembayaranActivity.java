@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class PembayaranActivity extends AppCompatActivity {
     MessageAdapter ernaAdapter;
     TextView totalPembayaran;
     EditText emailPemesan;
+    Button btn_Pembayaran;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class PembayaranActivity extends AppCompatActivity {
         this.totalPembayaran = findViewById(R.id.txt_total_pembayaran);
         this.emailPemesan = findViewById(R.id.email_pemesan);
 
+        btn_Pembayaran = (Button) findViewById(R.id.btn_pembayaran);
         ernaListView.setAdapter(ernaAdapter);
         setupRingkasanPembayaran();
     }
@@ -55,7 +58,7 @@ public class PembayaranActivity extends AppCompatActivity {
         this.totalPembayaran.setText(totalHarga + " IDR");
     }
 
-    public void Bayar(View view) {
+    public void onBayar(View view) {
         Intent intent = new Intent(PembayaranActivity.this, LoginActivity.class);
         startActivity(intent);
 
