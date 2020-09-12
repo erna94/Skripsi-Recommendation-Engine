@@ -126,11 +126,16 @@ public class RekomendasiEngine {
 		}
 		
 		double bedaKerjaanPangkat2 = Math.pow(2, bedaKerjaan);
+		 
+		System.out.println("\n Zscore User dianalisa: " + user2.getZScoreUmur() + " - zScore user yang laen: " + user1.getZScoreUmur());
 		
 		double bedaUmur = user2.getZScoreUmur() - user1.getZScoreUmur();
+		System.out.println("Hasil beda zScore " + bedaUmur);
+		
 		double bedaUmurPangkat2 = Math.pow(2, bedaUmur);
 		
 		double tambahPangkat = bedaLokasiPangkat2 + bedaKerjaanPangkat2 + bedaUmurPangkat2;
+		System.out.println("Hasil tambah sebelum akar " + tambahPangkat);
 		double akarSemua = Math.sqrt(tambahPangkat);
 		
 		return akarSemua;
