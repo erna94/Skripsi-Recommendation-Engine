@@ -35,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
         //intent pindah halaman
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
-
     }
 
     public void onLoginText(View view){
@@ -43,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         //intent pindah halaman
         Intent intent2 = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent2);
-
     }
 
 }

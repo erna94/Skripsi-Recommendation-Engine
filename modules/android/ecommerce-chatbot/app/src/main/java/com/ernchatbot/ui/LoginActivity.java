@@ -40,7 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         //intent pindah halaman
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+    public void onRegisterText(View view){
 
+        //intent pindah halaman
+        Intent intent3 = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent3);
 
     }
 }

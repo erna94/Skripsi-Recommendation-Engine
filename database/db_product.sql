@@ -14,6 +14,8 @@ select * from riwayat_pembelian;
 select * from preferensi;
 select * from kategori;
 desc login;
+drop table riwayat_pembelian;
+drop table produk;
 
 create table login (
 id_user int not null primary key AUTO_INCREMENT,
@@ -769,7 +771,7 @@ insert into kategori (id_kategori, nama_kategori, parent_id) values
 insert into produk (id_produk, id_kategori, nama_produk, deskripsi_produk, harga_produk, image_link, brand, warna, bahan) values
 (1, 111, 'Kemeja motif', 'Bahan Flanel | LD : 94cm | P : 51cm', 599900, 'https://static.zara.net/photos///2020/V/0/1/p/2479/209/330/2/w/1538/2479209330_6_1_1.jpg?ts=1582028993240', 'zara', 'motif', 'katun'),
 (2, 111, 'Blus motif hewan', 'size xs, s, m, l. Bahan: katun', 599000, 'https://static.zara.net/photos///2020/V/0/1/p/7484/030/064/2/w/1538/7484030064_6_1_1.jpg?ts=1582029193134', 'zara', 'motif', 'katun'),
-(3, 111, 'Blus kerah mandarin hitam', 'size xs, s, m, l. Bahan: katun', 499900, 'https://static.zara.net/photos///2020/V/0/1/p/8004/021/250/2/w/1256/8004021250_2_1_1.jpg?ts=1582275370968', 'zara', 'hitam', 'katun'),
+(3, 111, 'Blus kerah mandarin putih', 'size xs, s, m, l. Bahan: katun', 499900, 'https://static.zara.net/photos///2020/V/0/1/p/8004/021/250/2/w/1256/8004021250_2_1_1.jpg?ts=1582275370968', 'zara', 'hitam', 'katun'),
 (4, 111, 'Kemeja Popelin dengan rimpel', 'size xs, s, m, l. Bahan: katun', 399900, 'https://static.zara.net/photos///2020/V/0/1/p/8004/021/250/2/w/1256/8004021250_2_1_1.jpg?ts=1582275370968', 'zara', 'putih', 'katun'),
 (5, 111, 'Kemeja popelin bordiran', 'size xs, s, m, l Bahan: katun', 479900, 'https://static.zara.net/photos///2020/V/0/1/p/7200/024/250/2/w/1538/7200024250_2_1_1.jpg?ts=1582029192947', 'h&m', 'putih', 'katun'),
 (6, 111, 'Blus bahan satin', 'size s, m, l Bahan: katun', 699900, 'https://static.zara.net/photos///2020/V/0/1/p/3666/028/500/2/w/1538/3666028500_6_1_1.jpg?ts=1582029104093', 'h&m', 'hijau', 'katun'),
@@ -787,7 +789,7 @@ insert into produk (id_produk, id_kategori, nama_produk, deskripsi_produk, harga
 (18, 111, 'kemeja pink poplyn oversize', 'size xs,s m, l, xl Bahan: katun', 479900, 'https://static.zara.net/photos///2020/V/0/1/p/3067/045/622/2/w/1450/3067045622_6_1_1.jpg?ts=1583400231251', 'h&m', 'pink', 'katun'),
 (19, 111, 'kemeja pink linen crop', 'size xs,s m, l, xl Bahan: denim', 599900,'https://static.zara.net/photos//mkt/misc/watermarks/joinlife-ss19-v2/joinlife-large.svg?ts=1571917268523', 'zara', 'pink', 'linen'),
 (20, 111, 'kemeja hijau linen crop', 'size xs,s m, l, xl Bahan: linen', 479900, 'https://static.zara.net/photos///2020/V/0/1/p/2361/500/506/2/w/1450/2361500506_6_1_1.jpg?ts=1583846464947', 'pull&bear', 'hijau', 'linen'),
-(21, 112, 'kaos mulan', 'size xs,s m, l, xl', 399900, 'https://static.zara.net/photos//mkt/misc/watermarks/joinlife-ss19-v2/joinlife-large.svg?ts=1571917268523', 'zara', 'putih', 'katun'),
+(21, 112, 'kaos text', 'size xs,s m, l, xl', 399900, 'https://static.zara.net/photos///2020/I/0/1/p/5643/420/029/2/w/2220/5643420029_6_1_1.jpg?ts=1599215279373', 'zara', 'putih', 'katun'),
 (22, 112, 'kaos polos kuning', 'size xs,s m, l, xl', 299900, 'https://static.zara.net/photos///2020/V/0/1/p/4174/156/300/2/w/1450/4174156300_2_1_1.jpg?ts=1580382682814', 'zara', 'kuning', 'katun'),
 (23, 112, 'kaos orane', 'size xs,s m, l, xl', 299900, 'https://static.zara.net/photos///2020/V/0/1/p/1443/036/615/2/w/1450/1443036615_6_1_1.jpg?ts=1583399692255', 'mango','orange', 'katun'),
 (24, 112, 'kaos polos hijau', 'size xs,s m, l, xl', 299900, 'https://static.zara.net/photos//mkt/misc/watermarks/joinlife-ss19-v2/joinlife-large.svg?ts=1571917268523', 'mango', 'hijau', 'katun'),

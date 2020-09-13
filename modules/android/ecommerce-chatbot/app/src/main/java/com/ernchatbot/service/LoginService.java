@@ -13,7 +13,6 @@ public class LoginService {
     String password_input;
     static String URL_LOCAL = "http://10.0.2.2:8080";
 
-
     public String getLogin(String username_input, String password_input) throws Exception {
 
         HttpClient client = new DefaultHttpClient();
