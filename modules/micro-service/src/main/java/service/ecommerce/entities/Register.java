@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * umur int not null, 
  *
  */
-@Table(name="register")
+@Table(name="user")
 public class Register {
 
 	@Id // @ID ini untuk menandakan kalau column id_user itu adalah primary keynya 

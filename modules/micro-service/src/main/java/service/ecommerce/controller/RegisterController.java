@@ -10,7 +10,7 @@ import service.db.RegisterRepository;
 import service.ecommerce.entities.Register;
 
 @RestController
-@RequestMapping("/api/register")
+@RequestMapping("/api")
 public class RegisterController {
 	
 	private final RegisterRepository registerRepository;

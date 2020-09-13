@@ -13,4 +13,7 @@ public interface RegisterRepository extends CrudRepository<Register, Long>{
 	
 	@Query("SELECT u FROM Register u WHERE u.idUser = :idUser")
 	Register findRegisterByID(@Param(value = "idUser") Long idUser);
+	
+	@Query("SELECT u FROM Register u")
+	List<Register> findSemuaRegister();
 }
