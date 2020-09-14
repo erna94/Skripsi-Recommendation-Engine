@@ -3,9 +3,13 @@ package com.ernchatbot.service;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class LoginService {
@@ -17,9 +21,30 @@ public class LoginService {
 
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(URL_LOCAL + "/api/login/" + username_input + "/" + password_input);
-
         HttpResponse response = client.execute(request);
+        return getAPIResponse(response);
+    }
 
+    public String createNewLogin(String email, String username, String password) throws Exception {
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(URL_LOCAL + "/api/login");
+        httpPost.setHeader("Accept", "application/json");
+        httpPost.setHeader("Content-type", "application/json");
+        String json = "{\n" +
+                "\"email\": " + email + ",\n" +
+                "\"userName\": "+ username +  ",\n" +
+                "\"password\": "+ password + "\n" +
+                "}";
+
+        StringEntity entity = new StringEntity(json);
+        httpPost.setEntity(entity);
+        HttpResponse httpResponse = client.execute(httpPost);
+        String response = getAPIResponse(httpResponse);
+        return response;
+    }
+
+
+    private String getAPIResponse(HttpResponse response) throws IOException {
         // Get the response
         BufferedReader rd = new BufferedReader
                 (new InputStreamReader(
@@ -35,5 +60,4 @@ public class LoginService {
 
         return allResponse;
     }
-
 }

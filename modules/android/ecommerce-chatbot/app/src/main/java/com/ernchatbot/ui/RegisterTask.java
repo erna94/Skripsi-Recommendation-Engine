@@ -22,14 +22,21 @@ public class RegisterTask extends AsyncTask<String, Void, LoginResponse> {
     @Override
     protected LoginResponse doInBackground(String... parameters) {
 
-        String usernameBaru = parameters[0];
-        String emailBaru = parameters[1];
-        String passwordBaru = parameters[2];
-        String umurBaru = parameters[3];
-        String lokasiBaru = parameters[4];
-        String pekerjaanBaru  = parameters[5];
-
         LoginResponse loginResponse = new LoginResponse();
+        try {
+            String usernameBaru = parameters[0];
+            String emailBaru = parameters[1];
+            String passwordBaru = parameters[2];
+            String umurBaru = parameters[3];
+            String lokasiBaru = parameters[4];
+            String pekerjaanBaru  = parameters[5];
+
+            LoginService loginService = new LoginService();
+            String response = loginService.createNewLogin(emailBaru, usernameBaru, passwordBaru);
+        } catch(Throwable r) {
+            r.printStackTrace();
+        }
+
         return loginResponse;
     }
 
