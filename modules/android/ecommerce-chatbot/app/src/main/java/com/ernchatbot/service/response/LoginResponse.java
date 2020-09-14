@@ -1,7 +1,9 @@
 package com.ernchatbot.service.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+@JsonIgnoreProperties(value = { "timestamp" })
 public class LoginResponse {
     Long idUser;
     String email;

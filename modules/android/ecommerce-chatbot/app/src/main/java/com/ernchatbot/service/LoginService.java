@@ -31,9 +31,9 @@ public class LoginService {
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
         String json = "{\n" +
-                "\"email\": " + email + ",\n" +
-                "\"userName\": "+ username +  ",\n" +
-                "\"password\": "+ password + "\n" +
+                "\"email\": \"" + email + "\",\n" +
+                "\"userName\": \""+ username +  "\",\n" +
+                "\"password\": \""+ password + "\"\n" +
                 "}";
 
         StringEntity entity = new StringEntity(json);
@@ -51,8 +51,8 @@ public class LoginService {
 
         String json = "{\n" +
                 "\"idUser\": " + idUser + ",\n" +
-                "\"lokasi\": " + lokasi + ",\n" +
-                "\"pekerjaan\": "+ pekerjaan +  ",\n" +
+                "\"lokasi\": \"" + lokasi + "\",\n" +
+                "\"pekerjaan\": \""+ pekerjaan +  "\",\n" +
                 "\"umur\": "+ umur + "\n" +
                 "}";
 

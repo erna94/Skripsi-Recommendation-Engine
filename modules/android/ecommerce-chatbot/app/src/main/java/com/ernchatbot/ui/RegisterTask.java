@@ -38,6 +38,8 @@ public class RegisterTask extends AsyncTask<String, Void, LoginResponse> {
             //membuat Login baru dulu
             LoginService loginService = new LoginService();
             String response = loginService.createNewLogin(emailBaru, usernameBaru, passwordBaru);
+            Log.println(Log.DEBUG,  this.getClass().toString(), "\n\n #########createNewLogin =" + response);
+
             ObjectMapper objectMapper = new ObjectMapper();
             loginResponse = objectMapper.readValue(response, new TypeReference<LoginResponse>() {});
 
