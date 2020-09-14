@@ -30,6 +30,15 @@ public class LoginService {
         HttpPost httpPost = new HttpPost(URL_LOCAL + "/api/login");
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
+
+        /****
+         * Ini menciptakan input yang sama seperti di REST Client yaitu berbentuk JSON berikut
+         * {
+         * "email": "userbaru1@gmail.com",
+         * "userName": "user_baru1",
+         * "password": "abc123"
+         * }
+         */
         String json = "{\n" +
                 "\"email\": \"" + email + "\",\n" +
                 "\"userName\": \""+ username +  "\",\n" +
@@ -49,6 +58,16 @@ public class LoginService {
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
 
+        /***
+         * Menciptakan JSON yang sama seperti di REST Client, idUser di sini adalah idUser yang
+         * baru diciptakan
+         * {
+         *   "idUser": 51,
+         *   "lokasi": "dki jakarta",
+         *   "pekerjaan": "pelajar",
+         *   "umur": 15
+         * }
+         */
         String json = "{\n" +
                 "\"idUser\": " + idUser + ",\n" +
                 "\"lokasi\": \"" + lokasi + "\",\n" +
