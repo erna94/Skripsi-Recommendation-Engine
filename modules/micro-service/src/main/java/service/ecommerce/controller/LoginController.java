@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import service.db.LoginRepository;
 import service.ecommerce.entities.Login;
+import service.ecommerce.entities.User;
 
 
 
@@ -59,7 +62,12 @@ public class LoginController {
 			return u2;
 		}     
 	}
-
+	
+	
+	@PostMapping("")
+	public Login newLogin(@RequestBody Login newLogin) {
+		return loginRepository.save(newLogin);
+	}
 
 	private Login getLoginFromDB(String userName, String password) {
 		// code buat panggil database
