@@ -32,9 +32,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void onRegister(View view){
 
-        //intent pindah halaman
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-        startActivity(intent);
+        String usernameBaru = this.username.getText().toString();
+        String emailBaru = this.email.getText().toString();
+        String passwordBaru = this.password.getText().toString();
+        String umurBaru = this.umur.getText().toString();
+        String lokasiBaru = this.umur.getText().toString();
+        String pekerjaanBaru  = this.pekerjaan.getText().toString();
+
+        RegisterTask task = new RegisterTask(this);
+        task.execute(usernameBaru, emailBaru, passwordBaru, umurBaru, lokasiBaru, pekerjaanBaru);
     }
 
     public void onLoginText(View view){

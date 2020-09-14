@@ -1,0 +1,46 @@
+package com.ernchatbot.ui;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.util.Log;
+
+import com.ernchatbot.service.LoginService;
+import com.ernchatbot.service.response.LoginResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class RegisterTask extends AsyncTask<String, Void, LoginResponse> {
+
+    private LoginResponse loginResponse;
+    public static Long loggedInUser;
+    Activity context;
+
+    public RegisterTask(Activity context) {
+        this.context = context;
+    }
+
+    @Override
+    protected LoginResponse doInBackground(String... parameters) {
+
+        String usernameBaru = parameters[0];
+        String emailBaru = parameters[1];
+        String passwordBaru = parameters[2];
+        String umurBaru = parameters[3];
+        String lokasiBaru = parameters[4];
+        String pekerjaanBaru  = parameters[5];
+
+        LoginResponse loginResponse = new LoginResponse();
+        return loginResponse;
+    }
+
+    @Override
+    protected void onPostExecute (LoginResponse result){
+        // set ke static kalo ada user ID nya buat di pake
+        LoginTask.loggedInUser = result.getIdUser();
+
+
+        //intent pindah halaman
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
+}
