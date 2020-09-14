@@ -43,6 +43,26 @@ public class LoginService {
         return response;
     }
 
+    public String createNewUser(Long idUser, String umur, String lokasi, String pekerjaan) throws Exception {
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(URL_LOCAL + "/api/user");
+        httpPost.setHeader("Accept", "application/json");
+        httpPost.setHeader("Content-type", "application/json");
+
+        String json = "{\n" +
+                "\"idUser\": " + idUser + ",\n" +
+                "\"lokasi\": " + lokasi + ",\n" +
+                "\"pekerjaan\": "+ pekerjaan +  ",\n" +
+                "\"umur\": "+ umur + "\n" +
+                "}";
+
+        StringEntity entity = new StringEntity(json);
+        httpPost.setEntity(entity);
+        HttpResponse httpResponse = client.execute(httpPost);
+        String response = getAPIResponse(httpResponse);
+        return response;
+    }
+
 
     private String getAPIResponse(HttpResponse response) throws IOException {
         // Get the response

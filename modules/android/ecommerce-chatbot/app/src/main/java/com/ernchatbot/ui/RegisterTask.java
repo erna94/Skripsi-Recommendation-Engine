@@ -7,7 +7,11 @@ import android.util.Log;
 
 import com.ernchatbot.service.LoginService;
 import com.ernchatbot.service.response.LoginResponse;
+import com.ernchatbot.service.response.Product;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.List;
 
 public class RegisterTask extends AsyncTask<String, Void, LoginResponse> {
 
@@ -31,8 +35,17 @@ public class RegisterTask extends AsyncTask<String, Void, LoginResponse> {
             String lokasiBaru = parameters[4];
             String pekerjaanBaru  = parameters[5];
 
+            //membuat Login baru dulu
             LoginService loginService = new LoginService();
             String response = loginService.createNewLogin(emailBaru, usernameBaru, passwordBaru);
+            ObjectMapper objectMapper = new ObjectMapper();
+            loginResponse = objectMapper.readValue(response, new TypeReference<LoginResponse>() {});
+
+            // skrg kita membuat User baru
+            Long idBaru = loginResponse.getIdUser(); // ini kita mengambil id baru Login yang baru dibuat
+            String responseDariCreateUser = loginService.createNewUser(idBaru, umurBaru, lokasiBaru, pekerjaanBaru);
+            Log.println(Log.DEBUG,  this.getClass().toString(), "\n\n #########responseDariCreateUser =" + responseDariCreateUser);
+
         } catch(Throwable r) {
             r.printStackTrace();
         }
