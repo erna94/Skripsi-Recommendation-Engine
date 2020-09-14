@@ -2,6 +2,8 @@ package service.ecommerce.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,7 +12,8 @@ import javax.persistence.Table;
 @Table(name="login")
 public class Login {
 
-	@Id // @ID ini untuk menandakan kalau column id_product itu adalah primary keynya 
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	// @ID ini untuk menandakan kalau column id_product itu adalah primary keynya 
 	// @Column buat kasih tau kalau ini idProduct 
 	// di object di hubungkan ke kolom id_product di database
 	@Column(name="id_user", unique = true) 
