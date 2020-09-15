@@ -118,24 +118,25 @@ public class RekomendasiEngine {
 			bedaLokasi = 1.0;
 		}
 		
-		double bedaLokasiPangkat2 = Math.pow(2, bedaLokasi);
+		double bedaLokasiPangkat2 = Math.pow(bedaLokasi, 2 );
 		
 		double bedaKerjaan = 0.0;
 		if(! user2.getPekerjaan().equals(user1.getPekerjaan())) {
 			bedaKerjaan = 1.0;
 		}
 		
-		double bedaKerjaanPangkat2 = Math.pow(2, bedaKerjaan);
+		double bedaKerjaanPangkat2 = Math.pow(bedaKerjaan, 2 );
 		 
 		System.out.println("\n Zscore User dianalisa: " + user2.getZScoreUmur() + " - zScore user yang laen: " + user1.getZScoreUmur());
 		
 		double bedaUmur = user2.getZScoreUmur() - user1.getZScoreUmur();
 		System.out.println("Hasil beda zScore " + bedaUmur);
 		
-		double bedaUmurPangkat2 = Math.pow(2, bedaUmur);
+		double bedaUmurPangkat2 = Math.pow(bedaUmur, 2);
 		
 		double tambahPangkat = bedaLokasiPangkat2 + bedaKerjaanPangkat2 + bedaUmurPangkat2;
-		System.out.println("Hasil tambah sebelum akar " + tambahPangkat);
+		System.out.println("\nUmur pangkat 2 " + bedaUmurPangkat2 + " + lokasi pangkat 2 " + bedaLokasiPangkat2 + " + kerjaan pangkat 2 " 
+				+ bedaKerjaanPangkat2 +  "\nHasil tambah sebelum akar " + tambahPangkat);
 		double akarSemua = Math.sqrt(tambahPangkat);
 		
 		return akarSemua;
