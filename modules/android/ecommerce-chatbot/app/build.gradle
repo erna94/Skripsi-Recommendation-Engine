@@ -43,4 +43,5 @@ dependencies {
     // Penambahan oleh Erna
     implementation 'org.apache.httpcomponents:httpclient:4.5.8'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    implementation 'com.synnapps:carouselview:0.1.4'
 }

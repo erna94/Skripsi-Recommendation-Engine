@@ -1,19 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- "Mark Favorite", should appear as action button if possible -->
     <item
         android:id="@+id/action_cart"
         android:icon="@drawable/cart"
-        android:title="cart"
-        app:showAsAction="ifRoom"
+        android:title="Cart"
+        app:showAsAction="never"
         >
     </item>
     <item
         android:id="@+id/action_about"
         android:icon="@drawable/ic_about_24"
-        android:title="about"
-        app:showAsAction="ifRoom"
+        android:title="About"
+        app:showAsAction="never"
+        >
+    </item>
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/ic_about_24"
+        android:title="Log Out"
+        app:showAsAction="never"
         >
     </item>
 

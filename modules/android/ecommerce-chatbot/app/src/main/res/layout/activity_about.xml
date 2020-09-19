@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.ernchatbot.ui.AboutActivity">
 
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carrouselView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:visibility="visible"
+        app:autoPlay="true"
+        app:fillColor="#0C0C0C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:pageColor="#00000000"
+        app:radius="4dp"
+        app:strokeColor="#AEAEAE"
+        app:strokeWidth="1dp" />
+
 </android.support.constraint.ConstraintLayout>

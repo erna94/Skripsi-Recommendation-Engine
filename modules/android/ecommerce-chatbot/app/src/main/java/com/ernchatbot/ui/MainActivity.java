@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -13,7 +14,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -29,16 +29,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.synnapps.carouselview.CarouselView;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements RecognitionListener {
+public class MainActivity extends AppCompatActivity implements
+        RecognitionListener {
 
     EditText ernaEditTex;
     ListView ernaListView;
     MessageAdapter ernaAdapter;
-
+    CarouselView carouselView;
+    int[] sampleImages = {R.drawable.about1, R.drawable.about2, R.drawable.about3, R.drawable.about4};
     // memakai LinkedHashMap supaya cartnya berurutan
     static Map<ProductInfo, Integer> cart = new LinkedHashMap<ProductInfo, Integer>();
     String speechString = "";
@@ -52,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
     public static final Integer RecordAudioRequestCode = 1;
     ImageView btnPtt;
     ImageButton sendMessage;
-
     //methode untuk mengulang sesi penerimaan suara yang akan diterjemahkan kedalam teks
     private void resetSpeechRecognizer() {
 
@@ -65,31 +68,42 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         else
             finish();
     }
-
     //inisialisasi speech recognizer
     private void setRecogniserIntent() {
 
         recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         //melakukan pemilihan bahasa yang akan diolah pada saat penerimaan suara dan diterjemahkan menjadi tulisan
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "in");
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                "in");
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
             checkPermission();
         }
         this.ernaEditTex = findViewById(R.id.ernaEditText);
         this.ernaListView = findViewById(R.id.erna_messages_view);
         this.ernaAdapter = new MessageAdapter(this);
+        //carouselView = findViewById(R.id.carrouselView);
         sendMessage = findViewById(R.id.sendMessage);
         btnPtt = findViewById(R.id.btnPtt);
         ernaListView.setAdapter(ernaAdapter);
-
+        /**carouselView.setPageCount(sampleImages.length);
+         ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+        imageView.setImageResource(sampleImages[position]);
+        }
+        };
+         //carouselView.setImageListener(imageListener);**/
         speech = SpeechRecognizer.createSpeechRecognizer(this);
 
         setRecogniserIntent();
@@ -97,13 +111,13 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         findViewById(R.id.btnPtt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ernaEditTex.setHint("Listening...");
                 resetSpeechRecognizer();
                 speech.startListening(recognizerIntent);
                 ernaEditTex.setText(""
                 );
             }
         });
-
         final TextWatcher txwatcher = new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -125,24 +139,22 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         };
         ernaEditTex.addTextChangedListener(txwatcher);
     }
-            private void checkPermission() {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},RecordAudioRequestCode);
-                    }
-                }
+    private void checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},RecordAudioRequestCode);
             }
-
-            //methode yang menghandle hasil dari pengecekan akses
-            @Override
-            public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-                if (requestCode == RecordAudioRequestCode && grantResults.length > 0 ){
-                    if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                        Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show();
-                }
-            }
-
+        }
+    }
+    //methode yang menghandle hasil dari pengecekan akses
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == RecordAudioRequestCode && grantResults.length > 0 ){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     public void onResume() {
         Log.i(LOG_TAG, "resume");
@@ -194,7 +206,17 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         //displaying the first match
         //displaying the first match
         ernaEditTex.setText(speechString );
-
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Message messageBaru = new Message(speechString,true);
+                ernaAdapter.hapusMessage();
+                ernaAdapter.tambahMessage(messageBaru);
+                WitAITask witAITask = new WitAITask(ernaAdapter, ernaListView);
+                witAITask.execute(speechString);
+                ernaEditTex.setHint("Write a message");
+            }
+        });
         //speech.startListening(recognizerIntent);
     }
     //methode untuk menghandle saat terjadi error
@@ -205,28 +227,23 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         // rest voice recogniser
         resetSpeechRecognizer();
         speech.startListening(recognizerIntent);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Message messageBaru = new Message(speechString,true);
-                ernaAdapter.hapusMessage();
-                ernaAdapter.tambahMessage(messageBaru);
-                WitAITask witAITask = new WitAITask(ernaAdapter, ernaListView);
-                witAITask.execute(speechString);
-            }
-        });
-    }
 
+    }
     @Override
     public void onRmsChanged(float v) {
-    }
-    @Override
-    public void onPartialResults(Bundle bundle) {
-    }
-    @Override
-    public void onEvent(int i, Bundle bundle) {
+
     }
 
+
+    @Override
+    public void onPartialResults(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onEvent(int i, Bundle bundle) {
+
+    }
     public String getErrorText(int errorCode) {
         String message;
         switch (errorCode) {
@@ -263,14 +280,11 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         }
         return message;
     }
-
-    public void onMic(View view){
-
-    }
-
     public void sendMessage(View view) {
         final String message = ernaEditTex.getText().toString();
         Log.println(Log.VERBOSE, "ernaBot", "Tertekan tombol... " + message);
+        //carouselView.setVisibility(View.GONE);
+        //ernaListView.setVisibility(View.VISIBLE);
 
         // kalo input yg dimasukkan di edit text lebih dari nol maka akan dijalankan
         if (message.length() > 0) {
@@ -286,7 +300,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             });
         }
     }
-
 
     @Override
     // fungsi buat menampilkan keranjang icon di menu
@@ -307,6 +320,17 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
             case R.id.action_cart:
                 Intent intent = new Intent(this, KeranjangActivity.class);
                 startActivity(intent);
+                return true;
+            case R.id.action_logout:
+                //MASUKIN LOGOUT DISINI
+                Intent logout = new Intent(this, LoginActivity.class);
+                startActivity(logout);
+                finish();
+                return true;
+            case R.id.action_about:
+                Intent about = new Intent(this, AboutActivity.class);
+                startActivity(about);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -316,5 +340,6 @@ public class MainActivity extends AppCompatActivity implements RecognitionListen
         InputMethodManager imm = (InputMethodManager) context.getSystemService(android.app.Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-}
 
+
+}
