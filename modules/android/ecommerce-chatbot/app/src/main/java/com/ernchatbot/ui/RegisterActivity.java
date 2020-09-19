@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         String emailBaru = this.email.getText().toString();
         String passwordBaru = this.password.getText().toString();
         String umurBaru = this.umur.getText().toString();
-        String lokasiBaru = this.umur.getText().toString();
+        String lokasiBaru = this.lokasi.getText().toString();
         String pekerjaanBaru  = this.pekerjaan.getText().toString();
 
         RegisterTask task = new RegisterTask(this);

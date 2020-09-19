@@ -242,10 +242,12 @@ public class RekomendasiEngine {
 				// kita cuma perlu mendapatkan produk pertama
 				Product pertama = current.get(0);
 				String namaProduk = pertama.getNamaProduk();
+				String deskripsiProduk = pertama.getDeskripsiProduk();
+				Double hargaProduk = pertama.getHargaProduk();
 				Long idProduk = pertama.getIdProduk();
 				Integer frequency = current.size();
 				
-				System.out.println(i++ + ". " + namaProduk + "- dengan idProduk " + idProduk + " dengan frequency " + frequency);
+				System.out.println(i++ + ". " + namaProduk + " - " + hargaProduk + " - " + deskripsiProduk + " - dengan idProduk " + idProduk + " dengan frequency " + frequency);
 				hasilAkhirRekomendasi.add(pertama);
 			}
 		}
