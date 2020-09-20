@@ -35,8 +35,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements
-        RecognitionListener {
+public class MainActivity extends AppCompatActivity {
 
     EditText ernaEditTex;
     ListView ernaListView;
@@ -46,78 +45,42 @@ public class MainActivity extends AppCompatActivity implements
     // memakai LinkedHashMap supaya cartnya berurutan
     static Map<ProductInfo, Integer> cart = new LinkedHashMap<ProductInfo, Integer>();
     String speechString = "";
-    private String LOG_TAG = "SpeechActivity";
     //deklarasi penggunaan fitur speech recognizer
-    private SpeechRecognizer speech = null;
     TextView editText;
-    Intent mSpeechRecognizerIntent;
-    Intent recognizerIntent;
-    private AudioManager manager;
+
     public static final Integer RecordAudioRequestCode = 1;
-    ImageView btnPtt;
+    ImageView micButton;
     ImageButton sendMessage;
-    //methode untuk mengulang sesi penerimaan suara yang akan diterjemahkan kedalam teks
-    private void resetSpeechRecognizer() {
-
-        if(speech != null)
-            speech.destroy();
-        speech = SpeechRecognizer.createSpeechRecognizer(this);
-        Log.i(LOG_TAG, "isRecognitionAvailable: " + SpeechRecognizer.isRecognitionAvailable(this));
-        if(SpeechRecognizer.isRecognitionAvailable(this))
-            speech.setRecognitionListener(this);
-        else
-            finish();
-    }
-    //inisialisasi speech recognizer
-    private void setRecogniserIntent() {
-
-        recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        //melakukan pemilihan bahasa yang akan diolah pada saat penerimaan suara dan diterjemahkan menjadi tulisan
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-                "in");
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
-    }
-
+    MicListener micListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.micListener = new MicListener(this);
+        this.micListener.resetSpeechRecognizer();
 
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
             checkPermission();
         }
         this.ernaEditTex = findViewById(R.id.ernaEditText);
         this.ernaListView = findViewById(R.id.erna_messages_view);
+        this.micButton =  findViewById(R.id.btnPtt);
         this.ernaAdapter = new MessageAdapter(this);
-        //carouselView = findViewById(R.id.carrouselView);
-        sendMessage = findViewById(R.id.sendMessage);
-        btnPtt = findViewById(R.id.btnPtt);
-        ernaListView.setAdapter(ernaAdapter);
-        /**carouselView.setPageCount(sampleImages.length);
-         ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-        imageView.setImageResource(sampleImages[position]);
-        }
-        };
-         //carouselView.setImageListener(imageListener);**/
-        speech = SpeechRecognizer.createSpeechRecognizer(this);
 
-        setRecogniserIntent();
-        manager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        findViewById(R.id.btnPtt).setOnClickListener(new View.OnClickListener() {
+
+        sendMessage = findViewById(R.id.sendMessage);
+        ernaListView.setAdapter(ernaAdapter);
+
+        micButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ernaEditTex.setHint("Listening...");
-                resetSpeechRecognizer();
-                speech.startListening(recognizerIntent);
-                ernaEditTex.setText(""
-                );
+                micListener.startListening();
+                ernaEditTex.setText("");
             }
         });
+
         final TextWatcher txwatcher = new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -125,11 +88,11 @@ public class MainActivity extends AppCompatActivity implements
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (s.length() > 0) {
-                    btnPtt.setVisibility(View.GONE);
+                    micButton.setVisibility(View.GONE);
                     sendMessage.setVisibility(View.VISIBLE);
                 }
                 else  if(s.length()==0){
-                    btnPtt.setVisibility(View.VISIBLE);
+                    micButton.setVisibility(View.VISIBLE);
                     sendMessage.setVisibility(View.GONE);
                 }
             }
@@ -139,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements
         };
         ernaEditTex.addTextChangedListener(txwatcher);
     }
+
+
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -157,53 +122,34 @@ public class MainActivity extends AppCompatActivity implements
     }
     @Override
     public void onResume() {
-        Log.i(LOG_TAG, "resume");
+        Log.i(this.getClass().toString(), "resume");
         super.onResume();
     }
+
     //melakukan stop speechrecognizer pada saat keluar dari halaman
     @Override
     protected void onPause() {
-        Log.i(LOG_TAG, "pause");
+        Log.i(this.getClass().toString(), "pause");
         super.onPause();
-        speech.stopListening();
+        micListener.stopListening();
     }
+
     //melakukan stop speechrecognizer pada saat aplikasi berhenti
     @Override
     protected void onStop() {
-        Log.i(LOG_TAG, "stop");
+        Log.i(this.getClass().toString(), "stop");
         super.onStop();
-        if (speech != null) {
-            speech.destroy();
-        }
+       micListener.stopListening();
     }
-    @Override
-    public void onReadyForSpeech(Bundle bundle) {
 
-    }
-    @Override
-    public void onBeginningOfSpeech() {
-        Log.i(LOG_TAG, "onBeginningOfSpeech");
-    }
-    @Override
-    public void onBufferReceived(byte[] buffer) {
-        Log.i(LOG_TAG, "onBufferReceived: " + buffer);
-    }
-    //menghentikan speechrecognizer saat tidak terdeteksi lagi suara yang dapat diterjemahkan
-    @Override
-    public void onEndOfSpeech() {
-        Log.i(LOG_TAG, "onEndOfSpeech");
-        speech.stopListening();
-
-    }
     //mengeluarkan hasil dari penerjemahan speechrecognizer yang berupa text
-    @Override
-    public void onResults(Bundle bundle) {
-        Log.i(LOG_TAG, "onResults");
+    public void finishSpeech(Bundle bundle) {
+        Log.i(this.getClass().toString(), "onResults");
         //getting all the matches
         ArrayList<String> matches = bundle
                 .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         speechString = speechString + " " + matches.get(0);
-        //displaying the first match
+
         //displaying the first match
         ernaEditTex.setText(speechString );
         runOnUiThread(new Runnable() {
@@ -217,69 +163,9 @@ public class MainActivity extends AppCompatActivity implements
                 ernaEditTex.setHint("Write a message");
             }
         });
-        //speech.startListening(recognizerIntent);
-    }
-    //methode untuk menghandle saat terjadi error
-    @Override
-    public void onError(int i) {
-        String errorMessage = getErrorText(i);
-        Log.i(LOG_TAG, "FAILED " + errorMessage);
-        // rest voice recogniser
-        resetSpeechRecognizer();
-        speech.startListening(recognizerIntent);
-
-    }
-    @Override
-    public void onRmsChanged(float v) {
-
     }
 
 
-    @Override
-    public void onPartialResults(Bundle bundle) {
-
-    }
-
-    @Override
-    public void onEvent(int i, Bundle bundle) {
-
-    }
-    public String getErrorText(int errorCode) {
-        String message;
-        switch (errorCode) {
-            case SpeechRecognizer.ERROR_AUDIO:
-                message = "Audio recording error";
-                break;
-            case SpeechRecognizer.ERROR_CLIENT:
-                message = "Client side error";
-                break;
-            case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                message = "Insufficient permissions";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK:
-                message = "Network error";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                message = "Network timeout";
-                break;
-            case SpeechRecognizer.ERROR_NO_MATCH:
-                message = "No match";
-                break;
-            case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                message = "RecognitionService busy";
-                break;
-            case SpeechRecognizer.ERROR_SERVER:
-                message = "error from server";
-                break;
-            case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                message = "No speech input";
-                break;
-            default:
-                message = "Didn't understand, please try again.";
-                break;
-        }
-        return message;
-    }
     public void sendMessage(View view) {
         final String message = ernaEditTex.getText().toString();
         Log.println(Log.VERBOSE, "ernaBot", "Tertekan tombol... " + message);
@@ -340,6 +226,4 @@ public class MainActivity extends AppCompatActivity implements
         InputMethodManager imm = (InputMethodManager) context.getSystemService(android.app.Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
-
 }
