@@ -9,6 +9,7 @@ import android.speech.SpeechRecognizer;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 class MicListener  implements RecognitionListener {
     private String LOG_TAG = "SpeechActivity";
@@ -20,7 +21,6 @@ class MicListener  implements RecognitionListener {
     MicListener(MainActivity context) {
         this.context = context;
         resetSpeechRecognizer();
-
     }
 
     public SpeechRecognizer getSpeechRecognizer() {
@@ -56,19 +56,13 @@ class MicListener  implements RecognitionListener {
     }
 
     @Override
-    public void onReadyForSpeech(Bundle params) {
-
-    }
+    public void onReadyForSpeech(Bundle params) {}
 
     @Override
-    public void onBeginningOfSpeech() {
-
-    }
+    public void onBeginningOfSpeech() {}
 
     @Override
-    public void onRmsChanged(float rmsdB) {
-
-    }
+    public void onRmsChanged(float rmsdB) {}
 
     //menghentikan speechrecognizer saat tidak terdeteksi lagi suara yang dapat diterjemahkan
     @Override
@@ -99,7 +93,7 @@ class MicListener  implements RecognitionListener {
         recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         //melakukan pemilihan bahasa yang akan diolah pada saat penerimaan suara dan diterjemahkan menjadi tulisan
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-                "in");
+                Locale.US);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);

@@ -15,19 +15,18 @@ import java.io.InputStreamReader;
 public class LoginService {
     String username_input;
     String password_input;
-    static String URL_LOCAL = "http://10.0.2.2:8080";
 
     public String getLogin(String username_input, String password_input) throws Exception {
 
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(URL_LOCAL + "/api/login/" + username_input + "/" + password_input);
+        HttpGet request = new HttpGet(URLConfig.URL_DEVICE_WITH_USB + "/api/login/" + username_input + "/" + password_input);
         HttpResponse response = client.execute(request);
         return getAPIResponse(response);
     }
 
     public String createNewLogin(String email, String username, String password) throws Exception {
         HttpClient client = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost(URL_LOCAL + "/api/login");
+        HttpPost httpPost = new HttpPost(URLConfig.URL_DEVICE_WITH_USB + "/api/login");
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
 
@@ -54,7 +53,7 @@ public class LoginService {
 
     public String createNewUser(Long idUser, String umur, String lokasi, String pekerjaan) throws Exception {
         HttpClient client = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost(URL_LOCAL + "/api/user");
+        HttpPost httpPost = new HttpPost(URLConfig.URL_DEVICE_WITH_USB + "/api/user");
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
 

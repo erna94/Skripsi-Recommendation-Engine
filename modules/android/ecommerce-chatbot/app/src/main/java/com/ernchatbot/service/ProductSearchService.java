@@ -14,18 +14,16 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ProductSearchService {
-    static String URL_AWS = "http://54.169.172.250:8080";
-    static String URL_LOCAL = "http://10.0.2.2:8080/";
 
     public String getProductByCategory(Long categoryId) throws Exception {
 
-        String url = URL_LOCAL + "/api/produk/list/" + categoryId;
+        String url = URLConfig.URL_LOCAL + "/api/produk/list/" + categoryId;
         String response = callHttpGet(url);
         return response;
     }
 
     public String getRecommendation(Long userId) throws Exception {
-        String url = URL_LOCAL + "/api/produk/rekomendasi/" + userId;
+        String url = URLConfig.URL_LOCAL + "/api/produk/rekomendasi/" + userId;
         String response = callHttpGet(url);
         return response;
     }
