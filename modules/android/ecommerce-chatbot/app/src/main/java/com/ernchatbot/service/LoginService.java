@@ -19,14 +19,14 @@ public class LoginService {
     public String getLogin(String username_input, String password_input) throws Exception {
 
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(URLConfig.URL_DEVICE_WITH_USB + "/api/login/" + username_input + "/" + password_input);
+        HttpGet request = new HttpGet(URLConfig.URL_LOCAL + "/api/login/" + username_input + "/" + password_input);
         HttpResponse response = client.execute(request);
         return getAPIResponse(response);
     }
 
     public String createNewLogin(String email, String username, String password) throws Exception {
         HttpClient client = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost(URLConfig.URL_DEVICE_WITH_USB + "/api/login");
+        HttpPost httpPost = new HttpPost(URLConfig.URL_LOCAL + "/api/login");
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
 
