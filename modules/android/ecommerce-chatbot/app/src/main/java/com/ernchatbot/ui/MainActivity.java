@@ -4,11 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -60,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
         this.micListener = new MicListener(this);
         this.micListener.resetSpeechRecognizer();
 
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             checkPermission();
         }
         this.ernaEditTex = findViewById(R.id.ernaEditText);
         this.ernaListView = findViewById(R.id.erna_messages_view);
-        this.micButton =  findViewById(R.id.btnPtt);
+        this.micButton = findViewById(R.id.btnPtt);
         this.ernaAdapter = new MessageAdapter(this);
 
 
@@ -90,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 if (s.length() > 0) {
                     micButton.setVisibility(View.GONE);
                     sendMessage.setVisibility(View.VISIBLE);
-                }
-                else  if(s.length()==0){
+                } else if (s.length() == 0) {
                     micButton.setVisibility(View.VISIBLE);
                     sendMessage.setVisibility(View.GONE);
                 }
@@ -107,19 +103,21 @@ public class MainActivity extends AppCompatActivity {
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},RecordAudioRequestCode);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, RecordAudioRequestCode);
             }
         }
     }
+
     //methode yang menghandle hasil dari pengecekan akses
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == RecordAudioRequestCode && grantResults.length > 0 ){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show();
+        if (requestCode == RecordAudioRequestCode && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public void onResume() {
         Log.i(this.getClass().toString(), "resume");
@@ -139,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         Log.i(this.getClass().toString(), "stop");
         super.onStop();
-       micListener.stopListening();
+        micListener.stopListening();
     }
 
     //mengeluarkan hasil dari penerjemahan speechrecognizer yang berupa text
@@ -151,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
         speechString = speechString + " " + matches.get(0);
 
         //displaying the first match
-        ernaEditTex.setText(speechString );
+        ernaEditTex.setText(speechString);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Message messageBaru = new Message(speechString,true);
+                Message messageBaru = new Message(speechString, true);
                 ernaAdapter.hapusMessage();
                 ernaAdapter.tambahMessage(messageBaru);
                 WitAITask witAITask = new WitAITask(ernaAdapter, ernaListView);
@@ -177,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Message messageBaru = new Message(message,true);
+                    Message messageBaru = new Message(message, true);
                     ernaAdapter.hapusMessage();
                     ernaAdapter.tambahMessage(messageBaru);
                     WitAITask witAITask = new WitAITask(ernaAdapter, ernaListView);
