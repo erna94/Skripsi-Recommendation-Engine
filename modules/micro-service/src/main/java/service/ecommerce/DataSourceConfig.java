@@ -15,12 +15,25 @@ public class DataSourceConfig {
     	 
     	// mengkofigurasi database untuk mengenali letak database kita yang akan
     	// dihubungi
+    	
+    	//setting aws
+    	// username: ernbtpl/Goldenstick1
+    	// host: skripsi.cw2h8gl6vykn.ap-southeast-1.rds.amazonaws.com:3306
+    	
+    	// setting local
+    	// username: root/root
+    	// host:localhost:3306
+    	
+    	String URL_HOST = "skripsi.cw2h8gl6vykn.ap-southeast-1.rds.amazonaws.com:3306";
+    	
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setUsername("ernbtpl");
+        dataSource.setPassword("Goldenstick1");
         dataSource.setUrl(
-          "jdbc:mysql://localhost:3306/db_product"); 
+          "jdbc:mysql://" + URL_HOST + "/db_product"); 
          
+        System.out.println("Connecting to URL HOST: >>>>>> " + URL_HOST);
+        
         return dataSource;
     }
   }

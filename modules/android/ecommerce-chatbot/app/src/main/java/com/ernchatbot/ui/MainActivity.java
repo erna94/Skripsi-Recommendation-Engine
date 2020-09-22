@@ -207,6 +207,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_logout:
                 //MASUKIN LOGOUT DISINI
+                // Hilangkan barang di cart
+                MainActivity.cart.clear();
                 Intent logout = new Intent(this, LoginActivity.class);
                 startActivity(logout);
                 finish();
