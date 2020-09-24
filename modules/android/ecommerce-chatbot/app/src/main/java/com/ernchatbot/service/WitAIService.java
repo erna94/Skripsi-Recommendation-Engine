@@ -18,12 +18,12 @@ public class WitAIService {
 
     /***
      *  Memanggil wit AI untuk mendapatkan intent dari suatu message
-     * @param message Hasil dari message yang kita mau panggil
+     * @param message Hasil dari message yang kita mau panggilerna
      * @return
      * @throws Exception
      */
     public String callWitAI(String message) throws Exception {
-        HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpUtil.getHttpClient();
 
         // untuk mengirim dengan GET, kita harus mengubah message kita dengan encoding
         // contoh "Saya mau makan" akan menjadi "Saya%20mau%20makan" di mana

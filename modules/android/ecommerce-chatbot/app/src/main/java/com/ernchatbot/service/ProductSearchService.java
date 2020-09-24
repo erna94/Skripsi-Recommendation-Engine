@@ -29,7 +29,7 @@ public class ProductSearchService {
     }
 
     private String callHttpGet(String url) throws IOException {
-        HttpClient client = new DefaultHttpClient();
+        HttpClient client = HttpUtil.getHttpClient();
 
         // di Android Emulator di Android Studio, localhost di tulis sebagai 10.0.2.2
         HttpGet request = new HttpGet(url);

@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView micButton;
     ImageButton sendMessage;
     MicListener micListener;
+    boolean isListening = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             checkPermission();
         }
         this.ernaEditTex = findViewById(R.id.ernaEditText);
+        ernaEditTex.setHint("Ketik atau tekan tombol mic..");
+
         this.ernaListView = findViewById(R.id.erna_messages_view);
         this.micButton = findViewById(R.id.btnPtt);
         this.ernaAdapter = new MessageAdapter(this);
@@ -72,9 +75,16 @@ public class MainActivity extends AppCompatActivity {
         micButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ernaEditTex.setHint("Listening...");
-                micListener.startListening();
-                ernaEditTex.setText("");
+                if(!isListening) {
+                    ernaEditTex.setHint("Listening... Klik tombol mic buat stop");
+                    micListener.startListening();
+                    ernaEditTex.setText("");
+                    isListening = true;
+                } else {
+                    ernaEditTex.setHint("Ketik atau tekan tombol mic..");
+                    isListening = false;
+                    micListener.stopListening();
+                }
             }
         });
 
@@ -146,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         //getting all the matches
         ArrayList<String> matches = bundle
                 .getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        speechString = speechString + " " + matches.get(0);
+        speechString = matches.get(0);
 
         //displaying the first match
         ernaEditTex.setText(speechString);

@@ -29,9 +29,6 @@ class MicListener  implements RecognitionListener {
 
     public void stopListening() {
         speech.stopListening();
-        if (speech != null) {
-            speech.destroy();
-        }
     }
 
     public void startListening() {
@@ -44,6 +41,7 @@ class MicListener  implements RecognitionListener {
     public void resetSpeechRecognizer() {
         if(speech != null) {
             speech.destroy();
+            speech = null;
         }
 
         speech = SpeechRecognizer.createSpeechRecognizer(context);
@@ -68,8 +66,6 @@ class MicListener  implements RecognitionListener {
     @Override
     public void onEndOfSpeech() {
         Log.i(LOG_TAG, "onEndOfSpeech");
-        speech.stopListening();
-
     }
     //mengeluarkan hasil dari penerjemahan speechrecognizer yang berupa text
     @Override
