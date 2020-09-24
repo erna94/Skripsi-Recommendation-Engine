@@ -20,7 +20,7 @@ class MicListener  implements RecognitionListener {
 
     MicListener(MainActivity context) {
         this.context = context;
-        resetSpeechRecognizer();
+        initSpeechRecogizer();
     }
 
     public SpeechRecognizer getSpeechRecognizer() {
@@ -32,21 +32,15 @@ class MicListener  implements RecognitionListener {
     }
 
     public void startListening() {
-        resetSpeechRecognizer();
         setRecogniserIntent();
         speech.startListening(recognizerIntent);
     }
 
     //methode untuk mengulang sesi penerimaan suara yang akan diterjemahkan kedalam teks
-    public void resetSpeechRecognizer() {
-        if(speech != null) {
-            speech.destroy();
-            speech = null;
-        }
-
+    private void initSpeechRecogizer() {
         speech = SpeechRecognizer.createSpeechRecognizer(context);
         Log.i(LOG_TAG, "isRecognitionAvailable: " + SpeechRecognizer.isRecognitionAvailable(context));
-        if(SpeechRecognizer.isRecognitionAvailable(context)) {
+        if (SpeechRecognizer.isRecognitionAvailable(context)) {
             speech.setRecognitionListener(this);
         } else {
             context.finish();
@@ -78,8 +72,13 @@ class MicListener  implements RecognitionListener {
     public void onError(int i) {
         String errorMessage = getErrorText(i);
         Log.i(LOG_TAG, "FAILED " + errorMessage);
+
+        speech.stopListening();
+        speech.destroy();
+        speech = null;
+
         // rest voice recogniser
-        resetSpeechRecognizer();
+        initSpeechRecogizer();
         speech.startListening(recognizerIntent);
 
     }
