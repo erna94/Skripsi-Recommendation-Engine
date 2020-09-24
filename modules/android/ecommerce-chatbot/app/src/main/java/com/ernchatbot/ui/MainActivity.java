@@ -138,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         Log.i(this.getClass().toString(), "pause");
         super.onPause();
-        micListener.stopListening();
     }
 
     //melakukan stop speechrecognizer pada saat aplikasi berhenti
@@ -146,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         Log.i(this.getClass().toString(), "stop");
         super.onStop();
-        micListener.stopListening();
     }
 
     //mengeluarkan hasil dari penerjemahan speechrecognizer yang berupa text
