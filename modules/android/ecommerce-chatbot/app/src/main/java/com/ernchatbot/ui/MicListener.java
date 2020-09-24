@@ -27,7 +27,7 @@ class MicListener  implements RecognitionListener {
         if (SpeechRecognizer.isRecognitionAvailable(context)) {
             speech.setRecognitionListener(this);
         } else {
-            context.finish();
+            throw new RuntimeException("The recognition is not available for this Phone");
         }
     }
 
