@@ -72,15 +72,6 @@ class MicListener  implements RecognitionListener {
     public void onError(int i) {
         String errorMessage = getErrorText(i);
         Log.i(LOG_TAG, "FAILED " + errorMessage);
-
-        speech.stopListening();
-        speech.destroy();
-        speech = null;
-
-        // rest voice recogniser
-        initSpeechRecogizer();
-        speech.startListening(recognizerIntent);
-
     }
 
     //inisialisasi speech recognizer
