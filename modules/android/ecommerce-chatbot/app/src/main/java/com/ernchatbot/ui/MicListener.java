@@ -1,15 +1,11 @@
 package com.ernchatbot.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.Locale;
 
 class MicListener  implements RecognitionListener {
     private String LOG_TAG = "SpeechActivity";
@@ -21,19 +17,7 @@ class MicListener  implements RecognitionListener {
     MicListener(MainActivity context) {
         this.context = context;
         initSpeechRecogizer();
-    }
-
-    public SpeechRecognizer getSpeechRecognizer() {
-        return speech;
-    }
-
-    public void stopListening() {
-        speech.stopListening();
-    }
-
-    public void startListening() {
-        setRecogniserIntent();
-        speech.startListening(recognizerIntent);
+        initRecognizerIntent();
     }
 
     //methode untuk mengulang sesi penerimaan suara yang akan diterjemahkan kedalam teks
@@ -45,6 +29,25 @@ class MicListener  implements RecognitionListener {
         } else {
             context.finish();
         }
+    }
+
+    //inisialisasi speech recognizer
+    private void initRecognizerIntent() {
+        recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        //melakukan pemilihan bahasa yang akan diolah pada saat penerimaan suara dan diterjemahkan menjadi tulisan
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                "id-ID");
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
+    }
+
+    public void stopListening() {
+        speech.stopListening();
+    }
+
+    public void startListening() {
+        speech.startListening(recognizerIntent);
     }
 
     @Override
@@ -74,21 +77,8 @@ class MicListener  implements RecognitionListener {
         Log.i(LOG_TAG, "FAILED " + errorMessage);
     }
 
-    //inisialisasi speech recognizer
-    private void setRecogniserIntent() {
-        recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        //melakukan pemilihan bahasa yang akan diolah pada saat penerimaan suara dan diterjemahkan menjadi tulisan
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-                "id-ID");
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
-    }
-
     @Override
-    public void onPartialResults(Bundle partialResults) {
-
-    }
+    public void onPartialResults(Bundle partialResults) {}
 
     @Override
     public void onEvent(int eventType, Bundle params) {}
